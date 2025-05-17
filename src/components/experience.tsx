@@ -1,5 +1,19 @@
 import * as React from "react";
-import { Calendar, Building2 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const Calendar = dynamic(
+  () => import("lucide-react").then((mod) => mod.Calendar),
+  {
+    ssr: false,
+  }
+);
+
+const Building2 = dynamic(
+  () => import("lucide-react").then((mod) => mod.Building2),
+  {
+    ssr: false,
+  }
+);
 
 export function Experience() {
   const experiences = [
