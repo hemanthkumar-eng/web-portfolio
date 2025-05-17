@@ -1,13 +1,7 @@
 "use client";
 
 import * as React from "react";
-import heroBg from "../Images/hero-bg.jpg";
-import expertiseBg from "../Images/expertise-bg.jpg";
-import pupMatcherImg from "../Images/Projects/PupMatcher/1.png";
-import moveEasyImg from "../Images/Projects/MoveEasy/1.png";
-import figmaMerchImg from "../Images/Projects/Figma Merch Store/1.png";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const NAV_ITEMS = [
@@ -20,12 +14,7 @@ const NAV_ITEMS = [
 ];
 
 export default function Home() {
-  const router = useRouter();
   const [expandedExp, setExpandedExp] = React.useState("Avacend Inc");
-
-  const navigateToProject = (slug: string) => {
-    router.push(`/projects/${slug}`);
-  };
 
   return (
     <main className="relative min-h-screen flex flex-col bg-black overflow-x-hidden">
@@ -49,13 +38,13 @@ export default function Home() {
         id="home"
         className="flex flex-col items-center justify-center text-center min-h-screen pt-24 select-none relative z-0 overflow-hidden"
         style={{
-          backgroundImage: `url(${heroBg.src})`,
+          backgroundImage: 'url("/hero-bg.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-black/70 z-0" />
+        <div className="absolute inset-0 bg-black/60 z-0" />
         <div className="relative z-10">
           <h1 className="text-6xl md:text-8xl font-extrabold text-white tracking-tight leading-none mb-4 drop-shadow-xl">
             HEMANTH
@@ -72,12 +61,13 @@ export default function Home() {
         id="expertise"
         className="w-full max-w-6xl mx-auto py-24 px-4 relative"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url(${expertiseBg.src})`,
+          backgroundImage: 'url("/expertise-bg.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
         }}
       >
+        <div className="absolute inset-0 bg-black/70 z-0" />
         <div className="relative z-10">
           <h1 className="text-6xl font-bold text-white mb-16 text-center">
             My Expertise
@@ -140,42 +130,44 @@ export default function Home() {
           {[
             {
               title: "PupMatcher",
-              emoji: "💼",
-              href: "/projects/pupmatcher",
-              image: pupMatcherImg,
+              emoji: "🐕",
+              slug: "pupmatcher",
+              image: "/projects/pupmatcher/PupMatcher/1.png",
               description:
                 "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
             },
             {
               title: "MoveEasy",
-              emoji: "🚚",
-              href: "/projects/moveeasy",
-              image: moveEasyImg,
+              emoji: "📦",
+              slug: "moveeasy",
+              image: "/projects/moveeasy/MoveEasy/1.png",
               description:
                 "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
             },
             {
               title: "Figma Merch Store",
-              emoji: "🎨",
-              href: "/projects/figmamerch",
-              image: figmaMerchImg,
+              emoji: "🎯",
+              slug: "figmamerch",
+              image: "/projects/figmamerch/Figma Merch Store/1.png",
               description:
                 "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
             },
           ].map((project) => (
             <Link
               key={project.title}
-              href={project.href}
+              href={`/projects/${project.slug}`}
               className="group relative block border border-white/10 rounded-lg overflow-hidden bg-black/80 backdrop-blur-sm hover:bg-black/90 transition-all hover:scale-[1.02] cursor-pointer"
             >
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
                   src={project.image}
                   alt={`${project.title} preview`}
-                  className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-300"
+                  width={600}
+                  height={400}
+                  className="object-cover object-center w-full h-full group-hover:scale-110 transition-transform duration-300"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70" />
               </div>
               <div className="p-8">
                 <div className="flex items-center gap-4 mb-6">

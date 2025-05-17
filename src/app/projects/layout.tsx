@@ -3,7 +3,7 @@ export default function ProjectsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="min-h-screen bg-black">{children}</div>;
+  return children;
 }
 
 export const metadata = {

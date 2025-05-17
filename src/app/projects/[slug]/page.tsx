@@ -1,7 +1,6 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const projects = {
   pupmatcher: {
@@ -103,22 +102,19 @@ Technical Stack:
     demo: "https://figmamerch.demo.com",
     images: ["/projects/figmamerch/1.jpg", "/projects/figmamerch/2.jpg"],
   },
-};
+} as const;
+
+export function generateStaticParams() {
+  return Object.keys(projects).map((slug) => ({
+    slug,
+  }));
+}
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects[params.slug as keyof typeof projects];
 
   if (!project) {
-    return (
-      <div className="min-h-screen bg-black text-white py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">Project Not Found</h1>
-          <Link href="/#work" className="text-primary hover:underline">
-            ← Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   return (
