@@ -9,6 +9,7 @@ interface ImageCarouselProps {
 
 export function ImageCarousel({ images }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -29,9 +30,21 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
           src={images[currentIndex]}
           alt={`Project image ${currentIndex + 1}`}
           fill
-          className="object-cover rounded-lg"
+          className={`object-cover rounded-lg transition-opacity duration-300 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
           priority={currentIndex === 0}
+          onLoad={() => setIsLoading(false)}
+          onError={(e) => {
+            console.error("Failed to load image:", images[currentIndex]);
+            setIsLoading(false);
+          }}
         />
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+            <div className="text-white">Loading...</div>
+          </div>
+        )}
       </div>
 
       {images.length > 1 && (

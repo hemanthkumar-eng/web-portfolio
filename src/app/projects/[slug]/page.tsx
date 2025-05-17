@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ImageCarousel } from "@/components/ImageCarousel";
+import { getAssetPath } from "@/utils/path";
 
 const projects = {
   pupmatcher: {
@@ -37,9 +38,9 @@ Technical Stack:
     github: "https://github.com/Hemanthx96/PupMatcher",
     demo: "https://pupmatcher.demo.com",
     images: [
-      "/projects/pupmatcher/PupMatcher/1.png",
-      "/projects/pupmatcher/PupMatcher/2.png",
-      "/projects/pupmatcher/PupMatcher/3.png",
+      getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
+      getAssetPath("/projects/pupmatcher/PupMatcher/2.png"),
+      getAssetPath("/projects/pupmatcher/PupMatcher/3.png"),
     ],
   },
   moveeasy: {
@@ -77,8 +78,8 @@ Technical Stack:
     github: "https://github.com/Hemanthx96/shippers-web",
     demo: "https://moveeasy.demo.com",
     images: [
-      "/projects/moveeasy/MoveEasy/1.png",
-      "/projects/moveeasy/MoveEasy/2.png",
+      getAssetPath("/projects/moveeasy/MoveEasy/1.png"),
+      getAssetPath("/projects/moveeasy/MoveEasy/2.png"),
     ],
   },
   figmamerch: {
@@ -109,10 +110,10 @@ Technical Stack:
     github: "https://github.com/yourusername/figma-merch",
     demo: "https://figmamerch.demo.com",
     images: [
-      "/projects/figmamerch/Figma Merch Store/1.png",
-      "/projects/figmamerch/Figma Merch Store/2.png",
-      "/projects/figmamerch/Figma Merch Store/3.png",
-      "/projects/figmamerch/Figma Merch Store/4.png",
+      getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
+      getAssetPath("/projects/figmamerch/Figma Merch Store/2.png"),
+      getAssetPath("/projects/figmamerch/Figma Merch Store/3.png"),
+      getAssetPath("/projects/figmamerch/Figma Merch Store/4.png"),
     ],
   },
 } as const;
