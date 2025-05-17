@@ -1,32 +1,31 @@
 import * as React from "react";
-import { Code2, Layout, Server, Database, TestTube2 } from "lucide-react";
 
 export function Skills() {
   const skillCategories = [
     {
       category: "Programming Languages",
       skills: ["JavaScript", "TypeScript", "Python"],
-      icon: <Code2 className="h-6 w-6 text-primary" />,
+      emoji: "💻",
     },
     {
       category: "Front-End Development",
       skills: ["React", "React Native", "Next.js", "Bootstrap"],
-      icon: <Layout className="h-6 w-6 text-primary" />,
+      emoji: "🎨",
     },
     {
       category: "Back-End Development",
       skills: ["Node.js", "Express.js"],
-      icon: <Server className="h-6 w-6 text-primary" />,
+      emoji: "⚙️",
     },
     {
       category: "Data Management",
       skills: ["PostgreSQL"],
-      icon: <Database className="h-6 w-6 text-primary" />,
+      emoji: "🗄️",
     },
     {
       category: "Testing",
       skills: ["Unit and Integration testing"],
-      icon: <TestTube2 className="h-6 w-6 text-primary" />,
+      emoji: "🧪",
     },
   ];
 
@@ -43,7 +42,7 @@ export function Skills() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="flex items-center gap-3 mb-4">
-              {category.icon}
+              <span className="text-2xl">{category.emoji}</span>
               <h3 className="text-xl font-medium">{category.category}</h3>
             </div>
             <div className="flex flex-wrap gap-2">
