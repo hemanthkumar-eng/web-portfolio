@@ -66,7 +66,9 @@ export default function Home() {
         id="home"
         className="flex flex-col items-center justify-center text-center min-h-screen pt-24 select-none relative z-0 overflow-hidden"
         style={{
-          backgroundImage: `url("${getAssetPath("/hero-bg.jpg")}")`,
+          backgroundImage: `url("${getAssetPath(
+            "/projects/Background/hero-bg.jpg"
+          )}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -89,7 +91,9 @@ export default function Home() {
         id="expertise"
         className="w-full max-w-6xl mx-auto py-24 px-4 relative"
         style={{
-          backgroundImage: `url("${getAssetPath("/expertise-bg.jpg")}")`,
+          backgroundImage: `url("${getAssetPath(
+            "/projects/Background/expertise-bg.jpg"
+          )}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
