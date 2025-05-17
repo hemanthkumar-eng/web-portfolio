@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ImageCarousel } from "@/components/ImageCarousel";
 
 const projects = {
   pupmatcher: {
@@ -35,7 +36,11 @@ Technical Stack:
     ],
     github: "https://github.com/Hemanthx96/PupMatcher",
     demo: "https://pupmatcher.demo.com",
-    images: ["/projects/pupmatcher/1.jpg", "/projects/pupmatcher/2.jpg"],
+    images: [
+      "/projects/pupmatcher/PupMatcher/1.png",
+      "/projects/pupmatcher/PupMatcher/2.png",
+      "/projects/pupmatcher/PupMatcher/3.png",
+    ],
   },
   moveeasy: {
     title: "MoveEasy",
@@ -71,7 +76,10 @@ Technical Stack:
     ],
     github: "https://github.com/Hemanthx96/shippers-web",
     demo: "https://moveeasy.demo.com",
-    images: ["/projects/moveeasy/1.jpg", "/projects/moveeasy/2.jpg"],
+    images: [
+      "/projects/moveeasy/MoveEasy/1.png",
+      "/projects/moveeasy/MoveEasy/2.png",
+    ],
   },
   figmamerch: {
     title: "Figma Merch Store",
@@ -100,7 +108,12 @@ Technical Stack:
     tags: ["React", "Node.js", "PostgreSQL", "Redux", "Stripe", "Material-UI"],
     github: "https://github.com/yourusername/figma-merch",
     demo: "https://figmamerch.demo.com",
-    images: ["/projects/figmamerch/1.jpg", "/projects/figmamerch/2.jpg"],
+    images: [
+      "/projects/figmamerch/Figma Merch Store/1.png",
+      "/projects/figmamerch/Figma Merch Store/2.png",
+      "/projects/figmamerch/Figma Merch Store/3.png",
+      "/projects/figmamerch/Figma Merch Store/4.png",
+    ],
   },
 } as const;
 
@@ -136,6 +149,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </span>
           ))}
         </div>
+
+        {project.images && project.images.length > 0 && (
+          <ImageCarousel images={project.images} />
+        )}
 
         <div className="prose prose-invert max-w-none mb-8">
           <p className="text-lg text-gray-300 mb-8">{project.description}</p>
