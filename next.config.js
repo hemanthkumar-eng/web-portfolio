@@ -2,12 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: "export",
   images: {
     unoptimized: true,
   },
-  basePath: "/web-portfolio",
-  trailingSlash: false,
+  // Configure basePath only for production (GitHub Pages)
+  ...(process.env.NODE_ENV === "production"
+    ? {
+        output: "export",
+        basePath: "/web-portfolio",
+      }
+    : {}),
 };
 
 module.exports = nextConfig;

@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getAssetPath } from "@/utils/path";
 
 const NAV_ITEMS = [
   { label: "home", href: "#home" },
@@ -11,6 +12,33 @@ const NAV_ITEMS = [
   { label: "experience", href: "#experience" },
   { label: "education", href: "#education" },
   { label: "contact", href: "#contact" },
+];
+
+const projects = [
+  {
+    title: "PupMatcher",
+    emoji: "🐕",
+    slug: "pupmatcher",
+    image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
+    description:
+      "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
+  },
+  {
+    title: "MoveEasy",
+    emoji: "📦",
+    slug: "moveeasy",
+    image: getAssetPath("/projects/moveeasy/MoveEasy/1.png"),
+    description:
+      "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
+  },
+  {
+    title: "Figma Merch Store",
+    emoji: "🎯",
+    slug: "figmamerch",
+    image: getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
+    description:
+      "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
+  },
 ];
 
 export default function Home() {
@@ -38,7 +66,7 @@ export default function Home() {
         id="home"
         className="flex flex-col items-center justify-center text-center min-h-screen pt-24 select-none relative z-0 overflow-hidden"
         style={{
-          backgroundImage: 'url("/hero-bg.jpg")',
+          backgroundImage: `url("${getAssetPath("/hero-bg.jpg")}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -61,7 +89,7 @@ export default function Home() {
         id="expertise"
         className="w-full max-w-6xl mx-auto py-24 px-4 relative"
         style={{
-          backgroundImage: 'url("/expertise-bg.jpg")',
+          backgroundImage: `url("${getAssetPath("/expertise-bg.jpg")}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -127,32 +155,7 @@ export default function Home() {
           Work / Projects
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "PupMatcher",
-              emoji: "🐕",
-              slug: "pupmatcher",
-              image: "/projects/pupmatcher/PupMatcher/1.png",
-              description:
-                "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
-            },
-            {
-              title: "MoveEasy",
-              emoji: "📦",
-              slug: "moveeasy",
-              image: "/projects/moveeasy/MoveEasy/1.png",
-              description:
-                "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
-            },
-            {
-              title: "Figma Merch Store",
-              emoji: "🎯",
-              slug: "figmamerch",
-              image: "/projects/figmamerch/Figma Merch Store/1.png",
-              description:
-                "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
-            },
-          ].map((project) => (
+          {projects.map((project) => (
             <Link
               key={project.title}
               href={`/projects/${project.slug}`}
