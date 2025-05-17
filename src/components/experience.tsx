@@ -1,82 +1,92 @@
 import * as React from "react";
-import dynamic from "next/dynamic";
-
-const Calendar = dynamic(
-  () => import("lucide-react").then((mod) => mod.Calendar),
-  {
-    ssr: false,
-  }
-);
-
-const Building2 = dynamic(
-  () => import("lucide-react").then((mod) => mod.Building2),
-  {
-    ssr: false,
-  }
-);
 
 export function Experience() {
   const experiences = [
     {
+      title: "App Developer",
       company: "Avacend Inc",
-      role: "App Developer",
+      location: "Bengaluru, India",
       period: "02/2025 - Present",
-      points: [
+      website: "avacend.com",
+      description: [
         "Developed a mobile dashboard application for supervisors using static Excel-based data to provide on the go access to work order status, worker assignments, and departmental metrics.",
         "Built reusable, responsive UI components using React Native enabling intuitive navigation across work orders, worker details, and SLA compliance metrics.",
         "Integrated structured data parsing logic to transform Excel input into clean, interactive frontend views with filtering, sorting, and dynamic data mapping.",
         "Engineered a scalable layout with card-based views and modular design patterns to support future additions like graphical visualizations and adaptive interfaces.",
-        "Optimized the app for offline use by implementing local data caching and refresh functionality, anticipating future integration with live data and notification systems.",
       ],
+      skills: ["React Native", "TypeScript", "Redux"],
     },
     {
+      title: "Front End Web Developer",
       company: "Constient Global Solutions",
-      role: "Front End Web Developer",
+      location: "Bengaluru, India",
       period: "06/2023 - 12/2023",
-      points: [
+      website: "constient.com",
+      description: [
         "Worked on a cloud-native log monitoring system",
         "Making the website responsive to different devices",
         "Adding theme toggling to the website",
         "Unit testing",
       ],
+      skills: ["React", "JavaScript", "CSS"],
     },
   ];
 
+  const [expandedExp, setExpandedExp] = React.useState("Avacend Inc");
+
   return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-semibold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-        Experience
-      </h2>
-      <div className="space-y-8">
-        {experiences.map((exp, index) => (
-          <div
-            key={index}
-            className="glass-effect rounded-xl p-6 shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
+    <div className="space-y-4">
+      {experiences.map((exp) => (
+        <div key={exp.company} className="w-full">
+          <button
+            onClick={() =>
+              setExpandedExp(expandedExp === exp.company ? "" : exp.company)
+            }
+            className={`w-full flex justify-between items-center p-6 rounded-lg text-left transition-colors border border-white/10 backdrop-blur-sm ${
+              expandedExp === exp.company
+                ? "bg-black/90"
+                : "bg-black/80 hover:bg-black/90"
+            }`}
           >
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex items-center gap-3">
-                <Building2 className="h-6 w-6 text-primary" />
-                <div>
-                  <h3 className="text-xl font-medium">{exp.company}</h3>
-                  <p className="text-muted-foreground">{exp.role}</p>
-                </div>
+            <div>
+              <h3 className="text-xl font-semibold text-white">
+                {exp.title} @ {exp.company}
+              </h3>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-white/80">{exp.period}</span>
+              <span className="text-2xl text-white">
+                {expandedExp === exp.company ? "−" : "+"}
+              </span>
+            </div>
+          </button>
+          {expandedExp === exp.company && (
+            <div className="bg-black/80 backdrop-blur-sm p-8 rounded-b-lg border border-white/10 mt-1">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-white/60">📍 {exp.location}</span>
+                <a href="#" className="text-white/80 hover:text-white">
+                  {exp.website}
+                </a>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                <span>{exp.period}</span>
+              <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
+                {exp.description.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {exp.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-3 py-1 bg-white/5 rounded-full text-sm text-white/80"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
-            <ul className="space-y-3 text-muted-foreground">
-              {exp.points.map((point, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-primary">•</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }
