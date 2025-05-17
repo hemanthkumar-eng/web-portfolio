@@ -8,7 +8,7 @@ export function Projects() {
       description:
         "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
       image: "/project1.jpg",
-      github: "#",
+      github: "https://github.com/Hemanthx96/PupMatcher",
       demo: "#",
     },
     {
@@ -16,7 +16,7 @@ export function Projects() {
       description:
         "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
       image: "/project2.jpg",
-      github: "#",
+      github: "https://github.com/Hemanthx96/shippers-web",
       demo: "#",
     },
     {

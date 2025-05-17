@@ -385,7 +385,7 @@ export default function Home() {
                 Hemanthx96@gmail.com
               </a>
               <a
-                href="https://github.com/hemanthkumar316"
+                href="https://github.com/Hemanthx96"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-mono hover:underline flex items-center gap-2"

@@ -7,7 +7,7 @@ export function Experience() {
       company: "Avacend Inc",
       location: "Bengaluru, India",
       period: "02/2025 - Present",
-      website: "avacend.com",
+      website: "https://avacendsolutions.com",
       description: [
         "Developed a mobile dashboard application for supervisors using static Excel-based data to provide on the go access to work order status, worker assignments, and departmental metrics.",
         "Built reusable, responsive UI components using React Native enabling intuitive navigation across work orders, worker details, and SLA compliance metrics.",
@@ -21,7 +21,7 @@ export function Experience() {
       company: "Constient Global Solutions",
       location: "Bengaluru, India",
       period: "06/2023 - 12/2023",
-      website: "constient.com",
+      website: "https://www.constient.com",
       description: [
         "Worked on a cloud-native log monitoring system",
         "Making the website responsive to different devices",
@@ -64,8 +64,13 @@ export function Experience() {
             <div className="bg-black/80 backdrop-blur-sm p-8 rounded-b-lg border border-white/10 mt-1">
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-white/60">📍 {exp.location}</span>
-                <a href="#" className="text-white/80 hover:text-white">
-                  {exp.website}
+                <a
+                  href={exp.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white"
+                >
+                  {exp.website.replace("https://", "")}
                 </a>
               </div>
               <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
