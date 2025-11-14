@@ -9,7 +9,7 @@ interface Project {
   title: string;
   description: string;
   fullDescription: string;
-  tags: string[];
+  tags: readonly string[];
   github: string;
   demo: string;
   images: readonly string[];
