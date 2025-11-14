@@ -1110,11 +1110,9 @@ export default function Home() {
               
               const iconContainerVariants = {
                 idle: { 
-                  scale: 1,
                   ...iconAnimations[index]?.idle,
                 },
                 hover: { 
-                  scale: 1,
                   ...iconAnimations[index]?.hover,
                 },
               };
