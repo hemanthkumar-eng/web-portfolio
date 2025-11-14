@@ -1,7 +1,5 @@
-import * as React from "react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ImageCarousel } from "@/components/ImageCarousel";
+import { ProjectContent } from "./ProjectContent";
 import { getAssetPath } from "@/utils/path";
 
 const projects = {
@@ -131,56 +129,5 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  return (
-    <div className="min-h-screen bg-black text-white py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <Link href="/#work" className="text-primary hover:underline mb-8 block">
-          ← Back to Projects
-        </Link>
-
-        <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {project.images && project.images.length > 0 && (
-          <ImageCarousel images={project.images} />
-        )}
-
-        <div className="prose prose-invert max-w-none mb-8">
-          <p className="text-lg text-gray-300 mb-8">{project.description}</p>
-          <div className="whitespace-pre-line text-gray-300">
-            {project.fullDescription}
-          </div>
-        </div>
-
-        <div className="flex gap-4 mb-8">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-          >
-            <span>View on GitHub</span>
-          </a>
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-          >
-            <span>Live Demo</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+  return <ProjectContent project={project} />;
 }
