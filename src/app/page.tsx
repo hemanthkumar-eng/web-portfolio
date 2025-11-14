@@ -716,10 +716,9 @@ export default function Home() {
                         key={skill}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + skillIndex * 0.1 }}
+                        transition={{ delay: 0.4 + skillIndex * 0.1, type: "tween" }}
                         whileHover={{ scale: 1.15, y: -3, rotate: -5 }}
                         whileTap={{ scale: 0.9 }}
-                        transition={{ type: "tween" }}
                         className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm text-white/80 border border-purple-500/30 cursor-pointer"
                       >
                         {skill}
