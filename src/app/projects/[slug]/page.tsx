@@ -5,6 +5,7 @@ import { getAssetPath } from "@/utils/path";
 const projects = {
   pupmatcher: {
     title: "PupMatcher",
+    category: "web",
     description:
       "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
     fullDescription: `PupMatcher is an innovative platform designed to help dog owners find playmates and potential matches for their pets. The application combines the familiar swipe-based interface popularized by dating apps with a pet-focused approach.
@@ -43,38 +44,43 @@ Technical Stack:
   },
   moveeasy: {
     title: "MoveEasy",
+    category: "web",
     description:
       "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
     fullDescription: `MoveEasy is a comprehensive shipping services platform that simplifies the process of finding and booking shipping services. The website provides a modern, user-friendly interface for customers to explore shipping options and get instant quotes.
 
 Key Features:
-- Instant Quote Calculator: Real-time shipping cost estimation
-- Service Comparison: Side-by-side comparison of different shipping options
-- Booking System: Streamlined process for scheduling shipments
-- Track & Trace: Real-time shipment tracking
-- Customer Dashboard: Personalized dashboard for managing shipments
-- Admin Panel: Comprehensive admin interface for managing services
+- Unified Marketing + App Experience: Responsive Next.js site with rich service pages, About/Contact sections, and Indian-market branding.
+- Secure Account Management: JWT-backed auth plus profile dropdown for quick access to shipments and account actions.
+- Address Book & Validation: Persistent address management with PIN-code validation and redirect-aware flows for shipment creation.
+- Shipment Lifecycle Tools: Mandatory pickup scheduling, shipment list/detail views, tracking link, and dashboard insights.
+- Mocked Payments & Future-Ready API: Razorpay-compatible mock endpoints so the UI behaves like production while waiting for live keys.
+- Deployment & Ops Ready: Vercel frontend + Render backend setup, documented env vars, Git secret hygiene, and health check endpoint.
 
 Technical Stack:
-- Frontend: Next.js 13 with App Router
-- UI Components: Shadcn UI
-- State Management: React Query
-- Styling: Tailwind CSS
-- Backend: Node.js with Express
-- Database: MongoDB
-- Authentication: NextAuth.js
-- Payment Integration: Stripe
-- Analytics: Google Analytics`,
+- Frontend: Next.js 16 (React framework)
+- TypeScript
+- UI Framework: Bootstrap 5
+- API Client: Axios
+- Backend: Node.js with Express.js
+- Database: MongoDB with Mongoose
+- Authentication: JWT
+- Payment Gateway: Razorpay (test mode)
+- Hosting: Frontend on Vercel (free tier)
+- Hosting: Backend on Render (free tier)
+- Database Hosting: MongoDB Atlas (free tier)`,
     tags: [
       "Next.js",
       "TypeScript",
-      "Tailwind CSS",
+      "Bootstrap 5",
+      "Axios",
       "Node.js",
+      "Express.js",
       "MongoDB",
-      "Stripe",
+      "Razorpay",
     ],
     github: "https://github.com/Hemanthx96/shippers-web",
-    demo: "https://moveeasy.demo.com",
+    demo: "https://shippers-web-chi.vercel.app/",
     images: [
       getAssetPath("/projects/moveeasy/MoveEasy/1.png"),
       getAssetPath("/projects/moveeasy/MoveEasy/2.png"),
@@ -82,6 +88,7 @@ Technical Stack:
   },
   figmamerch: {
     title: "Figma Merch Store",
+    category: "web",
     description:
       "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
     fullDescription: `Figma Merch Store is a full-featured e-commerce platform built specifically for selling Figma-branded merchandise. The store provides a seamless shopping experience with a design-focused interface that reflects Figma's brand identity.
@@ -113,6 +120,89 @@ Technical Stack:
       getAssetPath("/projects/figmamerch/Figma Merch Store/3.png"),
       getAssetPath("/projects/figmamerch/Figma Merch Store/4.png"),
     ],
+  },
+  "facilityops-mobile": {
+    title: "FacilityOps Mobile Suite",
+    category: "app",
+    description:
+      "Cross-platform React Native + Expo app delivering SLA dashboards, AI-powered work order predictions, and deep-link aware navigation for facility supervisors and technicians.",
+    fullDescription: `FacilityOps Mobile Suite modernizes facility management with a unified mobile experience for supervisors and frontline technicians. Built with React Native 0.76 + Expo SDK 52, it combines delightful NativeWind UI, Redux-driven caching, and expo-secured authentication to keep field teams productive online or offline.
+
+Key Features:
+- Cross-Platform Experience: Pixel-perfect layouts for iOS/Android, responsive tablet views, orientation awareness, adaptive typography, and dark mode support.
+- Magic Link Authentication: Passwordless login backed by JWT tokens, secure storage via Expo SecureStore, and persistent sessions across app restarts.
+- Comprehensive Dashboard: Native charts (React Native SVG, Victory) for SLA compliance, planned vs unplanned breakdowns, backlog aging, and recently completed work orders.
+- Work Orders Lifecycle: Full CRUD with list/detail screens, search, pagination, color-coded priority badges, SLA timers, and multi-criteria filtering (status, type, category, date range, compliance, overdue).
+- Workers Performance: Dedicated performance dashboard tracking completion rates, overdue actions, and per-worker productivity with sortable tables and pagination.
+- Advanced Filtering & Smart Caching: Redux Toolkit + Context powered caching, cached filter options with 7-day expiry, intelligent refresh triggers, and optimistic UI updates.
+- AI-Powered Insights: Predictive analytics for work order trends, SLA risk scoring, worker assignment suggestions, cost estimation, and actionable coaching tips.
+- Deep Linking & Navigation: React Navigation 7 Native Stack + Bottom Tabs with Expo Linking config for authenticated/unauthenticated flows, role-aware redirection, and push notification deep links.
+
+Tech Stack:
+- Frontend: React Native 0.76.9, Expo SDK 52, TypeScript 5.3, NativeWind
+- State: Redux Toolkit 2.8, AuthContext, FilterContext, OrientationContext
+- Navigation: React Navigation 7 (Native Stack, Bottom Tabs) with deep linking
+- UI Libraries: React Native SVG Charts, Victory Native, React Native Chart Kit, Expo Vector Icons, Gesture Handler, Reanimated
+- API & Networking: Axios with request/response interceptors, JWT token refresh, automatic auth header injection
+- Storage: Expo SecureStore for sensitive auth, AsyncStorage for cached filters/preferences
+- DevOps: ESLint, Prettier, TypeScript strict mode, Expo CLI, Railway-hosted backend APIs
+- Deployment: EAS Build profiles (preview APK, production AAB/IPA) and platform-specific icons/splash screens`,
+    tags: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Redux Toolkit",
+      "NativeWind",
+      "React Navigation",
+      "Victory Native",
+      "AI Insights",
+      "SecureStore",
+    ],
+    github: "https://github.com/Hemanthx96/facilityops-mobile",
+    demo: "https://expo.dev/@Hemanthx96/facilityops-mobile",
+    images: [getAssetPath("/projects/facilityops/dashboard.svg")],
+  },
+  "tech-maintenance": {
+    title: "Tech Maintenance",
+    category: "app",
+    description:
+      "FM360’s React Native mobility companion that delivers unified theming, deep-link aware authentication, multimedia work order flows, and resilient Redux caching so technicians stay productive even when the network struggles.",
+    fullDescription: `Tech Maintenance extends FM360's facility operations stack with a field-ready mobility companion. Built on React Native 0.79, Expo SDK 53, React 19, and TypeScript 5.8, the app combines deep-link magic-link auth, device integrations, and cache-smart Redux slices to keep supervisors and technicians in sync across iOS, Android, and tablets.
+
+Key Features:
+- Magic-Link Authentication: Passwordless sign-in with deep linking, JWT verification, Redux hydration, secure token storage, and automatic session restoration after app restarts.
+- Responsive Dashboard Analytics: Donut/radial charts, SLA trend tiles, backlog callouts, recent activity feeds, shimmer loaders, and tablet-aware layouts driven by smart cache hooks (5-minute max-age, stale-while-revalidate).
+- Work Order Lifecycle: Cached list fetching with filter tabs, pull-to-refresh, animated success banners, color-coded priority/status chips, and detail views featuring technician timelines, SLA metadata, media galleries (video/audio) with decoder fallbacks and secure delete actions.
+- Asset Documentation Workflow: Barcode scans, photo/video capture, and audio notes streamed into a batch media uploader with JWT headers, file validation, progress callbacks, and optimistic navigation back to work orders.
+- Media & Evidence Capture: Dedicated capture flows manage permissions, timers, retries, and local staging before upload, while smart media hooks hydrate detail screens the moment uploads complete.
+- Notification Center: Gradient cards, priority badges, mark-all-read, pull-to-refresh, and tab badges powered by a singleton notification service plus shared context state.
+- Theming & Orientation: Persistent light/dark/system preferences, unlocked tablet orientation support, and token-driven typography/spacing to keep surfaces consistent.
+- Smart Caching & Middleware: Redux slices (auth, dashboard, work orders, media, UI) join cache middleware that enforces rate limits, configurable max-age windows, background refresh, and optimistic UI hints across reusable hooks.
+- Device Integrations: Barcode scanning, camera, microphone, and audio playback powered by Expo modules; asset scans support torch toggles, framing overlays, and landscape-friendly controls.
+- DevOps & Delivery: Strict TypeScript + ESLint/Prettier, Expo CLI, EAS Build profiles for preview and production, adaptive icons, splash art, and Railway-hosted backend APIs.
+
+Tech Stack:
+- Frontend: React Native 0.79, Expo SDK 53, React 19, TypeScript 5.8
+- Navigation: React Navigation 7 (Native Stack + custom Bottom Tabs) with Expo Linking
+- State & Data: Redux Toolkit 2.9, React Context, cache middleware, SecureStore + AsyncStorage persistence
+- UX Libraries: Expo Camera, Expo AV/Audio, react-native-svg, expo-linear-gradient, vector icons, gesture handler, reanimated
+- Networking: Fetch-with-retry utilities, JWT auth headers, Railway-hosted APIs
+- Storage & Media: Secure token storage, AsyncStorage fallback, FileSystem staging, custom batch media upload with progress + deletion support
+- Tooling & Delivery: Expo CLI, EAS Build (preview APK + production AAB/IPA), strict tsconfig, ESLint/Prettier, Railway infrastructure, downloadable preview artifacts`,
+    tags: [
+      "React Native",
+      "Expo SDK 53",
+      "TypeScript",
+      "Redux Toolkit",
+      "SecureStore",
+      "AsyncStorage",
+      "React Navigation",
+      "Expo Camera",
+      "Expo AV",
+    ],
+    github: "https://github.com/Hemanthx96/tech-maintenance",
+    demo: "https://expo.dev/@Hemanthx96/tech-maintenance",
+    images: [getAssetPath("/projects/techmaintenance/dashboard.svg")],
   },
 } as const;
 

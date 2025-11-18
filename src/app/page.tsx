@@ -20,28 +20,78 @@ const NAV_ITEMS = [
 
 const projects = [
   {
-    title: "PupMatcher",
-    emoji: "🐕",
-    slug: "pupmatcher",
-    image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
-    description:
-      "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
-  },
-  {
     title: "MoveEasy",
     emoji: "📦",
     slug: "moveeasy",
+    type: "web",
     image: getAssetPath("/projects/moveeasy/MoveEasy/1.png"),
     description:
       "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
+    highlights: [
+      "Next.js marketing + shipment dashboard experience",
+      "JWT-secured customer accounts with saved addresses",
+      "Shipment lifecycle views, tracking, and quote flows",
+      "Mock Razorpay checkout with ready backend APIs",
+    ],
+  },
+  {
+    title: "PupMatcher",
+    emoji: "🐕",
+    slug: "pupmatcher",
+    type: "web",
+    image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
+    description:
+      "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
+    highlights: [
+      "Swipe-first matchmaking with playful animations",
+      "Location + temperament filters for better matches",
+      "Secure profiles, galleries, and in-app chat",
+    ],
   },
   {
     title: "Figma Merch Store",
     emoji: "🎯",
     slug: "figmamerch",
+    type: "web",
     image: getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
     description:
       "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
+    highlights: [
+      "Curated product catalog with filtering and sorting",
+      "Persistent cart plus multi-step checkout with Stripe",
+      "Admin-ready inventory and order management views",
+    ],
+  },
+  {
+    title: "FacilityOps Mobile Suite",
+    emoji: "📱",
+    slug: "facilityops-mobile",
+    type: "app",
+    image: getAssetPath("/projects/facilityops/dashboard.svg"),
+    description:
+      "Cross-platform React Native + Expo application that delivers magic-link authentication, SLA dashboards, AI insights, and deep-link aware navigation for facility teams.",
+    highlights: [
+      "Magic link auth + SecureStore",
+      "AI SLA risk predictions",
+      "Redux Toolkit smart caching",
+      "Deep linking across stacks",
+    ],
+  },
+  {
+    title: "Tech Maintenance",
+    emoji: "🛠️",
+    slug: "tech-maintenance",
+    type: "app",
+    image: getAssetPath("/projects/techmaintenance/dashboard.svg"),
+    description:
+      "FM360’s React Native mobility companion that ships custom theming, deep-link-aware auth, rich analytics, and resilient Redux caching so crews stay productive even with spotty connectivity.",
+    highlights: [
+      "Magic-link auth with SecureStore + session restore",
+      "Responsive dashboards with donut/radial charts",
+      "Work order lifecycle with cached filters & media",
+      "Batch media uploads with progress + optimistic UI",
+      "Notification center with shared context + tabs",
+    ],
   },
 ];
 
@@ -72,6 +122,14 @@ export default function Home() {
   const [activeSection, setActiveSection] = React.useState("home");
   const { scrollY } = useScroll();
   const navOpacity = useTransform(scrollY, [0, 100], [0.8, 1]);
+  const webProjects = React.useMemo(
+    () => projects.filter((project) => project.type === "web"),
+    []
+  );
+  const appProjects = React.useMemo(
+    () => projects.filter((project) => project.type === "app"),
+    []
+  );
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -451,119 +509,100 @@ export default function Home() {
         >
           Work / <span className="text-gradient">Projects</span>
         </motion.h2>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {projects.map((project, index) => {
-            const [isCardHovered, setIsCardHovered] = React.useState(false);
-            
-            return (
-              <motion.div
-                key={project.title}
-                variants={itemVariants}
-                whileHover={{ y: -15, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                onMouseEnter={() => setIsCardHovered(true)}
-                onMouseLeave={() => setIsCardHovered(false)}
-              >
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="group relative block glass-card rounded-xl overflow-hidden h-full"
+        <div className="space-y-16">
+          {[{ label: "Web Projects", badge: "Web Project", items: webProjects }, { label: "App Experience", badge: "Mobile App", items: appProjects }].map(
+            ({ label, badge, items }) =>
+              items.length > 0 && (
+                <motion.div
+                  key={label}
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="space-y-8"
                 >
-                  <motion.div
-                    animate={isCardHovered ? { scale: 1.1, rotate: 2 } : { scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 20 }}
-                    className="relative h-48 w-full overflow-hidden"
-                  >
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      width={600}
-                      height={400}
-                      className="object-cover object-center w-full h-full transition-transform duration-700"
-                      priority
+                  <div className="flex items-center gap-3">
+                    <span className="uppercase text-xs tracking-[0.4em] text-white/60 font-mono">
+                      {label}
+                    </span>
+                    <span
+                      className={`h-px flex-1 ${label === "Web Projects" ? "bg-gradient-to-r from-purple-500/40 to-transparent" : "bg-gradient-to-r from-pink-500/40 to-transparent"}`}
                     />
-                    <motion.div
-                      animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"
-                    />
-                    <motion.div
-                      animate={isCardHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-                    >
-                      <motion.span
-                        animate={isCardHovered ? { scale: 1.1, x: 5 } : { scale: 1, x: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-white font-mono uppercase tracking-widest text-sm flex items-center gap-2"
-                      >
-                        View Project
-                        <motion.span
-                          animate={{ x: [0, 5] }}
-                          transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                        >
-                          →
-                        </motion.span>
-                      </motion.span>
-                    </motion.div>
-                  </motion.div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <motion.div
-                        animate={isCardHovered ? { 
-                          scale: 1.25,
-                          y: -6,
-                          rotate: [0, 8]
-                        } : { 
-                          scale: [1, 1.08],
-                          y: [0, -4],
-                          rotate: [0, 5]
-                        }}
-                        transition={isCardHovered ? {
-                          duration: 0.4, 
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 12,
-                          rotate: { duration: 0.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                        } : {
-                          scale: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                          y: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                          rotate: { duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                        }}
-                        className="text-3xl"
-                      >
-                        {project.emoji}
-                      </motion.div>
-                    <motion.h3
-                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all"
-                    >
-                      {project.title}
-                    </motion.h3>
                   </div>
-                  <motion.p
-                    animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-gray-400 font-mono text-sm leading-relaxed"
-                  >
-                    {project.description}
-                  </motion.p>
-                </div>
-              </Link>
-            </motion.div>
-            );
-          })}
-        </motion.div>
+                  <div className="space-y-8">
+                    {items.map((project, index) => {
+                      const [isCardHovered, setIsCardHovered] = React.useState(false);
+
+                      return (
+                        <Link
+                          key={project.title}
+                          href={`/projects/${project.slug}`}
+                          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/90 via-black/70 to-black/90 block"
+                          onMouseEnter={() => setIsCardHovered(true)}
+                          onMouseLeave={() => setIsCardHovered(false)}
+                        >
+                          <div className="grid md:grid-cols-[1.2fr,1fr] gap-0">
+                            <div className="p-10 flex flex-col gap-5">
+                              <span className="text-xs uppercase tracking-[0.4em] text-white/50 font-mono">
+                                {badge}
+                              </span>
+                              <div className="flex items-center gap-4">
+                                <motion.div
+                                  animate={
+                                    isCardHovered
+                                      ? { scale: 1.2, y: -4, rotate: [0, badge === "Mobile App" ? 10 : 6] }
+                                      : { scale: 1, y: 0, rotate: 0 }
+                                  }
+                                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                                  className="text-3xl"
+                                >
+                                  {project.emoji}
+                                </motion.div>
+                                <h3 className="text-3xl font-bold text-white">
+                                  {project.title}
+                                </h3>
+                              </div>
+                              <p className="text-gray-300 font-mono text-sm leading-relaxed">
+                                {project.description}
+                              </p>
+                              {project.highlights && (
+                                <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/80">
+                                  {project.highlights.map((highlight) => (
+                                    <li
+                                      key={highlight}
+                                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
+                                    >
+                                      {highlight}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              <div className="flex gap-6 text-sm font-mono text-primary">
+                                <span className="flex items-center gap-2 group-hover:text-white">
+                                  Explore Build Specs →
+                                </span>
+                              </div>
+                            </div>
+                            <div className="relative min-h-[320px]">
+                              <Image
+                                src={project.image}
+                                alt={`${project.title} preview`}
+                                fill
+                                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, 40vw"
+                                priority={index === 0}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )
+          )}
+        </div>
       </section>
 
       {/* Experience Section */}

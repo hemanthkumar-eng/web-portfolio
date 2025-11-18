@@ -7,6 +7,7 @@ import { ImageCarousel } from "@/components/ImageCarousel";
 
 interface Project {
   title: string;
+  category: "web" | "app";
   description: string;
   fullDescription: string;
   tags: readonly string[];
@@ -60,66 +61,29 @@ export function ProjectContent({ project }: { project: Project }) {
           </Link>
         </motion.div>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-6xl font-bold mb-6"
+          className="flex flex-col gap-3 mb-6"
         >
-          <span className="text-gradient">{project.title}</span>
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-2 mb-8"
-        >
-          {project.tags.map((tag, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              whileHover={{ scale: 1.1 }}
-              className="rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 px-4 py-2 text-sm text-white border border-purple-500/30"
-            >
-              {tag}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        {project.images && project.images.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12"
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="uppercase text-xs tracking-[0.4em] text-white/60 font-mono"
           >
-            <ImageCarousel images={project.images} />
-          </motion.div>
-        )}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="prose prose-invert max-w-none mb-8"
-        >
-          <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-            {project.description}
-          </p>
-          <div className="glass-card rounded-xl p-8">
-            <div className="whitespace-pre-line text-gray-300 leading-relaxed font-mono text-sm">
-              {project.fullDescription}
-            </div>
-          </div>
+            {project.category === "app" ? "Mobile App" : "Web Experience"}
+          </motion.span>
+          <motion.h1 className="text-5xl md:text-6xl font-bold">
+            <span className="text-gradient">{project.title}</span>
+          </motion.h1>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="flex gap-4 mb-8 flex-wrap"
         >
           <motion.a
@@ -255,6 +219,61 @@ export function ProjectContent({ project }: { project: Project }) {
             <span className="font-mono">Live Demo</span>
           </motion.a>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="flex flex-wrap gap-2 mb-8"
+        >
+          {project.tags.map((tag, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.35 + i * 0.1 }}
+              whileHover={{ scale: 1.1 }}
+              className="rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 px-4 py-2 text-sm text-white border border-purple-500/30"
+            >
+              {tag}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {project.images && project.images.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-12"
+          >
+            <Link
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <ImageCarousel images={project.images} />
+            </Link>
+          </motion.div>
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="prose prose-invert max-w-none mb-8"
+        >
+          <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+            {project.description}
+          </p>
+          <div className="glass-card rounded-xl p-8">
+            <div className="whitespace-pre-line text-gray-300 leading-relaxed font-mono text-sm">
+              {project.fullDescription}
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </div>
   );
