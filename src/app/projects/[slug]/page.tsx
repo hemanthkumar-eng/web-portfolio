@@ -3,12 +3,12 @@ import { ProjectContent } from "./ProjectContent";
 import { getAssetPath } from "@/utils/path";
 
 const projects = {
-  pupmatcher: {
-    title: "PupMatcher",
+  noseboop: {
+    title: "NoseBoop",
     category: "web",
     description:
-      "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
-    fullDescription: `PupMatcher is an innovative platform designed to help dog owners find playmates and potential matches for their pets. The application combines the familiar swipe-based interface popularized by dating apps with a pet-focused approach.
+      "Reimagined the classic dog matchmaking experience into NoseBoop, India's premier dog social app that connects pet parents across cities like Mumbai and Bengaluru to find the perfect playmate.",
+    fullDescription: `NoseBoop is India's premier dog social app built to help pet parents find new friends for their furry companions across cities from Mumbai to Bengaluru. The experience combines a playful swipe interface with robust safety tooling so owners can confidently arrange meetups.
 
 Key Features:
 - Profile Creation: Users can create detailed profiles for their dogs, including photos, breed information, age, temperament, and play style preferences
@@ -35,7 +35,7 @@ Technical Stack:
       "AWS",
     ],
     github: "https://github.com/Hemanthx96/PupMatcher",
-    demo: "https://pupmatcher.demo.com",
+    demo: "https://nose-boop.vercel.app/",
     images: [
       getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
       getAssetPath("/projects/pupmatcher/PupMatcher/2.png"),

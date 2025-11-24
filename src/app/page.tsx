@@ -35,13 +35,13 @@ const projects = [
     ],
   },
   {
-    title: "PupMatcher",
+    title: "NoseBoop",
     emoji: "🐕",
-    slug: "pupmatcher",
+    slug: "noseboop",
     type: "web",
     image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
     description:
-      "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
+      "Reimagined the classic dog matchmaking concept into NoseBoop—India's premier dog social app that helps pet parents from Mumbai to Bengaluru find the perfect playmate with swipe-friendly discovery, filters, and in-app chat.",
     highlights: [
       "Swipe-first matchmaking with playful animations",
       "Location + temperament filters for better matches",
