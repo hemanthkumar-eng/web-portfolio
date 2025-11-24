@@ -28,7 +28,7 @@ const webProjects: readonly ShowcaseProject[] = [
     demo: "https://shippers-web-chi.vercel.app/",
   },
   {
-    title: "PupMatcher",
+    title: "NoseBoop",
     description:
       "Developed a responsive website that functions like a matchmaking platform for dogs, similar to Tinder. Allows users to view dog profiles and swipe through potential matches, creating an engaging and fun experience for dog owners seeking social connections for their pets.",
     highlights: [
@@ -38,7 +38,7 @@ const webProjects: readonly ShowcaseProject[] = [
     ],
     image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
     github: "https://github.com/Hemanthx96/PupMatcher",
-    demo: "https://pupmatcher.demo.com",
+    demo: "https://nose-boop.vercel.app/",
   },
   {
     title: "Figma Merch Store",
