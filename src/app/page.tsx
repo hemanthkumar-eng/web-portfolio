@@ -8,6 +8,8 @@ import { getAssetPath } from "@/utils/path";
 import { Typewriter } from "@/components/Typewriter";
 import { ParticleBackground } from "@/components/ParticleBackground";
 import { CodeShowcase } from "@/components/CodeShowcase";
+import { StarBorder } from "@/components/StarBorder";
+import { MouseArcade } from "@/components/MouseArcade";
 
 const NAV_ITEMS = [
   { label: "home", href: "#home" },
@@ -49,17 +51,17 @@ const projects = [
     ],
   },
   {
-    title: "Figma Merch Store",
-    emoji: "🎯",
-    slug: "figmamerch",
+    title: "Impact Investment Platform",
+    emoji: "🌱",
+    slug: "impact-invest",
     type: "web",
     image: getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
     description:
-      "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
+      "Portfolio-ready climate micro‑investment platform that showcases India-focused climate ventures with a storytelling-led marketing site, investor dashboard preview, and API-backed flows for auth, data, and payments.",
     highlights: [
-      "Curated product catalog with filtering and sorting",
-      "Persistent cart plus multi-step checkout with Stripe",
-      "Admin-ready inventory and order management views",
+      "Design-forward marketing site for ventures, impact, partners, news, and FAQs",
+      "LP-style dashboard preview with pledge tracker, activity feed, and impact KPIs",
+      "Express + TypeScript API powering venture data, contact, and mocked flows",
     ],
   },
   {
@@ -362,6 +364,34 @@ export default function Home() {
           </p>
         </motion.div>
         <CodeShowcase />
+        <div className="mt-16">
+          <motion.h3
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center text-2xl md:text-3xl font-semibold mb-4 text-white"
+          >
+            Playable <span className="text-gradient">Mouse Mini‑Game</span>
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-sm md:text-base text-gray-400 font-mono mb-6"
+          >
+            Move your mouse to steer the ship and collect the glowing orbs. Your score increases every time you grab one.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <MouseArcade />
+          </motion.div>
+        </div>
       </section>
 
       {/* Expertise Section */}
@@ -425,74 +455,113 @@ export default function Home() {
               const [isCardHovered, setIsCardHovered] = React.useState(false);
               
               return (
-                <motion.div
+                <StarBorder
                   key={index}
-                  variants={itemVariants}
-                  whileHover={{ y: -15, scale: 1.05, rotateY: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className="glass-card rounded-xl p-8 group cursor-pointer relative overflow-hidden"
+                  as="div"
+                  className="w-full block"
+                  color="cyan"
+                  speed="5s"
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                    initial={false}
-                  />
-                  <div className="flex items-center gap-4 mb-6 relative z-10">
-                    <motion.div
-                      animate={isCardHovered ? { 
-                        scale: 1.25,
-                        y: -6,
-                        rotate: [0, 5]
-                      } : { 
-                        scale: [1, 1.1],
-                        y: [0, -3],
-                        rotate: [0, 3]
-                      }}
-                      transition={isCardHovered ? {
-                        duration: 0.4, 
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 12,
-                        rotate: { duration: 0.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                      } : {
-                        scale: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                        y: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                        rotate: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                      }}
-                      className="text-4xl"
-                    >
-                      {expertise.emoji}
-                    </motion.div>
-                    <motion.h2
-                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-2xl font-bold text-white"
-                    >
-                      {expertise.title}
-                      {expertise.subtitle && (
-                        <>
-                          <br />
-                          {expertise.subtitle}
-                        </>
-                      )}
-                    </motion.h2>
-                  </div>
-                  <motion.p
-                    initial={{ opacity: 0.8 }}
-                    animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-gray-400 font-mono text-sm leading-relaxed relative z-10"
+                    variants={itemVariants}
+                    whileHover={{ y: -15, scale: 1.05, rotateY: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className="glass-card rounded-xl p-8 group cursor-pointer relative overflow-hidden"
                   >
-                    {expertise.description}
-                  </motion.p>
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isCardHovered ? { width: "100%" } : { width: 0 }}
-                    className="mt-6 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                    transition={{ duration: 0.2 }}
-                  />
-                </motion.div>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                      initial={false}
+                    />
+                    <div className="flex items-center gap-4 mb-6 relative z-10">
+                      <motion.div
+                        animate={
+                          isCardHovered
+                            ? {
+                                scale: 1.25,
+                                y: -6,
+                                rotate: [0, 5],
+                              }
+                            : {
+                                scale: [1, 1.1],
+                                y: [0, -3],
+                                rotate: [0, 3],
+                              }
+                        }
+                        transition={
+                          isCardHovered
+                            ? {
+                                duration: 0.4,
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 12,
+                                rotate: {
+                                  duration: 0.6,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: "easeInOut",
+                                  type: "tween",
+                                },
+                              }
+                            : {
+                                scale: {
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: "easeInOut",
+                                  type: "tween",
+                                },
+                                y: {
+                                  duration: 2.5,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: "easeInOut",
+                                  type: "tween",
+                                },
+                                rotate: {
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: "easeInOut",
+                                  type: "tween",
+                                },
+                              }
+                        }
+                        className="text-4xl"
+                      >
+                        {expertise.emoji}
+                      </motion.div>
+                      <motion.h2
+                        animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-2xl font-bold text-white"
+                      >
+                        {expertise.title}
+                        {expertise.subtitle && (
+                          <>
+                            <br />
+                            {expertise.subtitle}
+                          </>
+                        )}
+                      </motion.h2>
+                    </div>
+                    <motion.p
+                      initial={{ opacity: 0.8 }}
+                      animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-gray-400 font-mono text-sm leading-relaxed relative z-10"
+                    >
+                      {expertise.description}
+                    </motion.p>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={isCardHovered ? { width: "100%" } : { width: 0 }}
+                      className="mt-6 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.div>
+                </StarBorder>
               );
             })}
           </motion.div>
@@ -534,68 +603,75 @@ export default function Home() {
                       const [isCardHovered, setIsCardHovered] = React.useState(false);
 
                       return (
-                        <Link
+                        <StarBorder
                           key={project.title}
-                          href={`/projects/${project.slug}`}
-                          className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/90 via-black/70 to-black/90 block"
-                          onMouseEnter={() => setIsCardHovered(true)}
-                          onMouseLeave={() => setIsCardHovered(false)}
+                          as="div"
+                          className="block"
+                          color={label === "Web Projects" ? "cyan" : "magenta"}
+                          speed="6s"
                         >
-                          <div className="grid md:grid-cols-[1.2fr,1fr] gap-0">
-                            <div className="p-10 flex flex-col gap-5">
-                              <span className="text-xs uppercase tracking-[0.4em] text-white/50 font-mono">
-                                {badge}
-                              </span>
-                              <div className="flex items-center gap-4">
-                                <motion.div
-                                  animate={
-                                    isCardHovered
-                                      ? { scale: 1.2, y: -4, rotate: [0, badge === "Mobile App" ? 10 : 6] }
-                                      : { scale: 1, y: 0, rotate: 0 }
-                                  }
-                                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                                  className="text-3xl"
-                                >
-                                  {project.emoji}
-                                </motion.div>
-                                <h3 className="text-3xl font-bold text-white">
-                                  {project.title}
-                                </h3>
-                              </div>
-                              <p className="text-gray-300 font-mono text-sm leading-relaxed">
-                                {project.description}
-                              </p>
-                              {project.highlights && (
-                                <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/80">
-                                  {project.highlights.map((highlight) => (
-                                    <li
-                                      key={highlight}
-                                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
-                                    >
-                                      {highlight}
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                              <div className="flex gap-6 text-sm font-mono text-primary">
-                                <span className="flex items-center gap-2 group-hover:text-white">
-                                  Explore Build Specs →
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/90 via-black/70 to-black/90 block"
+                            onMouseEnter={() => setIsCardHovered(true)}
+                            onMouseLeave={() => setIsCardHovered(false)}
+                          >
+                            <div className="grid md:grid-cols-[1.2fr,1fr] gap-0">
+                              <div className="p-10 flex flex-col gap-5">
+                                <span className="text-xs uppercase tracking-[0.4em] text-white/50 font-mono">
+                                  {badge}
                                 </span>
+                                <div className="flex items-center gap-4">
+                                  <motion.div
+                                    animate={
+                                      isCardHovered
+                                        ? { scale: 1.2, y: -4, rotate: [0, badge === "Mobile App" ? 10 : 6] }
+                                        : { scale: 1, y: 0, rotate: 0 }
+                                    }
+                                    transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                                    className="text-3xl"
+                                  >
+                                    {project.emoji}
+                                  </motion.div>
+                                  <h3 className="text-3xl font-bold text-white">
+                                    {project.title}
+                                  </h3>
+                                </div>
+                                <p className="text-gray-300 font-mono text-sm leading-relaxed">
+                                  {project.description}
+                                </p>
+                                {project.highlights && (
+                                  <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/80">
+                                    {project.highlights.map((highlight) => (
+                                      <li
+                                        key={highlight}
+                                        className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
+                                      >
+                                        {highlight}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                <div className="flex gap-6 text-sm font-mono text-primary">
+                                  <span className="flex items-center gap-2 group-hover:text-white">
+                                    Explore Build Specs →
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="relative min-h-[320px]">
+                                <Image
+                                  src={project.image}
+                                  alt={`${project.title} preview`}
+                                  fill
+                                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                  sizes="(max-width: 768px) 100vw, 40vw"
+                                  priority={index === 0}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                               </div>
                             </div>
-                            <div className="relative min-h-[320px]">
-                              <Image
-                                src={project.image}
-                                alt={`${project.title} preview`}
-                                fill
-                                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                                sizes="(max-width: 768px) 100vw, 40vw"
-                                priority={index === 0}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            </div>
-                          </div>
-                        </Link>
+                          </Link>
+                        </StarBorder>
                       );
                     })}
                   </div>
@@ -652,121 +728,140 @@ export default function Home() {
             const [isCardHovered, setIsCardHovered] = React.useState(false);
             
             return (
-              <motion.div
+              <StarBorder
                 key={exp.company}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-full"
+                as="div"
+                className="w-full block"
+                color="cyan"
+                speed="7s"
               >
-                <motion.button
-                  onClick={() =>
-                    setExpandedExp(
-                      expandedExp === exp.company ? "" : exp.company
-                    )
-                  }
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className={`w-full flex justify-between items-center p-6 rounded-lg text-left transition-all glass-card relative overflow-hidden group ${
-                    expandedExp === exp.company
-                      ? "bg-white/10 border-purple-500/50"
-                      : "hover:bg-white/5"
-                  }`}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                    initial={false}
-                  />
-                  <motion.div
-                    animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative z-10"
-                  >
-                    <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
-                      {exp.title}
-                    </h3>
-                  </motion.div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <motion.span
-                    whileHover={{ scale: 1.1 }}
-                    className="text-white/80 text-sm"
-                  >
-                    {exp.period}
-                  </motion.span>
-                  <motion.span
-                    animate={{
-                      rotate: expandedExp === exp.company ? 180 : 0,
-                      scale: expandedExp === exp.company ? 1.2 : 1,
-                    }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="text-2xl text-white"
-                  >
-                    ↓
-                  </motion.span>
-                </div>
-              </motion.button>
-              {expandedExp === exp.company && (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="glass-card p-8 rounded-b-lg mt-1 overflow-hidden"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full"
                 >
-                  <div className="flex items-center gap-4 mb-4">
-                    <motion.span
-                      animate={isCardHovered ? { scale: 1.2, rotate: -10 } : { scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.2, type: "spring", stiffness: 300, damping: 20 }}
-                      className="text-white/60 inline-block"
-                    >
-                      {exp.location}
-                    </motion.span>
-                    <motion.a
-                      href="#"
-                      whileHover={{ scale: 1.1, x: 3 }}
-                      className="text-white/80 hover:text-purple-400 transition-colors"
-                    >
-                      {exp.website}
-                    </motion.a>
-                  </div>
-                  <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
-                    {exp.points.map((point, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
-                        {point}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex flex-wrap gap-2 mt-6"
+                  <motion.button
+                    onClick={() =>
+                      setExpandedExp(
+                        expandedExp === exp.company ? "" : exp.company
+                      )
+                    }
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className={`w-full flex justify-between items-center p-6 rounded-lg text-left transition-all glass-card relative overflow-hidden group ${
+                      expandedExp === exp.company
+                        ? "bg-white/10 border-purple-500/50"
+                        : "hover:bg-white/5"
+                    }`}
                   >
-                    {exp.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                      initial={false}
+                    />
+                    <motion.div
+                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative z-10"
+                    >
+                      <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                        {exp.title}
+                      </h3>
+                    </motion.div>
+                    <div className="flex items-center gap-4 relative z-10">
                       <motion.span
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + skillIndex * 0.1, type: "tween" }}
-                        whileHover={{ scale: 1.15, y: -3, rotate: -5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm text-white/80 border border-purple-500/30 cursor-pointer"
+                        whileHover={{ scale: 1.1 }}
+                        className="text-white/80 text-sm"
                       >
-                        {skill}
+                        {exp.period}
                       </motion.span>
-                    ))}
-                  </motion.div>
+                      <motion.span
+                        animate={{
+                          rotate: expandedExp === exp.company ? 180 : 0,
+                          scale: expandedExp === exp.company ? 1.2 : 1,
+                        }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="text-2xl text-white"
+                      >
+                        ↓
+                      </motion.span>
+                    </div>
+                  </motion.button>
+                  {expandedExp === exp.company && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="glass-card p-8 rounded-b-lg mt-1 overflow-hidden"
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <motion.span
+                          animate={
+                            isCardHovered
+                              ? { scale: 1.2, rotate: -10 }
+                              : { scale: 1, rotate: 0 }
+                          }
+                          transition={{
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 20,
+                          }}
+                          className="text-white/60 inline-block"
+                        >
+                          {exp.location}
+                        </motion.span>
+                        <motion.a
+                          href="#"
+                          whileHover={{ scale: 1.1, x: 3 }}
+                          className="text-white/80 hover:text-purple-400 transition-colors"
+                        >
+                          {exp.website}
+                        </motion.a>
+                      </div>
+                      <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
+                        {exp.points.map((point, i) => (
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                          >
+                            {point}
+                          </motion.li>
+                        ))}
+                      </ul>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-wrap gap-2 mt-6"
+                      >
+                        {exp.skills.map((skill, skillIndex) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{
+                              delay: 0.4 + skillIndex * 0.1,
+                              type: "tween",
+                            }}
+                            whileHover={{ scale: 1.15, y: -3, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm text-white/80 border border-purple-500/30 cursor-pointer"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  )}
                 </motion.div>
-              )}
-            </motion.div>
+              </StarBorder>
             );
           })}
         </div>
@@ -809,62 +904,101 @@ export default function Home() {
             const [isCardHovered, setIsCardHovered] = React.useState(false);
             
             return (
-              <motion.div
+              <StarBorder
                 key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -10, rotateX: 5 }}
-                whileTap={{ scale: 0.98 }}
-                onMouseEnter={() => setIsCardHovered(true)}
-                onMouseLeave={() => setIsCardHovered(false)}
-                className="glass-card rounded-xl p-8 text-left relative overflow-hidden group"
+                as="div"
+                className="w-full block"
+                color="cyan"
+                speed="8s"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                  initial={false}
-                />
-                <div className="flex items-start gap-4 relative z-10">
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05, y: -10, rotateX: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  onMouseEnter={() => setIsCardHovered(true)}
+                  onMouseLeave={() => setIsCardHovered(false)}
+                  className="glass-card rounded-xl p-8 text-left relative overflow-hidden group"
+                >
                   <motion.div
-                    animate={isCardHovered ? { 
-                      scale: 1.25,
-                      y: -6,
-                      rotate: [0, 10]
-                    } : { 
-                      scale: [1, 1.12],
-                      y: [0, -5],
-                      rotate: [0, 8]
-                    }}
-                    transition={isCardHovered ? {
-                      duration: 0.4, 
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 12,
-                      rotate: { duration: 0.7, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                    } : {
-                      scale: { duration: 2.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      y: { duration: 2.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      rotate: { duration: 3.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" }
-                    }}
-                    className="text-3xl"
-                  >
-                    {edu.emoji}
-                  </motion.div>
-                  <motion.div
-                    animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                    transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
-                  >
-                    <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
-                      {edu.title}
-                    </h3>
+                    className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                    initial={false}
+                  />
+                  <div className="flex items-start gap-4 relative z-10">
                     <motion.div
-                      animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-gray-400 font-mono"
+                      animate={
+                        isCardHovered
+                          ? {
+                              scale: 1.25,
+                              y: -6,
+                              rotate: [0, 10],
+                            }
+                          : {
+                              scale: [1, 1.12],
+                              y: [0, -5],
+                              rotate: [0, 8],
+                            }
+                      }
+                      transition={
+                        isCardHovered
+                          ? {
+                              duration: 0.4,
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 12,
+                              rotate: {
+                                duration: 0.7,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                                type: "tween",
+                              },
+                            }
+                          : {
+                              scale: {
+                                duration: 2.2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                                type: "tween",
+                              },
+                              y: {
+                                duration: 2.8,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                                type: "tween",
+                              },
+                              rotate: {
+                                duration: 3.5,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                                type: "tween",
+                              },
+                            }
+                      }
+                      className="text-3xl"
                     >
-                      {edu.description}
+                      {edu.emoji}
                     </motion.div>
-                  </motion.div>
-                </div>
-              </motion.div>
+                    <motion.div
+                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                      transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
+                    >
+                      <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                        {edu.title}
+                      </h3>
+                      <motion.div
+                        animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-gray-400 font-mono"
+                      >
+                        {edu.description}
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </StarBorder>
             );
           })}
         </motion.div>
@@ -1161,48 +1295,55 @@ export default function Home() {
               const iconVariants = (iconElement?.props as any)?.variants || {};
 
               return (
-                <motion.a
+                <StarBorder
                   key={index}
-                  href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 30, rotateY: -90 }}
-                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  whileHover="hover"
-                  whileTap={{ scale: 0.9 }}
-                  animate="idle"
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className="flex flex-col items-center gap-4 p-6 rounded-xl glass-card hover:glow-effect transition-all group perspective-1000"
-                  variants={cardVariants}
+                  as="div"
+                  className="w-full md:w-auto block"
+                  color="cyan"
+                  speed="9s"
                 >
-                  <motion.div
-                    variants={iconContainerVariants}
-                    animate={isCardHovered ? "hover" : "idle"}
-                    transition={{ duration: 0.2 }}
-                    className="text-purple-400 group-hover:text-pink-400 transition-colors"
+                  <motion.a
+                    href={contact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 30, rotateY: -90 }}
+                    whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.2, duration: 0.6 }}
+                    whileHover="hover"
+                    whileTap={{ scale: 0.9 }}
+                    animate="idle"
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className="flex flex-col items-center gap-4 p-6 rounded-xl glass-card hover:glow-effect transition-all group perspective-1000"
+                    variants={cardVariants}
                   >
-                    {React.cloneElement(iconElement, {
-                      ...iconElement.props,
-                      variants: iconVariants,
-                      animate: isCardHovered ? "hover" : "idle",
-                      whileHover: undefined,
-                    })}
-                  </motion.div>
-                <motion.span
-                  whileHover={{ scale: 1.1 }}
-                  className="text-white font-mono text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all"
-                >
-                  {contact.text}
-                </motion.span>
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 transition-all duration-500"
-                  initial={false}
-                />
-              </motion.a>
-            );
+                    <motion.div
+                      variants={iconContainerVariants}
+                      animate={isCardHovered ? "hover" : "idle"}
+                      transition={{ duration: 0.2 }}
+                      className="text-purple-400 group-hover:text-pink-400 transition-colors"
+                    >
+                      {React.cloneElement(iconElement, {
+                        ...iconElement.props,
+                        variants: iconVariants,
+                        animate: isCardHovered ? "hover" : "idle",
+                        whileHover: undefined,
+                      })}
+                    </motion.div>
+                    <motion.span
+                      whileHover={{ scale: 1.1 }}
+                      className="text-white font-mono text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all"
+                    >
+                      {contact.text}
+                    </motion.span>
+                    <motion.div
+                      className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 transition-all duration-500"
+                      initial={false}
+                    />
+                  </motion.a>
+                </StarBorder>
+              );
             })}
           </div>
         </motion.div>

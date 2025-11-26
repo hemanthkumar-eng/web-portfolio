@@ -12,8 +12,9 @@ interface Project {
   fullDescription: string;
   tags: readonly string[];
   github: string;
-  demo: string;
+  demo?: string;
   images: readonly string[];
+  isProprietary?: boolean;
 }
 
 export function ProjectContent({ project }: { project: Project }) {
@@ -148,76 +149,84 @@ export function ProjectContent({ project }: { project: Project }) {
             </motion.div>
             <span className="font-mono">View on GitHub</span>
           </motion.a>
-          <motion.a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover="hover"
-            whileTap={{ scale: 0.95 }}
-            onMouseEnter={() => setIsDemoHovered(true)}
-            onMouseLeave={() => setIsDemoHovered(false)}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg glass-card text-white hover:glow-effect transition-all group"
-            variants={{
-              idle: { scale: 1, y: 0 },
-              hover: { scale: 1.05, y: -2 },
-            }}
-            initial="idle"
-          >
-            <motion.div
+          {project.demo && !project.isProprietary && (
+            <motion.a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover="hover"
+              whileTap={{ scale: 0.95 }}
+              onMouseEnter={() => setIsDemoHovered(true)}
+              onMouseLeave={() => setIsDemoHovered(false)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg glass-card text-white hover:glow-effect transition-all group"
               variants={{
-                idle: {
-                  scale: [1, 1.05],
-                  transition: {
-                    scale: { duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-                  },
-                },
-                hover: {
-                  x: 5,
-                  scale: 1.2,
-                  rotate: 10,
-                  transition: {
-                    type: "tween",
-                    duration: 0.2,
-                  },
-                },
+                idle: { scale: 1, y: 0 },
+                hover: { scale: 1.05, y: -2 },
               }}
-              animate={isDemoHovered ? "hover" : "idle"}
+              initial="idle"
             >
-              <motion.svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <motion.div
+                variants={{
+                  idle: {
+                    scale: [1, 1.05],
+                    transition: {
+                      scale: { duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                    },
+                  },
+                  hover: {
+                    x: 5,
+                    scale: 1.2,
+                    rotate: 10,
+                    transition: {
+                      type: "tween",
+                      duration: 0.2,
+                    },
+                  },
+                }}
+                animate={isDemoHovered ? "hover" : "idle"}
               >
-                <motion.path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  variants={{
-                    idle: { pathLength: 1 },
-                    hover: { pathLength: 1.1 },
-                  }}
-                />
-                <motion.polyline
-                  points="15 3 21 3 21 9"
-                  animate={{ pathLength: [0, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                />
-                <motion.line
-                  x1="10"
-                  x2="21"
-                  y1="14"
-                  y2="3"
-                  animate={{ pathLength: [0.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-                />
-              </motion.svg>
-            </motion.div>
-            <span className="font-mono">Live Demo</span>
-          </motion.a>
+                <motion.svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <motion.path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                    variants={{
+                      idle: { pathLength: 1 },
+                      hover: { pathLength: 1.1 },
+                    }}
+                  />
+                  <motion.polyline
+                    points="15 3 21 3 21 9"
+                    animate={{ pathLength: [0, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                  />
+                  <motion.line
+                    x1="10"
+                    x2="21"
+                    y1="14"
+                    y2="3"
+                    animate={{ pathLength: [0.5, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                  />
+                </motion.svg>
+              </motion.div>
+              <span className="font-mono">Live Demo</span>
+            </motion.a>
+          )}
+          {project.isProprietary && project.category === "app" && (
+            <p className="text-xs text-white/60 max-w-xl">
+              This is a proprietary client mobile app, so I can&apos;t share a public demo or store link. 
+              The case study and visuals are shared at a high level without exposing confidential details.
+            </p>
+          )}
         </motion.div>
 
         <motion.div
@@ -247,14 +256,18 @@ export function ProjectContent({ project }: { project: Project }) {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-12"
           >
-            <Link
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
+            {project.demo && !project.isProprietary ? (
+              <Link
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <ImageCarousel images={project.images} />
+              </Link>
+            ) : (
               <ImageCarousel images={project.images} />
-            </Link>
+            )}
           </motion.div>
         )}
 

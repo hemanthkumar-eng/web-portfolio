@@ -86,34 +86,48 @@ Technical Stack:
       getAssetPath("/projects/moveeasy/MoveEasy/2.png"),
     ],
   },
-  figmamerch: {
-    title: "Figma Merch Store",
+  "impact-invest": {
+    title: "Impact Invest Platform",
     category: "web",
     description:
-      "The Figma Merch Store was an e-commerce website designed for selling Figma-branded merchandise. It allowed users to browse products, view detailed product descriptions, add items to their cart, and complete purchases through a checkout process.",
-    fullDescription: `Figma Merch Store is a full-featured e-commerce platform built specifically for selling Figma-branded merchandise. The store provides a seamless shopping experience with a design-focused interface that reflects Figma's brand identity.
+      "Portfolio-ready climate micro‑investment platform built to showcase India-focused climate ventures with a storytelling-led marketing site, investor dashboard preview, and API-backed flows for auth, data, and payments.",
+    fullDescription: `Impact Invest is a portfolio-ready climate micro‑investment platform designed to showcase India-focused impact ventures. It combines a storytelling-led marketing site, an investor-style dashboard, and a modular API that simulates authentication, payments, and venture data – making it ideal as a live demo and case study in a portfolio.
 
 Key Features:
-- Product Catalog: Organized display of merchandise with filtering and sorting
-- Shopping Cart: Real-time cart management with persistent storage
-- Secure Checkout: Multi-step checkout process with Stripe integration
-- User Accounts: Personal accounts for order history and saved items
-- Inventory Management: Real-time stock tracking and updates
-- Admin Dashboard: Complete control over products, orders, and inventory
+- Marketing Experience: Design-forward landing pages for ventures, climate impact story, partners, newsroom, FAQs, and contact, tuned specifically for the Indian climate-investing context.
+- Venture Pipeline & Profiles: Curated list of ventures with sector filters and rich detail views including highlights, KPIs, ticket sizes, and impact thesis.
+- Investor Dashboard Preview: Modern cockpit with summary tiles, pledge tracker table, activity feed, venture progress bars, and impact mix visualizations built to mirror a real LP dashboard.
+- API-backed Flows: Contact form and venture data powered by an Express API with schema validation and safe fallbacks for environments without a live database.
+- Auth & Payment Scaffolding: JWT access/refresh token helpers and Razorpay-style order/signature endpoints implemented as mocked flows, ready to be wired into real credentials later.
+- Deployment-Ready Monorepo: Separate frontend and API workspaces, shared configuration, environment templates, and documentation geared for cloud hosting.
 
 Technical Stack:
-- Frontend: React with Redux Toolkit
-- UI Framework: Material-UI
-- State Management: Redux
-- Styling: Styled Components
-- Backend: Node.js with Express
-- Database: PostgreSQL
-- Payment Processing: Stripe
-- Image Storage: Cloudinary
-- Hosting: Vercel`,
-    tags: ["React", "Node.js", "PostgreSQL", "Redux", "Stripe", "Material-UI"],
-    github: "https://github.com/yourusername/figma-merch",
-    demo: "https://figmamerch.demo.com",
+- Frontend: React with Next.js (App Router) and TypeScript
+- UI & Styling: Bootstrap 5 plus custom CSS with scroll-based reveal animations and responsive layout components
+- State & Data: SWR hooks and Axios client with interceptors for API calls
+- Backend: Node.js, Express, and TypeScript
+- Data Layer: Mongoose models prepared for MongoDB with optional connection skipping for dummy/demo setups
+- Auth & Security: JWT helper service (access and refresh tokens) with cookie-based refresh storage (mock user)
+- Payments: Razorpay SDK integration for order creation and signature verification in test mode
+- Config & Validation: Zod-based environment validation and typed configuration for safe builds and deploys
+- Hosting: Frontend optimized for static hosting; API designed for Node-based web service hosting`,
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Bootstrap 5",
+      "SWR",
+      "Axios",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Razorpay",
+      "Zod",
+    ],
+    github: "https://github.com/yourusername/impact-invest",
+    demo: "https://impact-invest-zeta.vercel.app/",
     images: [
       getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
       getAssetPath("/projects/figmamerch/Figma Merch Store/2.png"),
@@ -159,8 +173,8 @@ Tech Stack:
       "SecureStore",
     ],
     github: "https://github.com/Hemanthx96/facilityops-mobile",
-    demo: "https://expo.dev/@Hemanthx96/facilityops-mobile",
     images: [getAssetPath("/projects/facilityops/dashboard.svg")],
+    isProprietary: true,
   },
   "tech-maintenance": {
     title: "Tech Maintenance",
@@ -201,8 +215,8 @@ Tech Stack:
       "Expo AV",
     ],
     github: "https://github.com/Hemanthx96/tech-maintenance",
-    demo: "https://expo.dev/@Hemanthx96/tech-maintenance",
     images: [getAssetPath("/projects/techmaintenance/dashboard.svg")],
+    isProprietary: true,
   },
 } as const;
 

@@ -8,8 +8,9 @@ type ShowcaseProject = {
   highlights: readonly string[];
   image: string;
   github: string;
-  demo: string;
+  demo?: string;
   demoLabel?: string;
+  isProprietary?: boolean;
 };
 
 const webProjects: readonly ShowcaseProject[] = [
@@ -41,17 +42,18 @@ const webProjects: readonly ShowcaseProject[] = [
     demo: "https://nose-boop.vercel.app/",
   },
   {
-    title: "Figma Merch Store",
+    title: "Impact Invest Platform",
     description:
-      "An e-commerce experience for Figma-branded merchandise featuring curated collections, interactive product cards, and a smooth checkout flow with persistent carts.",
+      "Portfolio-ready climate micro‑investment platform that showcases India-focused climate ventures with a marketing site, investor dashboard preview, and API-backed flows for auth, data, and payments.",
     highlights: [
-      "Curated catalog with filtering, sorting, and rich product cards",
-      "Persistent cart plus Stripe-style multi-step checkout",
-      "Admin-ready inventory + order management dashboard",
+      "Design-forward landing pages for ventures, impact story, partners, newsroom, FAQs, and contact",
+      "Venture pipeline with sector filters, KPI-rich venture profiles, and ticket sizes",
+      "Investor-style dashboard with pledge tracker table, activity feed, and impact visualizations",
+      "Express + TypeScript API simulating auth, venture data, and Razorpay-style payment flows",
     ],
     image: getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
-    github: "https://github.com/yourusername/figma-merch",
-    demo: "https://figmamerch.demo.com",
+    github: "https://github.com/yourusername/impact-invest",
+    demo: "https://impact-invest-zeta.vercel.app/",
   },
 ] as const;
 
@@ -68,8 +70,7 @@ const appProjects: readonly ShowcaseProject[] = [
     ],
     image: getAssetPath("/projects/facilityops/dashboard.svg"),
     github: "https://github.com/Hemanthx96/facilityops-mobile",
-    demo: "https://expo.dev/@Hemanthx96/facilityops-mobile",
-    demoLabel: "📱 Expo Preview",
+    isProprietary: true,
   },
   {
     title: "Tech Maintenance",
@@ -84,8 +85,7 @@ const appProjects: readonly ShowcaseProject[] = [
     ],
     image: getAssetPath("/projects/techmaintenance/dashboard.svg"),
     github: "https://github.com/Hemanthx96/tech-maintenance",
-    demo: "https://expo.dev/@Hemanthx96/tech-maintenance",
-    demoLabel: "📱 Expo Preview",
+    isProprietary: true,
   },
 ] as const;
 
@@ -120,23 +120,32 @@ function ShowcaseCard({
             ))}
           </ul>
         )}
-        <div className="flex gap-4 text-sm font-mono flex-wrap">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80"
-          >
-            🔗 GitHub
-          </a>
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80"
-          >
-            {project.demoLabel ?? demoFallback}
-          </a>
+        <div className="flex flex-col gap-2 text-sm font-mono flex-wrap">
+          <div className="flex gap-4 flex-wrap">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80"
+            >
+              🔗 GitHub
+            </a>
+            {project.demo && !project.isProprietary && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80"
+              >
+                {project.demoLabel ?? demoFallback}
+              </a>
+            )}
+          </div>
+          {project.isProprietary && (
+            <p className="text-xs text-white/60">
+              Client-owned mobile app — demo builds and store links are kept private.
+            </p>
+          )}
         </div>
       </div>
       <div className="relative min-h-[320px] bg-black/60">
