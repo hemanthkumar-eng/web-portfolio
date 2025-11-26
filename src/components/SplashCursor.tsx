@@ -1,7 +1,19 @@
-// @ts-nocheck
 "use client";
 
 import { useEffect, useRef } from "react";
+
+type Pointer = {
+  id: number;
+  texcoordX: number;
+  texcoordY: number;
+  prevTexcoordX: number;
+  prevTexcoordY: number;
+  deltaX: number;
+  deltaY: number;
+  down: boolean;
+  moved: boolean;
+  color: [number, number, number];
+};
 
 function SplashCursor({
   SIM_RESOLUTION = 128,
@@ -25,17 +37,19 @@ function SplashCursor({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    function pointerPrototype() {
-      this.id = -1;
-      this.texcoordX = 0;
-      this.texcoordY = 0;
-      this.prevTexcoordX = 0;
-      this.prevTexcoordY = 0;
-      this.deltaX = 0;
-      this.deltaY = 0;
-      this.down = false;
-      this.moved = false;
-      this.color = [0, 0, 0];
+    function createPointer(): Pointer {
+      return {
+        id: -1,
+        texcoordX: 0,
+        texcoordY: 0,
+        prevTexcoordX: 0,
+        prevTexcoordY: 0,
+        deltaX: 0,
+        deltaY: 0,
+        down: false,
+        moved: false,
+        color: [0, 0, 0],
+      };
     }
 
     let config = {
@@ -56,7 +70,7 @@ function SplashCursor({
       TRANSPARENT,
     };
 
-    let pointers = [new (pointerPrototype as any)()];
+    let pointers: Pointer[] = [createPointer()];
 
     const { gl, ext } = getWebGLContext(canvas);
     if (!ext.supportLinearFiltering) {
