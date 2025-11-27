@@ -72,12 +72,6 @@ function SplashCursor({
 
     let pointers: Pointer[] = [createPointer()];
 
-    const { gl, ext } = getWebGLContext(canvas);
-    if (!ext.supportLinearFiltering) {
-      config.DYE_RESOLUTION = 256;
-      config.SHADING = false;
-    }
-
     function getWebGLContext(canvas: HTMLCanvasElement) {
       const params = {
         alpha: true,
@@ -129,6 +123,12 @@ function SplashCursor({
           supportLinearFiltering,
         },
       };
+    }
+
+    const { gl, ext } = getWebGLContext(canvas);
+    if (!ext.supportLinearFiltering) {
+      config.DYE_RESOLUTION = 256;
+      config.SHADING = false;
     }
 
     function getSupportedFormat(gl, internalFormat, format, type) {
