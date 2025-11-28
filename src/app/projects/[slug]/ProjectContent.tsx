@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ImageCarousel } from "@/components/ImageCarousel";
 
 interface Project {
   title: string;
@@ -20,7 +20,22 @@ interface Project {
 export function ProjectContent({ project }: { project: Project }) {
   const [isGithubHovered, setIsGithubHovered] = React.useState(false);
   const [isDemoHovered, setIsDemoHovered] = React.useState(false);
-  
+  const router = useRouter();
+
+  const handleBack = React.useCallback(() => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      if (!sessionStorage.getItem("homeScrollY")) {
+        sessionStorage.setItem("homeScrollHash", "work");
+      }
+      router.back();
+    } else {
+      if (!sessionStorage.getItem("homeScrollY")) {
+        sessionStorage.setItem("homeScrollHash", "work");
+      }
+      router.push("/#work");
+    }
+  }, [router]);
+
   return (
     <div className="min-h-screen bg-black text-white py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -29,8 +44,9 @@ export function ProjectContent({ project }: { project: Project }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Link
-            href="/#work"
+          <button
+            type="button"
+            onClick={handleBack}
             className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 group"
           >
             <motion.svg
@@ -44,22 +60,30 @@ export function ProjectContent({ project }: { project: Project }) {
               strokeLinecap="round"
               strokeLinejoin="round"
               animate={{ x: [0, -5] }}
-              transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-              whileHover={{ 
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              whileHover={{
                 scale: 1.3,
                 x: -8,
                 rotate: -10,
-                transition: { type: "tween" }
+                transition: { type: "tween" },
               }}
             >
               <motion.path
                 d="m15 18-6-6 6-6"
                 animate={{ pathLength: [0.8, 1] }}
-                transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
               />
             </motion.svg>
             <span className="font-mono">Back to Projects</span>
-          </Link>
+          </button>
         </motion.div>
 
         <motion.div
@@ -107,7 +131,12 @@ export function ProjectContent({ project }: { project: Project }) {
                 idle: {
                   rotate: [0, 5],
                   transition: {
-                    rotate: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                    rotate: {
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                    },
                   },
                 },
                 hover: {
@@ -143,7 +172,11 @@ export function ProjectContent({ project }: { project: Project }) {
                 <motion.path
                   d="M9 18c-4.51 2-5-2-7-2"
                   animate={{ pathLength: [0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
                 />
               </motion.svg>
             </motion.div>
@@ -170,7 +203,12 @@ export function ProjectContent({ project }: { project: Project }) {
                   idle: {
                     scale: [1, 1.05],
                     transition: {
-                      scale: { duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                      scale: {
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      },
                     },
                   },
                   hover: {
@@ -206,7 +244,11 @@ export function ProjectContent({ project }: { project: Project }) {
                   <motion.polyline
                     points="15 3 21 3 21 9"
                     animate={{ pathLength: [0, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                   <motion.line
                     x1="10"
@@ -214,7 +256,11 @@ export function ProjectContent({ project }: { project: Project }) {
                     y1="14"
                     y2="3"
                     animate={{ pathLength: [0.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                 </motion.svg>
               </motion.div>
@@ -223,8 +269,9 @@ export function ProjectContent({ project }: { project: Project }) {
           )}
           {project.isProprietary && project.category === "app" && (
             <p className="text-xs text-white/60 max-w-xl">
-              This is a proprietary client mobile app, so I can&apos;t share a public demo or store link. 
-              The case study and visuals are shared at a high level without exposing confidential details.
+              This is a proprietary client mobile app, so I can&apos;t share a
+              public demo or store link. The case study and visuals are shared
+              at a high level without exposing confidential details.
             </p>
           )}
         </motion.div>
@@ -254,7 +301,7 @@ export function ProjectContent({ project }: { project: Project }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12"
+            className="mb-12 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/0"
           >
             {project.demo && !project.isProprietary ? (
               <Link
@@ -263,10 +310,24 @@ export function ProjectContent({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="block"
               >
-                <ImageCarousel images={project.images} />
+                <img
+                  src={project.images[0]}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
               </Link>
             ) : (
-              <ImageCarousel images={project.images} />
+              <img
+                src={project.images[0]}
+                alt={`${project.title} screenshot`}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
             )}
           </motion.div>
         )}
@@ -286,9 +347,7 @@ export function ProjectContent({ project }: { project: Project }) {
             </div>
           </div>
         </motion.div>
-
       </div>
     </div>
   );
 }
-
