@@ -38,7 +38,7 @@ export function Skills() {
         {skillCategories.map((category, index) => (
           <div
             key={index}
-            className="glass-effect group relative overflow-hidden rounded-xl p-6 shadow-lg transition-all hover:shadow-xl hover:scale-[1.02]"
+            className="glass-effect group relative overflow-hidden rounded-xl p-6 shadow-lg transition-all hover:shadow-xl hover:scale-[1.01]"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="flex items-center gap-3 mb-4">

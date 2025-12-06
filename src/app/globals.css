@@ -64,31 +64,30 @@
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
   }
-  
+
   .animate-shimmer {
     background-size: 200% 100%;
     animation: shimmer 3s linear infinite;
   }
-  
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   .text-gradient {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .glow-effect {
     box-shadow: 0 0 20px rgba(102, 126, 234, 0.5),
-                0 0 40px rgba(102, 126, 234, 0.3),
-                0 0 60px rgba(102, 126, 234, 0.1);
+      0 0 40px rgba(102, 126, 234, 0.3), 0 0 60px rgba(102, 126, 234, 0.1);
   }
 }
 
@@ -114,7 +113,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -136,7 +136,11 @@
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -185,7 +189,8 @@ html {
 
 /* Floating animation */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   33% {
@@ -198,14 +203,14 @@ html {
 
 /* Pulse glow animation */
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(102, 126, 234, 0.5),
-                0 0 40px rgba(102, 126, 234, 0.3);
+      0 0 40px rgba(102, 126, 234, 0.3);
   }
   50% {
     box-shadow: 0 0 30px rgba(102, 126, 234, 0.8),
-                0 0 60px rgba(102, 126, 234, 0.5),
-                0 0 80px rgba(102, 126, 234, 0.3);
+      0 0 60px rgba(102, 126, 234, 0.5), 0 0 80px rgba(102, 126, 234, 0.3);
   }
 }
 
@@ -231,7 +236,6 @@ html {
   bottom: -18px;
   right: -230%;
   border-radius: 50%;
-  animation: star-movement-bottom linear infinite alternate;
   z-index: 0;
 }
 
@@ -243,7 +247,6 @@ html {
   top: -18px;
   left: -230%;
   border-radius: 50%;
-  animation: star-movement-top linear infinite alternate;
   z-index: 0;
 }
 
@@ -276,4 +279,3 @@ html {
     opacity: 0;
   }
 }
-

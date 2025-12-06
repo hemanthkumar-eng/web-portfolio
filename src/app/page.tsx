@@ -204,7 +204,11 @@ export default function Home() {
                       layoutId="activeSection"
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400"
                       initial={false}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </a>
@@ -256,8 +260,7 @@ export default function Home() {
               words={["FRONTEND", "BACKEND", "FULL STACK", "MOBILE"]}
               className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"
             />
-            <br />
-            I ENGINEER IT ALL.
+            <br />I ENGINEER IT ALL.
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -267,7 +270,7 @@ export default function Home() {
           >
             <motion.a
               href="#work"
-              whileHover={{ scale: 1.1, y: -5, rotate: -2 }}
+              whileHover={{ scale: 1.05, y: -5, rotate: -2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -295,7 +298,7 @@ export default function Home() {
             </motion.a>
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.1, y: -5, rotate: 2 }}
+              whileHover={{ scale: 1.05, y: -5, rotate: 2 }}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -309,7 +312,11 @@ export default function Home() {
                 Get In Touch
                 <motion.span
                   animate={{ rotate: [0, 15] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
                 >
                   ✉️
                 </motion.span>
@@ -333,7 +340,7 @@ export default function Home() {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="text-white/60 cursor-pointer"
-            whileHover={{ scale: 1.2, y: 5 }}
+            whileHover={{ scale: 1.05, y: 5 }}
           >
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
@@ -362,12 +369,20 @@ export default function Home() {
               <motion.path
                 d="M12 5v14"
                 animate={{ pathLength: [0, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
               />
               <motion.path
                 d="M19 12l-7 7-7-7"
                 animate={{ y: [0, 3] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
               />
             </motion.svg>
           </motion.div>
@@ -408,7 +423,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-center text-sm md:text-base text-gray-400 font-mono mb-6"
           >
-            Move your mouse to steer the ship and collect the glowing orbs. Your score increases every time you grab one.
+            Move your mouse to steer the ship and collect the glowing orbs. Your
+            score increases every time you grab one.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
@@ -480,7 +496,7 @@ export default function Home() {
               },
             ].map((expertise, index) => {
               const [isCardHovered, setIsCardHovered] = React.useState(false);
-              
+
               return (
                 <StarBorder
                   key={index}
@@ -490,39 +506,39 @@ export default function Home() {
                   speed="5s"
                 >
                   <motion.div
-                  variants={itemVariants}
-                  whileHover={{ y: -15, scale: 1.05, rotateY: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className="glass-card rounded-xl p-8 group cursor-pointer relative overflow-hidden"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                    initial={false}
-                  />
-                  <div className="flex items-center gap-4 mb-6 relative z-10">
+                    variants={itemVariants}
+                    whileHover={{ y: -15, scale: 1.02, rotateY: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className="glass-card rounded-xl p-8 group cursor-pointer relative overflow-hidden"
+                  >
                     <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                      initial={false}
+                    />
+                    <div className="flex items-center gap-4 mb-6 relative z-10">
+                      <motion.div
                         animate={
                           isCardHovered
                             ? {
-                        scale: 1.25,
-                        y: -6,
+                                scale: 1.1,
+                                y: -6,
                                 rotate: [0, 5],
                               }
                             : {
-                        scale: [1, 1.1],
-                        y: [0, -3],
+                                scale: [1, 1.1],
+                                y: [0, -3],
                                 rotate: [0, 3],
                               }
                         }
                         transition={
                           isCardHovered
                             ? {
-                        duration: 0.4, 
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 12,
+                                duration: 0.4,
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 12,
                                 rotate: {
                                   duration: 0.6,
                                   repeat: Infinity,
@@ -555,39 +571,41 @@ export default function Home() {
                                 },
                               }
                         }
-                      className="text-4xl"
-                    >
-                      {expertise.emoji}
-                    </motion.div>
-                    <motion.h2
-                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                        className="text-4xl"
+                      >
+                        {expertise.emoji}
+                      </motion.div>
+                      <motion.h2
+                        animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-2xl font-bold text-white"
+                      >
+                        {expertise.title}
+                        {expertise.subtitle && (
+                          <>
+                            <br />
+                            {expertise.subtitle}
+                          </>
+                        )}
+                      </motion.h2>
+                    </div>
+                    <motion.p
+                      initial={{ opacity: 0.8 }}
+                      animate={
+                        isCardHovered ? { opacity: 1 } : { opacity: 0.8 }
+                      }
                       transition={{ duration: 0.2 }}
-                      className="text-2xl font-bold text-white"
+                      className="text-gray-400 font-mono text-sm leading-relaxed relative z-10"
                     >
-                      {expertise.title}
-                      {expertise.subtitle && (
-                        <>
-                          <br />
-                          {expertise.subtitle}
-                        </>
-                      )}
-                    </motion.h2>
-                  </div>
-                  <motion.p
-                    initial={{ opacity: 0.8 }}
-                    animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-gray-400 font-mono text-sm leading-relaxed relative z-10"
-                  >
-                    {expertise.description}
-                  </motion.p>
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isCardHovered ? { width: "100%" } : { width: 0 }}
-                    className="mt-6 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                    transition={{ duration: 0.2 }}
-                  />
-                </motion.div>
+                      {expertise.description}
+                    </motion.p>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={isCardHovered ? { width: "100%" } : { width: 0 }}
+                      className="mt-6 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.div>
                 </StarBorder>
               );
             })}
@@ -606,7 +624,14 @@ export default function Home() {
           Work / <span className="text-gradient">Projects</span>
         </motion.h2>
         <div className="space-y-16">
-          {[{ label: "Web Projects", badge: "Web Project", items: webProjects }, { label: "App Experience", badge: "Mobile App", items: appProjects }].map(
+          {[
+            { label: "Web Projects", badge: "Web Project", items: webProjects },
+            {
+              label: "App Experience",
+              badge: "Mobile App",
+              items: appProjects,
+            },
+          ].map(
             ({ label, badge, items }) =>
               items.length > 0 && (
                 <motion.div
@@ -622,12 +647,17 @@ export default function Home() {
                       {label}
                     </span>
                     <span
-                      className={`h-px flex-1 ${label === "Web Projects" ? "bg-gradient-to-r from-purple-500/40 to-transparent" : "bg-gradient-to-r from-pink-500/40 to-transparent"}`}
+                      className={`h-px flex-1 ${
+                        label === "Web Projects"
+                          ? "bg-gradient-to-r from-purple-500/40 to-transparent"
+                          : "bg-gradient-to-r from-pink-500/40 to-transparent"
+                      }`}
                     />
                   </div>
                   <div className="space-y-8">
                     {items.map((project, index) => {
-                      const [isCardHovered, setIsCardHovered] = React.useState(false);
+                      const [isCardHovered, setIsCardHovered] =
+                        React.useState(false);
 
                       return (
                         <StarBorder
@@ -644,61 +674,72 @@ export default function Home() {
                             onMouseLeave={() => setIsCardHovered(false)}
                             onClick={rememberScrollPosition}
                           >
-                          <div className="grid md:grid-cols-[1.2fr,1fr] gap-0">
-                            <div className="p-10 flex flex-col gap-5">
-                              <span className="text-xs uppercase tracking-[0.4em] text-white/50 font-mono">
-                                {badge}
-                              </span>
-                              <div className="flex items-center gap-4">
-                                <motion.div
-                                  animate={
-                                    isCardHovered
-                                      ? { scale: 1.2, y: -4, rotate: [0, badge === "Mobile App" ? 10 : 6] }
-                                      : { scale: 1, y: 0, rotate: 0 }
-                                  }
-                                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                                  className="text-3xl"
-                                >
-                                  {project.emoji}
-                                </motion.div>
-                                <h3 className="text-3xl font-bold text-white">
-                                  {project.title}
-                                </h3>
-                              </div>
-                              <p className="text-gray-300 font-mono text-sm leading-relaxed">
-                                {project.description}
-                              </p>
-                              {project.highlights && (
-                                <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/80">
-                                  {project.highlights.map((highlight) => (
-                                    <li
-                                      key={highlight}
-                                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
-                                    >
-                                      {highlight}
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                              <div className="flex gap-6 text-sm font-mono text-primary">
-                                <span className="flex items-center gap-2 group-hover:text-white">
-                                  Explore Build Specs →
+                            <div className="grid md:grid-cols-[1.2fr,1fr] gap-0">
+                              <div className="p-10 flex flex-col gap-5">
+                                <span className="text-xs uppercase tracking-[0.4em] text-white/50 font-mono">
+                                  {badge}
                                 </span>
+                                <div className="flex items-center gap-4">
+                                  <motion.div
+                                    animate={
+                                      isCardHovered
+                                        ? {
+                                            scale: 1.1,
+                                            y: -4,
+                                            rotate: [
+                                              0,
+                                              badge === "Mobile App" ? 10 : 6,
+                                            ],
+                                          }
+                                        : { scale: 1, y: 0, rotate: 0 }
+                                    }
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 250,
+                                      damping: 20,
+                                    }}
+                                    className="text-3xl"
+                                  >
+                                    {project.emoji}
+                                  </motion.div>
+                                  <h3 className="text-3xl font-bold text-white">
+                                    {project.title}
+                                  </h3>
+                                </div>
+                                <p className="text-gray-300 font-mono text-sm leading-relaxed">
+                                  {project.description}
+                                </p>
+                                {project.highlights && (
+                                  <ul className="grid sm:grid-cols-2 gap-3 text-sm text-white/80">
+                                    {project.highlights.map((highlight) => (
+                                      <li
+                                        key={highlight}
+                                        className="bg-white/5 border border-white/10 rounded-xl px-4 py-3"
+                                      >
+                                        {highlight}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                <div className="flex gap-6 text-sm font-mono text-primary">
+                                  <span className="flex items-center gap-2 group-hover:text-white">
+                                    Explore Build Specs →
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="relative min-h-[320px] overflow-hidden">
+                                <Image
+                                  src={project.image}
+                                  alt={`${project.title} preview`}
+                                  fill
+                                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                  sizes="(max-width: 768px) 100vw, 40vw"
+                                  priority={index === 0}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                               </div>
                             </div>
-                            <div className="relative min-h-[320px]">
-                              <Image
-                                src={project.image}
-                                alt={`${project.title} preview`}
-                                fill
-                                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                                sizes="(max-width: 768px) 100vw, 40vw"
-                                priority={index === 0}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            </div>
-                          </div>
-                        </Link>
+                          </Link>
                         </StarBorder>
                       );
                     })}
@@ -736,7 +777,13 @@ export default function Home() {
                 "Delivered responsive UIs with dark/light mode (NativeWind) for both roles, boosting user adoption and enhancing accessibility.",
                 "Built a secure authentication system using Expo SecureStore and Redux, maintaining uptime and zero security incidents, ensuring a seamless and safe user experience.",
               ],
-              skills: ["React Native", "Expo", "TypeScript", "Redux Toolkit", "NativeWind"],
+              skills: [
+                "React Native",
+                "Expo",
+                "TypeScript",
+                "Redux Toolkit",
+                "NativeWind",
+              ],
             },
             {
               company: "Constient",
@@ -754,7 +801,7 @@ export default function Home() {
             },
           ].map((exp) => {
             const [isCardHovered, setIsCardHovered] = React.useState(false);
-            
+
             return (
               <StarBorder
                 key={exp.company}
@@ -764,73 +811,73 @@ export default function Home() {
                 speed="7s"
               >
                 <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-full"
-              >
-                <motion.button
-                  onClick={() =>
-                    setExpandedExp(
-                      expandedExp === exp.company ? "" : exp.company
-                    )
-                  }
-                  whileHover={{ scale: 1.02, x: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className={`w-full flex justify-between items-center p-6 rounded-lg text-left transition-all glass-card relative overflow-hidden group ${
-                    expandedExp === exp.company
-                      ? "bg-white/10 border-purple-500/50"
-                      : "hover:bg-white/5"
-                  }`}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full"
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                    initial={false}
-                  />
-                  <motion.div
-                    animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative z-10"
+                  <motion.button
+                    onClick={() =>
+                      setExpandedExp(
+                        expandedExp === exp.company ? "" : exp.company
+                      )
+                    }
+                    whileHover={{ scale: 1.01, x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className={`w-full flex justify-between items-center p-6 rounded-lg text-left transition-all glass-card relative overflow-hidden group ${
+                      expandedExp === exp.company
+                        ? "bg-white/10 border-purple-500/50"
+                        : "hover:bg-white/5"
+                    }`}
                   >
-                    <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
-                      {exp.title}
-                    </h3>
-                  </motion.div>
-                <div className="flex items-center gap-4 relative z-10">
-                  <motion.span
-                    whileHover={{ scale: 1.1 }}
-                    className="text-white/80 text-sm"
-                  >
-                    {exp.period}
-                  </motion.span>
-                  <motion.span
-                    animate={{
-                      rotate: expandedExp === exp.company ? 180 : 0,
-                      scale: expandedExp === exp.company ? 1.2 : 1,
-                    }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="text-2xl text-white"
-                  >
-                    ↓
-                  </motion.span>
-                </div>
-              </motion.button>
-              {expandedExp === exp.company && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="glass-card p-8 rounded-b-lg mt-1 overflow-hidden"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <motion.span
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                      initial={false}
+                    />
+                    <motion.div
+                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative z-10"
+                    >
+                      <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                        {exp.title}
+                      </h3>
+                    </motion.div>
+                    <div className="flex items-center gap-4 relative z-10">
+                      <motion.span
+                        whileHover={{ scale: 1.05 }}
+                        className="text-white/80 text-sm"
+                      >
+                        {exp.period}
+                      </motion.span>
+                      <motion.span
+                        animate={{
+                          rotate: expandedExp === exp.company ? 180 : 0,
+                          scale: expandedExp === exp.company ? 1.2 : 1,
+                        }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="text-2xl text-white"
+                      >
+                        ↓
+                      </motion.span>
+                    </div>
+                  </motion.button>
+                  {expandedExp === exp.company && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="glass-card p-8 rounded-b-lg mt-1 overflow-hidden"
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <motion.span
                           animate={
                             isCardHovered
-                              ? { scale: 1.2, rotate: -10 }
+                              ? { scale: 1.1, rotate: -10 }
                               : { scale: 1, rotate: 0 }
                           }
                           transition={{
@@ -839,56 +886,56 @@ export default function Home() {
                             stiffness: 300,
                             damping: 20,
                           }}
-                      className="text-white/60 inline-block"
-                    >
-                      {exp.location}
-                    </motion.span>
-                    <motion.a
-                      href="#"
-                      whileHover={{ scale: 1.1, x: 3 }}
-                      className="text-white/80 hover:text-purple-400 transition-colors"
-                    >
-                      {exp.website}
-                    </motion.a>
-                  </div>
-                  <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
-                    {exp.points.map((point, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
+                          className="text-white/60 inline-block"
+                        >
+                          {exp.location}
+                        </motion.span>
+                        <motion.a
+                          href="#"
+                          whileHover={{ scale: 1.1, x: 3 }}
+                          className="text-white/80 hover:text-purple-400 transition-colors"
+                        >
+                          {exp.website}
+                        </motion.a>
+                      </div>
+                      <ul className="list-disc list-inside text-white/80 text-sm space-y-2">
+                        {exp.points.map((point, i) => (
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                          >
+                            {point}
+                          </motion.li>
+                        ))}
+                      </ul>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-wrap gap-2 mt-6"
                       >
-                        {point}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex flex-wrap gap-2 mt-6"
-                  >
-                    {exp.skills.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        {exp.skills.map((skill, skillIndex) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{
                               delay: 0.4 + skillIndex * 0.1,
                               type: "tween",
                             }}
-                        whileHover={{ scale: 1.15, y: -3, rotate: -5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm text-white/80 border border-purple-500/30 cursor-pointer"
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </motion.div>
+                            whileHover={{ scale: 1.05, y: -3, rotate: -5 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm text-white/80 border border-purple-500/30 cursor-pointer"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  )}
                 </motion.div>
-              )}
-            </motion.div>
               </StarBorder>
             );
           })}
@@ -930,7 +977,7 @@ export default function Home() {
             },
           ].map((edu, index) => {
             const [isCardHovered, setIsCardHovered] = React.useState(false);
-            
+
             return (
               <StarBorder
                 key={index}
@@ -940,39 +987,39 @@ export default function Home() {
                 speed="8s"
               >
                 <motion.div
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -10, rotateX: 5 }}
-                whileTap={{ scale: 0.98 }}
-                onMouseEnter={() => setIsCardHovered(true)}
-                onMouseLeave={() => setIsCardHovered(false)}
-                className="glass-card rounded-xl p-8 text-left relative overflow-hidden group"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
-                  initial={false}
-                />
-                <div className="flex items-start gap-4 relative z-10">
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02, y: -10, rotateX: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  onMouseEnter={() => setIsCardHovered(true)}
+                  onMouseLeave={() => setIsCardHovered(false)}
+                  className="glass-card rounded-xl p-8 text-left relative overflow-hidden group"
+                >
                   <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500"
+                    initial={false}
+                  />
+                  <div className="flex items-start gap-4 relative z-10">
+                    <motion.div
                       animate={
                         isCardHovered
                           ? {
-                      scale: 1.25,
-                      y: -6,
+                              scale: 1.1,
+                              y: -6,
                               rotate: [0, 10],
                             }
                           : {
-                      scale: [1, 1.12],
-                      y: [0, -5],
+                              scale: [1, 1.05],
+                              y: [0, -5],
                               rotate: [0, 8],
                             }
                       }
                       transition={
                         isCardHovered
                           ? {
-                      duration: 0.4, 
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 12,
+                              duration: 0.4,
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 12,
                               rotate: {
                                 duration: 0.7,
                                 repeat: Infinity,
@@ -1005,27 +1052,33 @@ export default function Home() {
                               },
                             }
                       }
-                    className="text-3xl"
-                  >
-                    {edu.emoji}
-                  </motion.div>
-                  <motion.div
-                    animate={isCardHovered ? { x: 5 } : { x: 0 }}
-                    transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
-                  >
-                    <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
-                      {edu.title}
-                    </h3>
-                    <motion.div
-                      animate={isCardHovered ? { opacity: 1 } : { opacity: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-gray-400 font-mono"
+                      className="text-3xl"
                     >
-                      {edu.description}
+                      {edu.emoji}
                     </motion.div>
-                  </motion.div>
-                </div>
-              </motion.div>
+                    <motion.div
+                      animate={isCardHovered ? { x: 5 } : { x: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        type: "spring",
+                        stiffness: 300,
+                      }}
+                    >
+                      <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all">
+                        {edu.title}
+                      </h3>
+                      <motion.div
+                        animate={
+                          isCardHovered ? { opacity: 1 } : { opacity: 0.8 }
+                        }
+                        transition={{ duration: 0.2 }}
+                        className="text-gray-400 font-mono"
+                      >
+                        {edu.description}
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.div>
               </StarBorder>
             );
           })}
@@ -1070,12 +1123,17 @@ export default function Home() {
                       idle: {
                         y: [0, -2],
                         transition: {
-                          y: { duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                          y: {
+                            duration: 1.5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut",
+                          },
                         },
                       },
                       hover: {
                         rotate: -5,
-                        scale: 1.2,
+                        scale: 1.02,
                         y: -3,
                         transition: {
                           type: "tween",
@@ -1099,7 +1157,11 @@ export default function Home() {
                     <motion.path
                       d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
                       animate={{ pathLength: [0, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      }}
                     />
                   </motion.svg>
                 ),
@@ -1122,12 +1184,17 @@ export default function Home() {
                       idle: {
                         rotate: [0, 5],
                         transition: {
-                          rotate: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                          rotate: {
+                            duration: 2.5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut",
+                          },
                         },
                       },
                       hover: {
                         rotate: 10,
-                        scale: 1.2,
+                        scale: 1.05,
                         y: -3,
                         transition: {
                           type: "tween",
@@ -1147,7 +1214,11 @@ export default function Home() {
                     <motion.path
                       d="M9 18c-4.51 2-5-2-7-2"
                       animate={{ pathLength: [0.5, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      }}
                     />
                   </motion.svg>
                 ),
@@ -1170,12 +1241,17 @@ export default function Home() {
                       idle: {
                         scale: [1, 1.05],
                         transition: {
-                          scale: { duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+                          scale: {
+                            duration: 1.5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut",
+                          },
                         },
                       },
                       hover: {
                         rotate: -5,
-                        scale: 1.2,
+                        scale: 1.02,
                         y: -3,
                         transition: {
                           type: "tween",
@@ -1220,15 +1296,13 @@ export default function Home() {
                 idle: {
                   scale: 1,
                   y: 0,
-                  rotateY: 0,
                 },
                 hover: {
-                  scale: 1.15,
-                  y: -10,
-                  rotateY: 5,
-                  z: 50,
+                  scale: 1,
+                  y: -5,
                   transition: {
                     duration: 0.2,
+                    ease: "easeOut",
                   },
                 },
               };
@@ -1236,18 +1310,36 @@ export default function Home() {
               // Define icon animations based on index - making them alive!
               const iconAnimations = [
                 {
-                  idle: { 
+                  idle: {
                     y: [0, -4],
                     scale: [1, 1.08],
                     rotate: [0, 5],
                     transition: {
-                      y: { duration: 2.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      scale: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      rotate: { duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      y: {
+                        duration: 2.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      scale: {
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      rotate: {
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
-                  hover: { 
-                    scale: 1.25, 
+                  hover: {
+                    scale: 1.1,
                     y: -6,
                     rotate: [0, 10],
                     transition: {
@@ -1255,23 +1347,47 @@ export default function Home() {
                       stiffness: 400,
                       damping: 12,
                       duration: 0.4,
-                      rotate: { duration: 0.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      rotate: {
+                        duration: 0.6,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
                 },
                 {
-                  idle: { 
+                  idle: {
                     rotate: [0, 8],
                     scale: [1, 1.1],
                     y: [0, -3],
                     transition: {
-                      rotate: { duration: 3.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      scale: { duration: 2.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      y: { duration: 2.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      rotate: {
+                        duration: 3.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      scale: {
+                        duration: 2.2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      y: {
+                        duration: 2.8,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
-                  hover: { 
-                    scale: 1.25, 
+                  hover: {
+                    scale: 1.05,
                     y: -6,
                     rotate: [0, 15],
                     transition: {
@@ -1279,23 +1395,47 @@ export default function Home() {
                       stiffness: 400,
                       damping: 12,
                       duration: 0.4,
-                      rotate: { duration: 0.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      rotate: {
+                        duration: 0.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
                 },
                 {
-                  idle: { 
+                  idle: {
                     scale: [1, 1.12],
                     y: [0, -5],
                     rotate: [0, 6],
                     transition: {
-                      scale: { duration: 2.3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      y: { duration: 3.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
-                      rotate: { duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      scale: {
+                        duration: 2.3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      y: {
+                        duration: 3.2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
+                      rotate: {
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
-                  hover: { 
-                    scale: 1.25, 
+                  hover: {
+                    scale: 1.05,
                     y: -6,
                     rotate: [0, 12],
                     transition: {
@@ -1303,17 +1443,23 @@ export default function Home() {
                       stiffness: 400,
                       damping: 12,
                       duration: 0.4,
-                      rotate: { duration: 0.7, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", type: "tween" },
+                      rotate: {
+                        duration: 0.7,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                        type: "tween",
+                      },
                     },
                   },
                 },
               ];
-              
+
               const iconContainerVariants = {
-                idle: { 
+                idle: {
                   ...iconAnimations[index]?.idle,
                 },
-                hover: { 
+                hover: {
                   ...iconAnimations[index]?.hover,
                 },
               };
@@ -1331,47 +1477,47 @@ export default function Home() {
                   speed="9s"
                 >
                   <motion.a
-                  href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 30, rotateY: -90 }}
-                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  whileHover="hover"
-                  whileTap={{ scale: 0.9 }}
-                  animate="idle"
-                  onMouseEnter={() => setIsCardHovered(true)}
-                  onMouseLeave={() => setIsCardHovered(false)}
-                  className="flex flex-col items-center gap-4 p-6 rounded-xl glass-card hover:glow-effect transition-all group perspective-1000"
-                  variants={cardVariants}
-                >
-                  <motion.div
-                    variants={iconContainerVariants}
-                    animate={isCardHovered ? "hover" : "idle"}
-                    transition={{ duration: 0.2 }}
-                    className="text-purple-400 group-hover:text-pink-400 transition-colors"
+                    href={contact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.2, duration: 0.6 }}
+                    whileHover="hover"
+                    whileTap={{ scale: 0.9 }}
+                    animate="idle"
+                    onMouseEnter={() => setIsCardHovered(true)}
+                    onMouseLeave={() => setIsCardHovered(false)}
+                    className="flex flex-col items-center gap-4 p-6 rounded-xl glass-card hover:glow-effect transition-all group"
+                    variants={cardVariants}
                   >
-                    {React.cloneElement(iconElement, {
-                      ...iconElement.props,
-                      variants: iconVariants,
-                      animate: isCardHovered ? "hover" : "idle",
-                      whileHover: undefined,
-                    })}
-                  </motion.div>
-                <motion.span
-                  whileHover={{ scale: 1.1 }}
-                  className="text-white font-mono text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all"
-                >
-                  {contact.text}
-                </motion.span>
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 transition-all duration-500"
-                  initial={false}
-                />
-              </motion.a>
+                    <motion.div
+                      variants={iconContainerVariants}
+                      animate={isCardHovered ? "hover" : "idle"}
+                      transition={{ duration: 0.2 }}
+                      className="text-purple-400 group-hover:text-pink-400 transition-colors"
+                    >
+                      {React.cloneElement(iconElement, {
+                        ...iconElement.props,
+                        variants: iconVariants,
+                        animate: isCardHovered ? "hover" : "idle",
+                        whileHover: undefined,
+                      })}
+                    </motion.div>
+                    <motion.span
+                      whileHover={{ scale: 1.1 }}
+                      className="text-white font-mono text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all"
+                    >
+                      {contact.text}
+                    </motion.span>
+                    <motion.div
+                      className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 transition-all duration-500"
+                      initial={false}
+                    />
+                  </motion.a>
                 </StarBorder>
-            );
+              );
             })}
           </div>
         </motion.div>
