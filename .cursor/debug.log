@@ -1,0 +1,5 @@
+{"sessionId":"debug-session","runId":"initial","hypothesisId":"H3","location":"page.tsx:rememberScrollPosition","message":"stored scroll before nav","data":{"scrollY":"2955"},"timestamp":1765440284145}
+{"sessionId":"debug-session","runId":"initial","hypothesisId":"H4","location":"ProjectContent.tsx:handleBack","message":"router.back path","data":{"hasHistory":true,"scrollStored":"2955"},"timestamp":1765440288171}
+{"sessionId":"debug-session","runId":"initial","hypothesisId":"H1","location":"page.tsx:scroll-restore","message":"restore effect start","data":{"storedScroll":"2955","storedHash":null},"timestamp":1765440288219}
+{"sessionId":"debug-session","runId":"initial","hypothesisId":"H1","location":"page.tsx:scroll-restore","message":"restore effect start","data":{"storedScroll":null,"storedHash":null},"timestamp":1765440288224}
+{"sessionId":"debug-session","runId":"initial","hypothesisId":"H1","location":"page.tsx:scroll-restore","message":"applied stored scroll","data":{"storedScroll":"2955"},"timestamp":1765440288229}

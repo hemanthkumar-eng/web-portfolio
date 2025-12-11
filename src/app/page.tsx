@@ -156,7 +156,8 @@ export default function Home() {
 
   const rememberScrollPosition = React.useCallback(() => {
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("homeScrollY", String(window.scrollY));
+      const value = String(window.scrollY);
+      sessionStorage.setItem("homeScrollY", value);
     }
   }, []);
 
@@ -390,7 +391,7 @@ export default function Home() {
       </section>
 
       {/* Code Showcase Section */}
-      <section className="w-full max-w-6xl mx-auto py-24 px-4">
+      <section className="w-full max-w-7xl mx-auto py-24 px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -440,7 +441,7 @@ export default function Home() {
       {/* Expertise Section */}
       <section
         id="expertise"
-        className="w-full max-w-6xl mx-auto py-24 px-4 relative"
+        className="w-full max-w-7xl mx-auto py-24 px-6 relative"
         style={{
           backgroundImage: `url("${getAssetPath(
             "/projects/Background/expertise-bg.jpg"
@@ -614,7 +615,7 @@ export default function Home() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="w-full max-w-6xl mx-auto py-24 px-4">
+      <section id="work" className="w-full max-w-7xl mx-auto py-24 px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -751,7 +752,7 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="w-full max-w-6xl mx-auto py-24 px-4">
+      <section id="experience" className="w-full max-w-7xl mx-auto py-24 px-6">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -945,7 +946,7 @@ export default function Home() {
       {/* Education Section */}
       <section
         id="education"
-        className="w-full max-w-6xl mx-auto py-24 px-4 text-center"
+        className="w-full max-w-7xl mx-auto py-24 px-6 text-center"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -1088,7 +1089,7 @@ export default function Home() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="w-full max-w-6xl mx-auto py-24 px-4 text-center"
+        className="w-full max-w-7xl mx-auto py-24 px-6 text-center"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

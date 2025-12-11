@@ -35,7 +35,7 @@ export function ProjectContent({ project }: { project: Project }) {
       router.push("/#work");
     }
   }, [router]);
-
+  
   return (
     <div className="min-h-screen bg-black text-white py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -65,7 +65,7 @@ export function ProjectContent({ project }: { project: Project }) {
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
-              whileHover={{
+              whileHover={{ 
                 scale: 1.3,
                 x: -8,
                 rotate: -10,
