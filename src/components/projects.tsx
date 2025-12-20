@@ -15,6 +15,20 @@ type ShowcaseProject = {
 
 const webProjects: readonly ShowcaseProject[] = [
   {
+    title: "API Visualizer",
+    description:
+      "A lightweight, production-ready web application for exploring and visualizing JSON APIs. The app provides a clean, intuitive interface similar to Postman, allowing developers to test API endpoints, analyze responses, and understand data structures.",
+    highlights: [
+      "Request builder with GET support, editable headers, and robust error handling",
+      "Multi-tab response viewer: Raw JSON, smart tables, interactive charts, schema inference, and JSON diff",
+      "Advanced data analysis with filtering, configurable charts, and automatic schema inference",
+      "Enhanced UX: Fullscreen mode, light/dark theme, request history, and one-click replay",
+    ],
+    image: getAssetPath("/projects/apivisualizer/1.png"),
+    github: "https://github.com/Hemanthx96/API-Visualizer",
+    demo: "https://api-visualizer-pi.vercel.app/",
+  },
+  {
     title: "MoveEasy",
     description:
       "Created a responsive website to promote and showcase shipping services. Emphasized a clean, structured design and user-friendly navigation, allowing visitors to easily browse shipping options and service details.",
@@ -143,7 +157,8 @@ function ShowcaseCard({
           </div>
           {project.isProprietary && (
             <p className="text-xs text-white/60">
-              Client-owned mobile app — demo builds and store links are kept private.
+              Client-owned mobile app — demo builds and store links are kept
+              private.
             </p>
           )}
         </div>

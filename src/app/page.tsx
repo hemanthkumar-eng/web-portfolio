@@ -22,6 +22,21 @@ const NAV_ITEMS = [
 
 const projects = [
   {
+    title: "API Visualizer",
+    emoji: "🔍",
+    slug: "api-visualizer",
+    type: "web",
+    image: getAssetPath("/projects/apivisualizer/1.png"),
+    description:
+      "A lightweight, production-ready web application for exploring and visualizing JSON APIs. The app provides a clean, intuitive interface similar to Postman, allowing developers to test API endpoints, analyze responses, and understand data structures.",
+    highlights: [
+      "Request builder with GET support, editable headers, and robust error handling",
+      "Multi-tab response viewer: Raw JSON, smart tables, interactive charts, schema inference, and JSON diff",
+      "Advanced data analysis with filtering, configurable charts, and automatic schema inference",
+      "Enhanced UX: Fullscreen mode, light/dark theme, request history, and one-click replay",
+    ],
+  },
+  {
     title: "MoveEasy",
     emoji: "📦",
     slug: "moveeasy",
@@ -37,20 +52,6 @@ const projects = [
     ],
   },
   {
-    title: "NoseBoop",
-    emoji: "🐕",
-    slug: "noseboop",
-    type: "web",
-    image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
-    description:
-      "Reimagined the classic dog matchmaking concept into NoseBoop—India's premier dog social app that helps pet parents from Mumbai to Bengaluru find the perfect playmate with swipe-friendly discovery, filters, and in-app chat.",
-    highlights: [
-      "Swipe-first matchmaking with playful animations",
-      "Location + temperament filters for better matches",
-      "Secure profiles, galleries, and in-app chat",
-    ],
-  },
-  {
     title: "Impact Investment Platform",
     emoji: "🌱",
     slug: "impact-invest",
@@ -62,6 +63,20 @@ const projects = [
       "Design-forward marketing site for ventures, impact, partners, news, and FAQs",
       "LP-style dashboard preview with pledge tracker, activity feed, and impact KPIs",
       "Express + TypeScript API powering venture data, contact, and mocked flows",
+    ],
+  },
+  {
+    title: "NoseBoop",
+    emoji: "🐕",
+    slug: "noseboop",
+    type: "web",
+    image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
+    description:
+      "Reimagined the classic dog matchmaking concept into NoseBoop—India's premier dog social app that helps pet parents from Mumbai to Bengaluru find the perfect playmate with swipe-friendly discovery, filters, and in-app chat.",
+    highlights: [
+      "Swipe-first matchmaking with playful animations",
+      "Location + temperament filters for better matches",
+      "Secure profiles, galleries, and in-app chat",
     ],
   },
   {

@@ -218,6 +218,44 @@ Tech Stack:
     images: [getAssetPath("/projects/techmaintenance/dashboard.svg")],
     isProprietary: true,
   },
+  "api-visualizer": {
+    title: "API Visualizer",
+    category: "web",
+    description:
+      "A lightweight, production-ready web application for exploring and visualizing JSON APIs. The app provides a clean, intuitive interface similar to Postman, allowing developers to test API endpoints, analyze responses, and understand data structures.",
+    fullDescription: `API Visualizer is a lightweight, production-ready web application for exploring and visualizing JSON APIs. The app provides a clean, intuitive interface similar to Postman, allowing developers to test API endpoints, analyze responses, and understand data structures. API Visualizer simplifies API exploration with smart table views, schema inference, data visualization, and request history management.
+
+Key Features:
+- Request Builder & Execution: URL input with GET method support, editable headers, Axios-based requests with duration tracking, and robust error handling including CORS-friendly messaging, timeouts, and network failures.
+- Multi-Tab Response Viewer: Raw JSON viewer with collapsible nodes, smart table view for arrays (sorting, filtering, pagination), interactive bar/line charts for numeric data, inferred schema tree visualization, and JSON diff comparison against previous responses.
+- Advanced Data Analysis: Client-side filtering with text, exact match, range, and exists/missing filters supporting nested fields, configurable chart axes for data visualization, and automatic schema inference for complex JSON structures.
+- Enhanced UX Features: Fullscreen response mode, light/dark theme toggle with theme-aware UI elements, synchronized dual scrollbars (top and bottom) for wide content, request history with localStorage persistence (last 5 requests), and one-click request replay.
+- Production-Ready Polish: Loading states, friendly error messages, empty state hints, smart button disabling during requests, and responsive design with modern UI components.
+
+Technical Stack:
+- Frontend Framework: React 18
+- Language: TypeScript
+- Build Tool: Vite
+- HTTP Client: Axios
+- Data Visualization: Recharts
+- Styling: CSS Variables (Theme System)
+- State Management: React Hooks (useState, useMemo, useEffect)
+- Storage: LocalStorage API
+- Hosting: Vercel (free tier)
+- Alternative Hosting: Render (free tier)`,
+    tags: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Axios",
+      "Recharts",
+      "CSS Variables",
+      "LocalStorage",
+    ],
+    github: "https://github.com/Hemanthx96/API-Visualizer",
+    demo: "https://api-visualizer-pi.vercel.app/",
+    images: [getAssetPath("/projects/apivisualizer/1.png")],
+  },
 } as const;
 
 export function generateStaticParams() {
