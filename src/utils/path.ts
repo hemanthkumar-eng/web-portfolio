@@ -1,5 +1,6 @@
 export function getBasePath() {
-  return process.env.NODE_ENV === "production" ? "/web-portfolio" : "";
+  // Always return basePath since we're configured for GitHub Pages
+  return "/web-portfolio";
 }
 
 export function getAssetPath(path: string) {

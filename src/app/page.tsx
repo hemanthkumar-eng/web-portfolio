@@ -1239,7 +1239,7 @@ export default function Home() {
                   </motion.svg>
                 ),
                 text: "GitHub",
-                href: "https://github.com/Hemanthx96",
+                href: "https://github.com/hemanthkumar-eng",
               },
               {
                 icon: (

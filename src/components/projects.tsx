@@ -25,7 +25,7 @@ const webProjects: readonly ShowcaseProject[] = [
       "Enhanced UX: Fullscreen mode, light/dark theme, request history, and one-click replay",
     ],
     image: getAssetPath("/projects/apivisualizer/1.png"),
-    github: "https://github.com/Hemanthx96/API-Visualizer",
+    github: "https://github.com/hemanthkumar-eng/API-Visualizer",
     demo: "https://api-visualizer-pi.vercel.app/",
   },
   {
@@ -39,7 +39,7 @@ const webProjects: readonly ShowcaseProject[] = [
       "Mock Razorpay checkout and future-ready APIs",
     ],
     image: getAssetPath("/projects/moveeasy/MoveEasy/1.png"),
-    github: "https://github.com/Hemanthx96/shippers-web",
+    github: "https://github.com/hemanthkumar-eng/shippers-web",
     demo: "https://shippers-web-chi.vercel.app/",
   },
   {
@@ -52,7 +52,7 @@ const webProjects: readonly ShowcaseProject[] = [
       "Secure profiles with galleries, bios, and in-app chat",
     ],
     image: getAssetPath("/projects/pupmatcher/PupMatcher/1.png"),
-    github: "https://github.com/Hemanthx96/PupMatcher",
+    github: "https://github.com/hemanthkumar-eng/PupMatcher",
     demo: "https://nose-boop.vercel.app/",
   },
   {
@@ -83,7 +83,7 @@ const appProjects: readonly ShowcaseProject[] = [
       "Deep linking across native stack & tabs",
     ],
     image: getAssetPath("/projects/facilityops/dashboard.svg"),
-    github: "https://github.com/Hemanthx96/facilityops-mobile",
+    github: "https://github.com/hemanthkumar-eng/facilityops-mobile",
     isProprietary: true,
   },
   {
@@ -98,7 +98,7 @@ const appProjects: readonly ShowcaseProject[] = [
       "Theming, orientation unlock, and cache middleware hooks",
     ],
     image: getAssetPath("/projects/techmaintenance/dashboard.svg"),
-    github: "https://github.com/Hemanthx96/tech-maintenance",
+    github: "https://github.com/hemanthkumar-eng/tech-maintenance",
     isProprietary: true,
   },
 ] as const;

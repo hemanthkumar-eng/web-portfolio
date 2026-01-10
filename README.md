@@ -2,6 +2,10 @@
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
+## 🌐 Live Demo
+
+Visit the live portfolio at: [https://hemanthkumar-eng.github.io/web-portfolio/](https://hemanthkumar-eng.github.io/web-portfolio/)
+
 ## Features
 
 - 🌓 Dark/Light mode support
@@ -23,7 +27,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/hemanthkumar-eng/web-portfolio.git
 ```
 
 2. Install dependencies:
@@ -42,13 +46,38 @@ npm run dev
 
 ## Building for Production
 
+The project is configured for static export to work with GitHub Pages:
+
 ```bash
 npm run build
 ```
 
-## Deployment
+This will generate static files in the `out/` directory.
 
-The site can be deployed to any platform that supports Next.js applications, such as Vercel, Netlify, or GitHub Pages.
+## Deployment to GitHub Pages
+
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+
+2. Push the `out/` directory to the `gh-pages` branch:
+   ```bash
+   git subtree push --prefix out origin gh-pages
+   ```
+
+   Or use a GitHub Action to automatically deploy on push.
+
+3. In your GitHub repository settings, go to Pages and set the source to the `gh-pages` branch.
+
+The site will be available at: `https://hemanthkumar-eng.github.io/web-portfolio/`
+
+## Configuration
+
+The project is configured with:
+- **basePath**: `/web-portfolio` (required for GitHub Pages)
+- **output**: `export` (static export mode)
+- **images**: `unoptimized: true` (required for static export)
 
 ## License
 

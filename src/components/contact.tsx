@@ -64,8 +64,8 @@ export default function Contact() {
         </svg>
       ),
       label: "GitHub",
-      value: "github.com/hemanthkumar316",
-      href: "https://github.com/hemanthkumar316",
+      value: "github.com/hemanthkumar-eng",
+      href: "https://github.com/hemanthkumar-eng",
     },
   ];
 
