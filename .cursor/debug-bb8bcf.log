@@ -1,0 +1,2 @@
+{"sessionId":"bb8bcf","runId":"initial-2","hypothesisId":"H5","location":"src/app/layout.tsx:19","message":"Root layout rendered","data":{"note":"Layout rendered without request header access"},"timestamp":1776356037717}
+{"sessionId":"bb8bcf","runId":"initial-3","hypothesisId":"H4","location":"src/app/page.tsx:152","message":"Home page mounted","data":{"pathname":"/"},"timestamp":1776356038072}
