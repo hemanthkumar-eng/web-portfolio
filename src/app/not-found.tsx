@@ -32,18 +32,18 @@ export default function NotFound() {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#f3e6d3] px-6 text-[#5c4432]">
-      <div className="w-full max-w-xl rounded-3xl border border-[#8a684f]/30 bg-[#f3e6d3] p-10 text-center shadow-sm">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#5c4432]">
+    <div className="flex min-h-screen items-center justify-center bg-rcb-deeper px-6 text-rcb-cream">
+      <div className="w-full max-w-xl rounded-3xl border border-rcb-gold/40 bg-rcb-dark/90 p-10 text-center shadow-sm">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-rcb-muted">
           404 Error
         </p>
         <h2 className="mb-4 text-4xl font-bold">Page Not Found</h2>
-        <p className="mb-8 text-[#6f5441]">
+        <p className="mb-8 text-rcb-muted">
           The page you're looking for doesn't exist.
         </p>
         <Link
           href="/"
-          className="inline-flex rounded-xl bg-[#5c4432] px-5 py-2.5 text-sm font-medium text-[#f3e6d3] transition hover:bg-[#4d3727]"
+          className="royal-button inline-flex rounded-xl bg-rcb-red px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-rcb-gold/50 transition hover:brightness-110"
         >
           Return Home
         </Link>

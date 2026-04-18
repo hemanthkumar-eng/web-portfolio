@@ -50,6 +50,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        /* Royal Challengers Bengaluru–inspired palette (red + gold on dark charcoal). */
+        rcb: {
+          red: "#EC1C24",
+          gold: "#D1AB3E",
+          dark: "#2B2A29",
+          deeper: "#141210",
+          cream: "#FFF8ED",
+          muted: "#C9B896",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

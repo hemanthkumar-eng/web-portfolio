@@ -2,27 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RCB-inspired theme: pigment red, American gold, electric black (commonly cited IPL palette). */
 @layer base {
   :root {
-    --background: 36 45% 93%;
-    --foreground: 28 31% 19%;
-    --card: 36 45% 93%;
-    --card-foreground: 28 31% 19%;
-    --popover: 36 45% 93%;
-    --popover-foreground: 28 31% 19%;
-    --primary: 30 37% 36%;
-    --primary-foreground: 36 45% 93%;
-    --secondary: 35 36% 88%;
-    --secondary-foreground: 28 31% 19%;
-    --muted: 35 36% 88%;
-    --muted-foreground: 28 17% 35%;
-    --accent: 35 36% 88%;
-    --accent-foreground: 28 31% 19%;
-    --destructive: 30 37% 36%;
-    --destructive-foreground: 36 45% 93%;
-    --border: 34 24% 78%;
-    --input: 34 24% 78%;
-    --ring: 30 37% 36%;
+    --rcb-red: #ec1c24;
+    --rcb-gold: #d1ab3e;
+    --rcb-dark: #2b2a29;
+    --rcb-deeper: #141210;
+    --background: 20 6% 8%;
+    --foreground: 40 100% 97%;
+    --card: 20 6% 12%;
+    --card-foreground: 40 100% 97%;
+    --popover: 20 6% 10%;
+    --popover-foreground: 40 100% 97%;
+    --primary: 358 83% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 42 55% 53%;
+    --secondary-foreground: 20 6% 8%;
+    --muted: 20 6% 18%;
+    --muted-foreground: 38 28% 68%;
+    --accent: 20 6% 14%;
+    --accent-foreground: 40 100% 97%;
+    --destructive: 358 83% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 38 35% 35%;
+    --input: 38 35% 35%;
+    --ring: 42 55% 53%;
     --radius: 0.75rem;
   }
 }
@@ -39,8 +44,19 @@
 
   body {
     @apply antialiased;
-    color: #5c4432;
-    background: radial-gradient(circle at 0% 0%, #f3e6d3 0%, #f8efdf 35%, #f5ede2 60%, #efe5d8 100%);
+    color: #fff8ed;
+    background:
+      radial-gradient(
+        circle at 15% 0%,
+        rgba(236, 28, 36, 0.22) 0%,
+        transparent 42%
+      ),
+      radial-gradient(
+        circle at 85% 20%,
+        rgba(209, 171, 62, 0.12) 0%,
+        transparent 45%
+      ),
+      linear-gradient(180deg, #2b2a29 0%, #141210 100%);
     overflow-x: hidden;
     line-height: 1.65;
   }
@@ -54,21 +70,31 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(120deg, #5c4432 0%, #8a684f 50%, #b28a68 100%);
+    background: linear-gradient(120deg, #ec1c24 0%, #d1ab3e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .brand-gradient {
-    background: linear-gradient(120deg, #5c4432 0%, #8a684f 50%, #b28a68 100%);
+    background: linear-gradient(120deg, #ec1c24 0%, #d1ab3e 100%);
   }
 
   .brand-surface {
-    background: linear-gradient(160deg, rgba(255, 249, 239, 0.95) 0%, rgba(246, 235, 220, 0.86) 100%);
-    border: 1px solid rgba(125, 93, 64, 0.24);
-    box-shadow: 0 18px 50px -28px rgba(92, 68, 50, 0.35);
+    background: linear-gradient(
+      165deg,
+      rgba(43, 42, 41, 0.95) 0%,
+      rgba(20, 18, 16, 0.98) 100%
+    );
+    border: 1px solid rgba(209, 171, 62, 0.35);
+    box-shadow:
+      0 20px 42px -28px rgba(236, 28, 36, 0.35),
+      inset 0 1px 0 rgba(209, 171, 62, 0.12);
     backdrop-filter: blur(8px);
+  }
+
+  .text-rcb-muted {
+    color: rgba(201, 184, 150, 0.95);
   }
 
   .accent-ring {
@@ -82,33 +108,58 @@
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(120deg, rgba(92, 68, 50, 0.55), rgba(138, 104, 79, 0.45), rgba(178, 138, 104, 0.5));
+    background: linear-gradient(
+      120deg,
+      rgba(236, 28, 36, 0.75),
+      rgba(209, 171, 62, 0.65)
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
+
+  .royal-button {
+    border: 1px solid rgba(209, 171, 62, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 248, 237, 0.12),
+      0 8px 22px -12px rgba(236, 28, 36, 0.35);
+  }
+
+  .royal-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(209, 171, 62, 0.55) 30%,
+      rgba(236, 28, 36, 0.45) 70%,
+      transparent 100%
+    );
+  }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #e5d8c7;
+  background: rgba(20, 18, 16, 0.9);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8a684f 0%, #6b4f3a 100%);
+  background: linear-gradient(180deg, #ec1c24 0%, #d1ab3e 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6b4f3a 0%, #4d3727 100%);
+  background: linear-gradient(
+    180deg,
+    #ec1c24 0%,
+    #d1ab3e 100%
+  );
 }
 
 ::selection {
-  background: rgba(138, 104, 79, 0.25);
-  color: #5c4432;
+  background: rgba(236, 28, 36, 0.35);
+  color: #fff8ed;
 }

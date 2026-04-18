@@ -125,81 +125,21 @@ const projects = [
 ];
 
 const SKILLS = [
-  {
-    name: "JavaScript (ES6+)",
-    icon: SiJavascript as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "TypeScript",
-    icon: SiTypescript as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Python",
-    icon: SiPython as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "React",
-    icon: SiReact as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Next.js",
-    icon: SiNextdotjs as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "React Native",
-    icon: SiReact as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Redux Toolkit",
-    icon: SiRedux as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Tailwind / NativeWind",
-    icon: SiTailwindcss as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Node.js",
-    icon: SiNodedotjs as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Express.js",
-    icon: SiExpress as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "PostgreSQL",
-    icon: SiPostgresql as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "MongoDB",
-    icon: SiMongodb as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Docker",
-    icon: SiDocker as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Vercel",
-    icon: SiVercel as IconType,
-    color: "#5c4432",
-  },
-  {
-    name: "Expo",
-    icon: SiExpo as IconType,
-    color: "#5c4432",
-  },
+  { name: "JavaScript (ES6+)", icon: SiJavascript as IconType },
+  { name: "TypeScript", icon: SiTypescript as IconType },
+  { name: "Python", icon: SiPython as IconType },
+  { name: "React", icon: SiReact as IconType },
+  { name: "Next.js", icon: SiNextdotjs as IconType },
+  { name: "React Native", icon: SiReact as IconType },
+  { name: "Redux Toolkit", icon: SiRedux as IconType },
+  { name: "Tailwind / NativeWind", icon: SiTailwindcss as IconType },
+  { name: "Node.js", icon: SiNodedotjs as IconType },
+  { name: "Express.js", icon: SiExpress as IconType },
+  { name: "PostgreSQL", icon: SiPostgresql as IconType },
+  { name: "MongoDB", icon: SiMongodb as IconType },
+  { name: "Docker", icon: SiDocker as IconType },
+  { name: "Vercel", icon: SiVercel as IconType },
+  { name: "Expo", icon: SiExpo as IconType },
 ];
 
 const EXPERIENCE = [
@@ -386,25 +326,25 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen text-[#5c4432]">
+    <main className="min-h-screen text-rcb-cream">
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed left-[-80px] top-24 z-0 h-56 w-56 rounded-full bg-[#b28a68]/25 blur-3xl"
+        className="pointer-events-none fixed left-[-80px] top-24 z-0 h-56 w-56 rounded-full bg-rcb-red/25 blur-3xl"
         animate={{ y: [0, 12, 0], x: [0, 8, 0], scale: [1, 1.03, 1] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed bottom-12 right-[-70px] z-0 h-52 w-52 rounded-full bg-[#8a684f]/20 blur-3xl"
+        className="pointer-events-none fixed bottom-12 right-[-70px] z-0 h-52 w-52 rounded-full bg-rcb-gold/15 blur-3xl"
         animate={{ y: [0, -10, 0], x: [0, -7, 0], scale: [1, 0.98, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
-      <nav className="sticky top-0 z-40 border-b border-[#8a684f]/30 bg-[#f3e6d3]/90 backdrop-blur-xl">
+      <nav className="sticky top-0 z-40 border-b border-rcb-gold/35 bg-rcb-deeper/95 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-base font-semibold tracking-wide text-[#5c4432] md:text-lg">
+          <span className="text-base font-semibold tracking-wide text-rcb-cream md:text-lg">
             Hemanth Kumar
           </span>
-          <ul className="hidden gap-6 text-base text-[#6f5441] md:flex">
+          <ul className="hidden gap-6 text-base text-rcb-cream/90 md:flex">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.slice(1);
               return (
@@ -413,8 +353,8 @@ export default function Home() {
                     href={item.href}
                     className={`transition-colors ${
                       isActive
-                        ? "font-semibold text-[#5c4432]"
-                        : "hover:text-[#5c4432]"
+                        ? "font-semibold text-rcb-gold"
+                        : "text-rcb-cream/90 hover:text-rcb-gold"
                     }`}
                   >
                     {item.label}
@@ -435,21 +375,39 @@ export default function Home() {
           className="pointer-events-none absolute bottom-2 left-1/2 z-0 w-screen -translate-x-1/2 overflow-hidden opacity-65 md:bottom-0"
         >
           <motion.svg
-            viewBox="0 0 1440 260"
+            viewBox="0 0 2880 260"
             preserveAspectRatio="none"
-            className="h-44 w-[220%] text-[#b28a68]/50 md:h-52"
-            animate={{ x: ["0%", "-54%"] }}
-            transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            className="h-24 w-[200%] max-w-none shrink-0 text-white/12 blur-[1px] mix-blend-screen md:h-32"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 28,
+              repeat: Infinity,
+              ease: "linear",
+              repeatType: "loop",
+            }}
           >
-            <path
-              fill="currentColor"
-              d="M0,120L48,114.7C96,109,192,99,288,104C384,109,480,131,576,141.3C672,152,768,152,864,136C960,120,1056,88,1152,82.7C1248,77,1344,99,1392,109.3L1440,120L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-            />
-            <path
-              fill="currentColor"
-              fillOpacity="0.55"
-              d="M0,176L48,168C96,160,192,144,288,141.3C384,139,480,149,576,157.3C672,165,768,171,864,165.3C960,160,1056,144,1152,144C1248,144,1344,160,1392,168L1440,176L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-            />
+            <g>
+              <path
+                fill="currentColor"
+                d="M0,120L48,114.7C96,109,192,99,288,104C384,109,480,131,576,141.3C672,152,768,152,864,136C960,120,1056,88,1152,82.7C1248,77,1344,99,1392,109.3L1440,120L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
+              />
+              <path
+                fill="currentColor"
+                fillOpacity="0.55"
+                d="M0,176L48,168C96,160,192,144,288,141.3C384,139,480,149,576,157.3C672,165,768,171,864,165.3C960,160,1056,144,1152,144C1248,144,1344,160,1392,168L1440,176L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
+              />
+            </g>
+            <g transform="translate(1440, 0)">
+              <path
+                fill="currentColor"
+                d="M0,120L48,114.7C96,109,192,99,288,104C384,109,480,131,576,141.3C672,152,768,152,864,136C960,120,1056,88,1152,82.7C1248,77,1344,99,1392,109.3L1440,120L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
+              />
+              <path
+                fill="currentColor"
+                fillOpacity="0.55"
+                d="M0,176L48,168C96,160,192,144,288,141.3C384,139,480,149,576,157.3C672,165,768,171,864,165.3C960,160,1056,144,1152,144C1248,144,1344,160,1392,168L1440,176L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
+              />
+            </g>
           </motion.svg>
         </div>
 
@@ -460,13 +418,13 @@ export default function Home() {
           className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-[1.3fr_1fr]"
         >
           <div className="space-y-6">
-            <p className="inline-flex rounded-full bg-[#e9d6be] px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-[#5c4432]">
+            <p className="inline-flex rounded-full border border-rcb-gold/40 bg-rcb-red/25 px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-rcb-cream">
               Software Engineer
             </p>
-            <h1 className="text-4xl font-bold leading-tight text-[#5c4432] md:text-6xl">
+            <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
               Everyone can vibe code. I build on fundamentals that hold when systems fail.
             </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-[#6f5441]">
+            <p className="max-w-2xl text-lg leading-relaxed text-rcb-muted">
               Everyone can vibe code, but true engineering is understanding why
               fundamentals matter. When performance drops, APIs fail, or
               production gets messy, I rely on strong basics to debug fast and
@@ -475,52 +433,52 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#projects"
-                className="brand-gradient rounded-xl px-5 py-3 text-sm font-medium text-[#f3e6d3] shadow-lg shadow-[#8a684f]/30 transition hover:opacity-90"
+                className="royal-button rounded-xl bg-rcb-red px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-rcb-red/30 ring-1 ring-rcb-gold/50 transition hover:brightness-110"
               >
                 View Projects
               </a>
               <a
                 href="#contact"
-                className="accent-ring rounded-xl bg-[#f3e6d3] px-5 py-3 text-sm font-medium text-[#5c4432] transition hover:-translate-y-0.5"
+                className="accent-ring royal-button rounded-xl border-2 border-rcb-gold bg-rcb-deeper px-5 py-3 text-sm font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
               >
                 Contact Me
               </a>
             </div>
           </div>
           <div className="brand-surface accent-ring relative overflow-hidden rounded-3xl p-4">
-            <div className="pointer-events-none absolute inset-0 z-10 bg-[#b28a68]/12" />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-rcb-red/10" />
             <Image
               src={getAssetPath("/projects/apivisualizer/1.png")}
               alt="Portfolio project preview"
               width={900}
               height={600}
-              className="h-auto w-full rounded-2xl object-cover brightness-[0.95] saturate-[0.72] sepia-[0.14]"
+              className="h-auto w-full rounded-2xl object-cover brightness-[0.94] contrast-[1.05]"
               priority
             />
-            <div className="pointer-events-none absolute inset-0 z-10 bg-[#f3e6d3]/18" />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-rcb-deeper/45" />
           </div>
         </motion.div>
       </section>
 
       <section id="skills" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-[#5c4432] md:text-4xl">
+        <h2 className="text-3xl font-semibold text-white md:text-4xl">
           Core Skills
         </h2>
-        <p className="mt-3 max-w-2xl text-[#6f5441]">
+        <p className="mt-3 max-w-2xl text-rcb-muted">
           Most relevant stack for hiring: frontend, mobile, backend, databases,
           and deployment.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SKILLS.map((skill) => (
+          {SKILLS.map((skill, index) => (
             <div
               key={skill.name}
-              className="brand-surface rounded-2xl p-5 text-[#5c4432]"
+              className="brand-surface rounded-2xl p-5 text-rcb-cream"
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center justify-center">
                   {React.createElement(skill.icon as React.ElementType, {
                     className: "h-5 w-5",
-                    color: skill.color,
+                    color: "#d1ab3e",
                     "aria-hidden": true,
                   })}
                 </span>
@@ -534,12 +492,13 @@ export default function Home() {
       <section id="projects" className="mx-auto max-w-6xl px-6 py-14">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-semibold text-[#5c4432] md:text-4xl">
+            <h2 className="text-3xl font-semibold text-white md:text-4xl">
               Featured Projects
             </h2>
-            <p className="mt-3 max-w-2xl text-[#6f5441]">
+            <p className="mt-3 max-w-2xl text-rcb-muted">
               Selected work across web platforms and production mobile apps.
             </p>
+            <div className="royal-divider mt-4 w-full max-w-xl" />
           </div>
         </div>
         <div className="space-y-14">
@@ -561,9 +520,9 @@ export default function Home() {
           ].map((section, sectionIndex) => (
             <div key={section.title} className="space-y-6">
               <div>
-                <h3 className="flex items-center gap-2 text-2xl font-semibold text-[#5c4432] md:text-3xl">
+                <h3 className="flex items-center gap-2 text-2xl font-semibold text-white md:text-3xl">
                   <motion.span
-                    className="text-[#8a684f]"
+                    className="text-rcb-gold"
                     animate={{ y: [0, -2, 0], opacity: [0.9, 1, 0.9] }}
                     transition={{
                       duration: 3.8,
@@ -575,7 +534,7 @@ export default function Home() {
                   </motion.span>
                   {section.title}
                 </h3>
-                <p className="mt-2 text-sm text-[#6f5441]">{section.subtitle}</p>
+                <p className="mt-2 text-sm text-rcb-muted">{section.subtitle}</p>
               </div>
 
               <div className="space-y-8">
@@ -592,30 +551,30 @@ export default function Home() {
                       transition={{ duration: 0.25, ease: "easeOut" }}
                     >
                       <div className="space-y-4 p-7 md:p-9">
-                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8a684f]">
+                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-rcb-gold">
                           {section.badge}
                         </p>
-                        <h4 className="text-2xl font-semibold text-[#5c4432]">
+                        <h4 className="text-2xl font-semibold text-white">
                           {project.title}
                         </h4>
-                        <p className="text-sm leading-relaxed text-[#6f5441]">
+                        <p className="text-sm leading-relaxed text-rcb-muted">
                           {project.description}
                         </p>
-                        <span className="inline-flex items-center text-sm font-medium text-[#5c4432]">
+                        <span className="inline-flex items-center text-sm font-medium text-rcb-gold">
                           View Case Study →
                         </span>
                       </div>
-                      <div className="relative min-h-[220px] border-l border-[#8a684f]/30 bg-[#e7d2b8]/70 md:min-h-[260px]">
-                        <div className="pointer-events-none absolute inset-0 bg-[#b28a68]/12" />
+                      <div className="relative min-h-[220px] border-l border-rcb-gold/35 bg-rcb-red/10 md:min-h-[260px]">
+                        <div className="pointer-events-none absolute inset-0 bg-rcb-deeper/25" />
                         <Image
                           src={project.image}
                           alt={`${project.title} preview`}
                           fill
-                          className="object-cover transition duration-500 group-hover:scale-[1.02] brightness-[0.95] saturate-[0.72] sepia-[0.14]"
+                          className="object-cover transition duration-500 group-hover:scale-[1.02] brightness-[0.94] contrast-[1.05]"
                           sizes="(max-width: 768px) 100vw, 40vw"
                           priority={sectionIndex === 0 && index === 0}
                         />
-                        <div className="pointer-events-none absolute inset-0 bg-[#f3e6d3]/18" />
+                        <div className="pointer-events-none absolute inset-0 bg-rcb-deeper/30" />
                       </div>
                     </motion.div>
                   </Link>
@@ -627,7 +586,7 @@ export default function Home() {
       </section>
 
       <section id="experience" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-[#5c4432] md:text-4xl">
+        <h2 className="text-3xl font-semibold text-white md:text-4xl">
           Experience
         </h2>
         <div className="mt-8 space-y-4">
@@ -637,15 +596,15 @@ export default function Home() {
               className="brand-surface rounded-2xl p-6"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-xl font-semibold text-[#5c4432]">
+                <h3 className="text-xl font-semibold text-white">
                   {exp.role}
                 </h3>
-                <p className="text-sm text-[#7b604d]">{exp.period}</p>
+                <p className="text-sm text-rcb-muted">{exp.period}</p>
               </div>
-              <p className="mt-1 text-sm font-medium text-[#5c4432]">
+              <p className="mt-1 text-sm font-medium text-white">
                 {exp.company}
               </p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-[#6f5441]">
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-rcb-muted">
                 {exp.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
@@ -656,7 +615,7 @@ export default function Home() {
       </section>
 
       <section id="education" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-[#5c4432] md:text-4xl">
+        <h2 className="text-3xl font-semibold text-white md:text-4xl">
           Education
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -665,10 +624,10 @@ export default function Home() {
               key={item.institute}
               className="brand-surface rounded-2xl p-6"
             >
-              <h3 className="text-lg font-semibold text-[#5c4432]">
+              <h3 className="text-lg font-semibold text-white">
                 {item.institute}
               </h3>
-              <p className="mt-2 text-sm text-[#6f5441]">{item.degree}</p>
+              <p className="mt-2 text-sm text-rcb-muted">{item.degree}</p>
             </article>
           ))}
         </div>
@@ -676,17 +635,17 @@ export default function Home() {
 
       <section id="contact" className="mx-auto max-w-6xl px-6 py-14">
         <div className="brand-surface accent-ring rounded-3xl p-8 text-center md:p-12">
-          <h2 className="text-3xl font-semibold text-[#5c4432] md:text-4xl">
+          <h2 className="text-3xl font-semibold text-white md:text-4xl">
             Open to Software Roles
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-[#6f5441]">
+          <p className="mx-auto mt-3 max-w-2xl text-rcb-muted">
             Looking for a frontend, full-stack, or mobile engineer who can ship
             clean experiences and collaborate closely with product teams.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a
               href="mailto:Hemanthx96@gmail.com"
-              className="brand-gradient inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-medium text-[#f3e6d3] transition hover:opacity-90"
+              className="royal-button inline-flex items-center gap-2 rounded-xl bg-rcb-red px-4 py-2.5 font-semibold text-white ring-1 ring-rcb-gold/50 transition hover:brightness-110"
             >
               <motion.span
                 animate={{ opacity: [0.85, 1, 0.85] }}
@@ -700,7 +659,7 @@ export default function Home() {
               href="https://github.com/hemanthkumar-eng"
               target="_blank"
               rel="noopener noreferrer"
-              className="accent-ring inline-flex items-center gap-2 rounded-xl bg-[#f3e6d3] px-4 py-2.5 font-medium text-[#5c4432] transition hover:-translate-y-0.5"
+              className="accent-ring royal-button inline-flex items-center gap-2 rounded-xl border-2 border-rcb-gold bg-rcb-dark px-4 py-2.5 font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
             >
               <motion.span
                 animate={{ opacity: [0.85, 1, 0.85] }}
@@ -714,7 +673,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/hemanth-kumar-763011165/"
               target="_blank"
               rel="noopener noreferrer"
-              className="accent-ring inline-flex items-center gap-2 rounded-xl bg-[#f3e6d3] px-4 py-2.5 font-medium text-[#5c4432] transition hover:-translate-y-0.5"
+              className="accent-ring royal-button inline-flex items-center gap-2 rounded-xl border-2 border-rcb-gold bg-rcb-dark px-4 py-2.5 font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
             >
               <motion.span
                 animate={{ opacity: [0.85, 1, 0.85] }}
@@ -728,7 +687,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-[#8a684f]/30 py-8 text-center text-sm text-[#6f5441]">
+      <footer className="border-t border-rcb-gold/30 py-8 text-center text-sm text-rcb-muted">
         © 2026 Hemanth Kumar. Built with Next.js and TypeScript.
       </footer>
     </main>
