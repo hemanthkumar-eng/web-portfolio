@@ -644,7 +644,7 @@ export default function Home() {
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-sm">
             <a
-              href="mailto:Hemanthx96@gmail.com"
+              href="mailto:Hemanth.workemail@gmail.com"
               className="royal-button inline-flex items-center gap-2 rounded-xl bg-rcb-red px-4 py-2.5 font-semibold text-white ring-1 ring-rcb-gold/50 transition hover:brightness-110"
             >
               <motion.span
@@ -653,7 +653,7 @@ export default function Home() {
               >
                 {ICONS.email}
               </motion.span>
-              Hemanthx96@gmail.com
+              Hemanth.workemail@gmail.com
             </a>
             <a
               href="https://github.com/hemanthkumar-eng"
