@@ -5,21 +5,40 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
+  SiAxios,
+  SiBootstrap,
   SiDocker,
-  SiExpress,
   SiExpo,
+  SiExpress,
+  SiGit,
+  SiGithub,
+  SiGo,
+  SiHono,
   SiJavascript,
+  SiJsonwebtokens,
   SiMongodb,
+  SiMongoose,
   SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
+  SiPostman,
   SiPython,
   SiReact,
   SiRedux,
+  SiRender,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
+import {
+  TbApi,
+  TbBolt,
+  TbBrain,
+  TbDeviceMobile,
+  TbFileUpload,
+  TbRefresh,
+  TbRouter,
+} from "react-icons/tb";
 import { getAssetPath } from "@/utils/path";
 import type { IconType } from "react-icons";
 
@@ -124,22 +143,81 @@ const projects = [
   },
 ];
 
-const SKILLS = [
-  { name: "JavaScript (ES6+)", icon: SiJavascript as IconType },
-  { name: "TypeScript", icon: SiTypescript as IconType },
-  { name: "Python", icon: SiPython as IconType },
-  { name: "React", icon: SiReact as IconType },
-  { name: "Next.js", icon: SiNextdotjs as IconType },
-  { name: "React Native", icon: SiReact as IconType },
-  { name: "Redux Toolkit", icon: SiRedux as IconType },
-  { name: "Tailwind / NativeWind", icon: SiTailwindcss as IconType },
-  { name: "Node.js", icon: SiNodedotjs as IconType },
-  { name: "Express.js", icon: SiExpress as IconType },
-  { name: "PostgreSQL", icon: SiPostgresql as IconType },
-  { name: "MongoDB", icon: SiMongodb as IconType },
-  { name: "Docker", icon: SiDocker as IconType },
-  { name: "Vercel", icon: SiVercel as IconType },
-  { name: "Expo", icon: SiExpo as IconType },
+const SKILL_GROUPS: {
+  title: string;
+  items: { name: string; icon: IconType }[];
+}[] = [
+  {
+    title: "Languages",
+    items: [
+      { name: "Golang", icon: SiGo },
+      { name: "JavaScript", icon: SiJavascript },
+      { name: "Python", icon: SiPython },
+      { name: "TypeScript", icon: SiTypescript },
+    ],
+  },
+  {
+    title: "Frontend",
+    items: [
+      { name: "React", icon: SiReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Redux Toolkit", icon: SiRedux },
+      { name: "React Context API", icon: SiReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: SiBootstrap },
+    ],
+  },
+  {
+    title: "Mobile",
+    items: [
+      { name: "React Native (Expo)", icon: SiReact },
+      { name: "Expo Router", icon: SiExpo },
+      { name: "React Navigation", icon: TbRouter },
+      { name: "NativeWind", icon: SiTailwindcss },
+      { name: "AsyncStorage", icon: TbDeviceMobile },
+      { name: "EAS Build (Android & iOS)", icon: SiExpo },
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Express.js", icon: SiExpress },
+      { name: "Hono", icon: SiHono },
+      { name: "REST API Design", icon: TbApi },
+      { name: "JWT Authentication", icon: SiJsonwebtokens },
+      { name: "Multipart File Handling", icon: TbFileUpload },
+      { name: "LLM/AI API Integration (STT/TTS)", icon: TbBrain },
+    ],
+  },
+  {
+    title: "State & Performance",
+    items: [
+      { name: "Redux Toolkit", icon: SiRedux },
+      { name: "SWR", icon: TbRefresh },
+      { name: "Axios", icon: SiAxios },
+      { name: "API caching strategies", icon: TbBolt },
+    ],
+  },
+  {
+    title: "Databases",
+    items: [
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "Mongoose", icon: SiMongoose },
+    ],
+  },
+  {
+    title: "DevOps & Tools",
+    items: [
+      { name: "Git", icon: SiGit },
+      { name: "GitHub", icon: SiGithub },
+      { name: "Docker", icon: SiDocker },
+      { name: "Vercel", icon: SiVercel },
+      { name: "Render", icon: SiRender },
+      { name: "Postman", icon: SiPostman },
+    ],
+  },
 ];
 
 const EXPERIENCE = [
@@ -621,23 +699,32 @@ export default function Home() {
           The stack I build with
         </h2>
         <p className="mt-3 max-w-2xl text-mute">
-          Frontend, mobile, backend, databases, and deployment — the tools I reach
-          for to ship reliable products.
+          Languages, frameworks, and tooling across frontend, mobile, backend,
+          data, and deployment — the stack I reach for to ship reliable products.
         </p>
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {SKILLS.map((skill) => (
+        <div className="mt-10 gap-5 sm:columns-2 lg:columns-3">
+          {SKILL_GROUPS.map((group) => (
             <div
-              key={skill.name}
-              className="surface surface-hover flex items-center gap-3 rounded-xl px-5 py-4"
+              key={group.title}
+              className="surface surface-hover mb-5 break-inside-avoid rounded-2xl p-6"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5">
-                {React.createElement(skill.icon as React.ElementType, {
-                  className: "h-5 w-5",
-                  color: "#8b7bff",
-                  "aria-hidden": true,
-                })}
-              </span>
-              <span className="text-sm text-fg">{skill.name}</span>
+              <div className="flex items-center gap-2.5">
+                <span className="h-4 w-1 rounded-full bg-accent-soft" />
+                <h3 className="font-display text-base font-semibold text-fg">
+                  {group.title}
+                </h3>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item.name} className="pill">
+                    {React.createElement(item.icon as React.ElementType, {
+                      className: "h-3.5 w-3.5 shrink-0 text-accent-soft",
+                      "aria-hidden": true,
+                    })}
+                    {item.name}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
