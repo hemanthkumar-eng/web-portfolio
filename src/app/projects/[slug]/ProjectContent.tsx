@@ -34,29 +34,31 @@ export function ProjectContent({ project }: { project: Project }) {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-rcb-deeper py-24 px-4 text-rcb-cream">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen px-6 py-24 text-fg">
+      <div className="mx-auto max-w-5xl">
         <button
           type="button"
           onClick={handleBack}
-          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-rcb-gold hover:opacity-90"
+          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-accent-blue transition hover:opacity-80"
         >
-          ← Back to Projects
+          ← Back to projects
         </button>
 
         <div className="mb-6 flex flex-col gap-3">
-          <span className="uppercase text-xs tracking-[0.16em] text-rcb-muted">
+          <span className="pill w-fit uppercase tracking-[0.16em]">
             {project.category === "app" ? "Mobile App" : "Web Experience"}
           </span>
-          <h1 className="text-4xl font-bold md:text-5xl">{project.title}</h1>
+          <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+            {project.title}
+          </h1>
         </div>
 
-        <div className="mb-8 flex flex-wrap gap-4">
+        <div className="mb-8 flex flex-wrap items-center gap-3">
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="royal-button inline-flex items-center gap-2 rounded-xl bg-rcb-red px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-rcb-gold/50 transition hover:brightness-110"
+            className="btn btn-primary"
           >
             View on GitHub
           </a>
@@ -65,33 +67,30 @@ export function ProjectContent({ project }: { project: Project }) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="royal-button inline-flex items-center gap-2 rounded-xl border-2 border-rcb-gold bg-rcb-dark px-5 py-2.5 text-sm font-semibold text-rcb-cream transition hover:bg-rcb-gold/15"
+              className="btn btn-ghost"
             >
               Live Demo
             </a>
           )}
           {project.isProprietary && project.category === "app" && (
-            <p className="max-w-xl text-xs text-rcb-muted">
+            <p className="max-w-xl text-xs text-mute">
               This is a proprietary client mobile app, so I can&apos;t share a
-              public demo or store link. The case study and visuals are shared
-              at a high level without exposing confidential details.
+              public demo or store link. The case study and visuals are shared at
+              a high level without exposing confidential details.
             </p>
           )}
         </div>
 
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="mb-10 flex flex-wrap gap-2">
           {project.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="rounded-full border border-rcb-gold/40 bg-rcb-dark px-4 py-1.5 text-sm text-rcb-muted"
-            >
+            <span key={i} className="pill">
               {tag}
             </span>
           ))}
         </div>
 
         {project.images && project.images.length > 0 && (
-          <div className="mb-12 overflow-hidden rounded-2xl border border-rcb-gold/40 bg-rcb-dark/90">
+          <div className="surface mb-12 overflow-hidden rounded-2xl">
             {project.demo && !project.isProprietary ? (
               <Link
                 href={project.demo}
@@ -102,7 +101,7 @@ export function ProjectContent({ project }: { project: Project }) {
                 <img
                   src={project.images[0]}
                   alt={`${project.title} screenshot`}
-                  className="w-full h-auto object-cover"
+                  className="h-auto w-full object-cover"
                   loading="lazy"
                   decoding="async"
                   draggable={false}
@@ -112,7 +111,7 @@ export function ProjectContent({ project }: { project: Project }) {
               <img
                 src={project.images[0]}
                 alt={`${project.title} screenshot`}
-                className="w-full h-auto object-cover"
+                className="h-auto w-full object-cover"
                 loading="lazy"
                 decoding="async"
                 draggable={false}
@@ -121,12 +120,12 @@ export function ProjectContent({ project }: { project: Project }) {
           </div>
         )}
 
-        <div className="mb-8 max-w-none">
-          <p className="mb-8 text-lg leading-relaxed text-rcb-muted">
+        <div className="max-w-none">
+          <p className="mb-8 text-lg leading-relaxed text-mute">
             {project.description}
           </p>
-          <div className="rounded-2xl border border-rcb-gold/40 bg-rcb-dark/90 p-8">
-            <div className="whitespace-pre-line text-sm leading-relaxed text-rcb-muted">
+          <div className="surface rounded-2xl p-8">
+            <div className="whitespace-pre-line text-sm leading-relaxed text-mute">
               {project.fullDescription}
             </div>
           </div>

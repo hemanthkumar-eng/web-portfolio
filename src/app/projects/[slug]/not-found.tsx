@@ -2,10 +2,15 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-rcb-deeper py-24 px-4 text-rcb-cream">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Project Not Found</h1>
-        <Link href="/#projects" className="font-medium text-rcb-gold hover:underline">
+    <div className="min-h-screen px-6 py-24 text-fg">
+      <div className="mx-auto max-w-5xl">
+        <h1 className="mb-8 font-display text-4xl font-bold">
+          Project Not Found
+        </h1>
+        <Link
+          href="/#projects"
+          className="font-medium text-accent-blue hover:underline"
+        >
           ← Back to Projects
         </Link>
       </div>

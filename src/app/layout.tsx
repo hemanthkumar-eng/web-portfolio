@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
+});
 
 export const metadata: Metadata = {
-  title: "Hemanth Kumar | Portfolio",
-  description: "Software Engineer Portfolio",
+  title: "Hemanth Kumar | Software Engineer",
+  description:
+    "Software Engineer building frontend, full-stack, and mobile products on fundamentals that hold when systems fail.",
 };
 
 export default function RootLayout({
@@ -14,30 +24,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // #region agent log
-  fetch("http://127.0.0.1:7793/ingest/f6b4e70d-d5e3-4fbc-be1f-176d14fcf127", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "bb8bcf",
-    },
-    body: JSON.stringify({
-      sessionId: "bb8bcf",
-      runId: "initial-2",
-      hypothesisId: "H5",
-      location: "src/app/layout.tsx:19",
-      message: "Root layout rendered",
-      data: { note: "Layout rendered without request header access" },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-  // #endregion
-
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

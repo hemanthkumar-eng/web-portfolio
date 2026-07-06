@@ -24,12 +24,12 @@ import { getAssetPath } from "@/utils/path";
 import type { IconType } from "react-icons";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
+  { label: "home", href: "#home" },
+  { label: "about", href: "#about" },
+  { label: "skills", href: "#skills" },
+  { label: "projects", href: "#projects" },
+  { label: "experience", href: "#experience" },
+  { label: "contact", href: "#contact" },
 ];
 
 const projects = [
@@ -181,6 +181,8 @@ const EDUCATION = [
   },
 ];
 
+const HERO_TAGS = ["next.js", "react native", "typescript"];
+
 const ICONS = {
   app: (
     <svg
@@ -249,6 +251,188 @@ const ICONS = {
   ),
 };
 
+const STARS = [
+  { x: 42, y: 40, r: 1.4, d: 3.2 },
+  { x: 88, y: 74, r: 1, d: 4.1 },
+  { x: 150, y: 34, r: 1.6, d: 2.8 },
+  { x: 320, y: 48, r: 1.2, d: 3.6 },
+  { x: 360, y: 96, r: 1, d: 4.4 },
+  { x: 60, y: 130, r: 1, d: 3.9 },
+  { x: 24, y: 220, r: 1.3, d: 3.1 },
+  { x: 372, y: 200, r: 1.5, d: 2.6 },
+  { x: 340, y: 260, r: 1, d: 4.7 },
+  { x: 110, y: 280, r: 1.2, d: 3.4 },
+  { x: 200, y: 22, r: 1, d: 5.0 },
+  { x: 280, y: 300, r: 1.1, d: 3.7 },
+  { x: 18, y: 90, r: 1, d: 4.2 },
+  { x: 386, y: 150, r: 1.2, d: 2.9 },
+];
+
+const ORBITS = [
+  {
+    id: "orbit-a",
+    d: "M45,160 a155,50 0 1,0 310,0 a155,50 0 1,0 -310,0",
+    rotate: 6,
+    dur: "7s",
+    dot: "#43e0e8",
+  },
+  {
+    id: "orbit-b",
+    d: "M60,160 a140,60 0 1,0 280,0 a140,60 0 1,0 -280,0",
+    rotate: -54,
+    dur: "9s",
+    reverse: true,
+    dot: "#8b7bff",
+  },
+  {
+    id: "orbit-c",
+    d: "M92,160 a108,44 0 1,0 216,0 a108,44 0 1,0 -216,0",
+    rotate: 62,
+    dur: "6s",
+    dot: "#6f9bff",
+  },
+];
+
+function HeroArt() {
+  return (
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-ink-950 shadow-[0_40px_120px_-40px_rgba(109,93,252,0.6)]">
+      {/* ambient glows */}
+      <div className="pointer-events-none absolute -left-10 top-8 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />
+      <div className="pointer-events-none absolute -right-6 bottom-4 h-56 w-56 rounded-full bg-accent-cyan/15 blur-3xl" />
+      <div className="scanlines absolute inset-0 opacity-25" />
+
+      {/* perspective grid floor */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-1/2 opacity-40"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(124,108,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(124,108,255,0.4) 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+          transform: "perspective(440px) rotateX(64deg)",
+          transformOrigin: "bottom",
+          maskImage: "linear-gradient(to top, #000 5%, transparent 80%)",
+          WebkitMaskImage: "linear-gradient(to top, #000 5%, transparent 80%)",
+        }}
+      />
+
+      <motion.div
+        className="absolute inset-0"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <svg
+          viewBox="0 0 400 320"
+          className="h-full w-full"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <radialGradient id="core" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="35%" stopColor="#b9a5ff" />
+              <stop offset="100%" stopColor="#6d5dfc" stopOpacity="0" />
+            </radialGradient>
+            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#43e0e8" />
+              <stop offset="50%" stopColor="#6f9bff" />
+              <stop offset="100%" stopColor="#8b7bff" />
+            </linearGradient>
+            <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="2.6" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="7" />
+            </filter>
+          </defs>
+
+          {/* starfield */}
+          {STARS.map((s, i) => (
+            <motion.circle
+              key={i}
+              cx={s.x}
+              cy={s.y}
+              r={s.r}
+              fill="#cdd3ff"
+              animate={{ opacity: [0.15, 0.9, 0.15] }}
+              transition={{
+                duration: s.d,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+
+          {/* orbit rings + traveling electrons */}
+          {ORBITS.map((o) => (
+            <g key={o.id} transform={`rotate(${o.rotate} 200 160)`}>
+              <path
+                id={o.id}
+                d={o.d}
+                stroke="url(#ring)"
+                strokeWidth="1.4"
+                strokeOpacity="0.5"
+              />
+              <circle r="4.5" fill={o.dot} filter="url(#glow)">
+                <animateMotion
+                  dur={o.dur}
+                  repeatCount="indefinite"
+                  keyPoints={o.reverse ? "1;0" : "0;1"}
+                  keyTimes="0;1"
+                  calcMode="linear"
+                >
+                  <mpath href={`#${o.id}`} />
+                </animateMotion>
+              </circle>
+            </g>
+          ))}
+
+          {/* pulsing core */}
+          <motion.circle
+            cx="200"
+            cy="160"
+            r="34"
+            fill="url(#core)"
+            filter="url(#softGlow)"
+            animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
+            transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "200px 160px" }}
+          />
+          <motion.circle
+            cx="200"
+            cy="160"
+            r="9"
+            fill="#ffffff"
+            filter="url(#glow)"
+            animate={{ opacity: [0.85, 1, 0.85] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </svg>
+      </motion.div>
+
+      {/* HUD corner brackets */}
+      {[
+        "left-4 top-4 border-l-2 border-t-2",
+        "right-4 top-4 border-r-2 border-t-2",
+        "left-4 bottom-4 border-l-2 border-b-2",
+        "right-4 bottom-4 border-r-2 border-b-2",
+      ].map((pos) => (
+        <span
+          key={pos}
+          className={`pointer-events-none absolute h-5 w-5 rounded-[3px] border-accent/40 ${pos}`}
+        />
+      ))}
+
+      {/* vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_50%_0%,transparent_45%,rgba(6,5,16,0.85)_100%)]" />
+    </div>
+  );
+}
+
 export default function Home() {
   const [activeSection, setActiveSection] = React.useState("home");
   const webProjects = React.useMemo(
@@ -261,25 +445,6 @@ export default function Home() {
   );
 
   React.useEffect(() => {
-    // #region agent log
-    fetch("http://127.0.0.1:7793/ingest/f6b4e70d-d5e3-4fbc-be1f-176d14fcf127", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "bb8bcf",
-      },
-      body: JSON.stringify({
-        sessionId: "bb8bcf",
-        runId: "initial-3",
-        hypothesisId: "H4",
-        location: "src/app/page.tsx:152",
-        message: "Home page mounted",
-        data: { pathname: window.location.pathname },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-
     if (typeof window === "undefined") return;
     const storedScroll = sessionStorage.getItem("homeScrollY");
     const storedHash = sessionStorage.getItem("homeScrollHash");
@@ -314,7 +479,7 @@ export default function Home() {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          return rect.top <= 120 && rect.bottom >= 120;
         }
         return false;
       });
@@ -326,25 +491,14 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen text-rcb-cream">
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none fixed left-[-80px] top-24 z-0 h-56 w-56 rounded-full bg-rcb-red/25 blur-3xl"
-        animate={{ y: [0, 12, 0], x: [0, 8, 0], scale: [1, 1.03, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none fixed bottom-12 right-[-70px] z-0 h-52 w-52 rounded-full bg-rcb-gold/15 blur-3xl"
-        animate={{ y: [0, -10, 0], x: [0, -7, 0], scale: [1, 0.98, 1] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <nav className="sticky top-0 z-40 border-b border-rcb-gold/35 bg-rcb-deeper/95 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-base font-semibold tracking-wide text-rcb-cream md:text-lg">
-            Hemanth Kumar
+    <main className="min-h-screen text-fg">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-40 border-b border-white/5 bg-ink-950/70 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
+          <span className="font-display text-lg font-bold tracking-tight text-fg">
+            hemanth<span className="text-accent">.</span>
           </span>
-          <ul className="hidden gap-6 text-base text-rcb-cream/90 md:flex">
+          <ul className="hidden gap-7 text-sm md:flex">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.slice(1);
               return (
@@ -353,8 +507,8 @@ export default function Home() {
                     href={item.href}
                     className={`transition-colors ${
                       isActive
-                        ? "font-semibold text-rcb-gold"
-                        : "text-rcb-cream/90 hover:text-rcb-gold"
+                        ? "text-fg"
+                        : "text-mute hover:text-fg"
                     }`}
                   >
                     {item.label}
@@ -363,220 +517,210 @@ export default function Home() {
               );
             })}
           </ul>
+          <a href="#contact" className="btn btn-primary hidden px-4 py-2 text-xs md:inline-flex">
+            Get in touch
+          </a>
         </div>
       </nav>
 
+      {/* Hero */}
       <section
         id="home"
-        className="relative w-full overflow-hidden py-20 md:py-24"
+        className="relative mx-auto flex min-h-[calc(100vh-77px)] max-w-6xl items-center px-6 py-16"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-2 left-1/2 z-0 w-screen -translate-x-1/2 overflow-hidden opacity-65 md:bottom-0"
-        >
-          <motion.svg
-            viewBox="0 0 2880 260"
-            preserveAspectRatio="none"
-            className="h-24 w-[200%] max-w-none shrink-0 text-white/12 blur-[1px] mix-blend-screen md:h-32"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              duration: 28,
-              repeat: Infinity,
-              ease: "linear",
-              repeatType: "loop",
-            }}
-          >
-            <g>
-              <path
-                fill="currentColor"
-                d="M0,120L48,114.7C96,109,192,99,288,104C384,109,480,131,576,141.3C672,152,768,152,864,136C960,120,1056,88,1152,82.7C1248,77,1344,99,1392,109.3L1440,120L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-              />
-              <path
-                fill="currentColor"
-                fillOpacity="0.55"
-                d="M0,176L48,168C96,160,192,144,288,141.3C384,139,480,149,576,157.3C672,165,768,171,864,165.3C960,160,1056,144,1152,144C1248,144,1344,160,1392,168L1440,176L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-              />
-            </g>
-            <g transform="translate(1440, 0)">
-              <path
-                fill="currentColor"
-                d="M0,120L48,114.7C96,109,192,99,288,104C384,109,480,131,576,141.3C672,152,768,152,864,136C960,120,1056,88,1152,82.7C1248,77,1344,99,1392,109.3L1440,120L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-              />
-              <path
-                fill="currentColor"
-                fillOpacity="0.55"
-                d="M0,176L48,168C96,160,192,144,288,141.3C384,139,480,149,576,157.3C672,165,768,171,864,165.3C960,160,1056,144,1152,144C1248,144,1344,160,1392,168L1440,176L1440,260L1392,260C1344,260,1248,260,1152,260C1056,260,960,260,864,260C768,260,672,260,576,260C480,260,384,260,288,260C192,260,96,260,48,260L0,260Z"
-              />
-            </g>
-          </motion.svg>
-        </div>
-
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-[1.3fr_1fr]"
+          transition={{ duration: 0.5 }}
+          className="grid w-full items-center gap-12 md:grid-cols-[1.05fr_1fr]"
         >
-          <div className="space-y-6">
-            <p className="inline-flex rounded-full border border-rcb-gold/40 bg-rcb-red/25 px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-rcb-cream">
-              Software Engineer
-            </p>
-            <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
-              Everyone can vibe code. I build on fundamentals that hold when systems fail.
+          <div className="space-y-7">
+            <div className="flex flex-wrap gap-2">
+              {HERO_TAGS.map((tag) => (
+                <span key={tag} className="pill">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
+              <span className="block text-fg">Hello, I&apos;m</span>
+              <span className="block text-glow">Hemanth Kumar.</span>
             </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-rcb-muted">
-              Everyone can vibe code, but true engineering is understanding why
-              fundamentals matter. When performance drops, APIs fail, or
-              production gets messy, I rely on strong basics to debug fast and
-              ship reliable solutions.
+            <p className="max-w-xl text-base leading-relaxed text-mute md:text-lg">
+              A software engineer building frontend, full-stack, and mobile
+              products. Everyone can vibe code — I ship on fundamentals that hold
+              when performance drops, APIs fail, and production gets messy.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="royal-button rounded-xl bg-rcb-red px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-rcb-red/30 ring-1 ring-rcb-gold/50 transition hover:brightness-110"
-              >
-                View Projects
+            <div className="flex flex-wrap gap-3 pt-1">
+              <a href="#contact" className="btn btn-primary">
+                Get in touch
+                <span aria-hidden="true">→</span>
               </a>
-              <a
-                href="#contact"
-                className="accent-ring royal-button rounded-xl border-2 border-rcb-gold bg-rcb-deeper px-5 py-3 text-sm font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
-              >
-                Contact Me
+              <a href="#projects" className="btn btn-ghost">
+                View work
               </a>
             </div>
           </div>
-          <div className="brand-surface accent-ring relative overflow-hidden rounded-3xl p-4">
-            <div className="pointer-events-none absolute inset-0 z-10 bg-rcb-red/10" />
-            <Image
-              src={getAssetPath("/projects/apivisualizer/1.png")}
-              alt="Portfolio project preview"
-              width={900}
-              height={600}
-              className="h-auto w-full rounded-2xl object-cover brightness-[0.94] contrast-[1.05]"
-              priority
-            />
-            <div className="pointer-events-none absolute inset-0 z-10 bg-rcb-deeper/45" />
+
+          <div className="relative">
+            <HeroArt />
           </div>
         </motion.div>
+
+        <motion.a
+          href="#about"
+          aria-label="Scroll to discover"
+          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.22em] text-mute md:flex"
+          animate={{ y: [0, 6, 0], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          Scroll to discover
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            className="h-4 w-4"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </motion.a>
       </section>
 
-      <section id="skills" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-white md:text-4xl">
-          Core Skills
-        </h2>
-        <p className="mt-3 max-w-2xl text-rcb-muted">
-          Most relevant stack for hiring: frontend, mobile, backend, databases,
-          and deployment.
+      {/* About */}
+      <section id="about" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+          About
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SKILLS.map((skill, index) => (
+        <div className="mt-6 grid gap-10 md:grid-cols-[1.4fr_1fr]">
+          <p className="font-display text-2xl font-medium leading-snug text-fg md:text-3xl">
+            I care about the layer beneath the framework — the reason things work,
+            and why they hold up when the happy path breaks.
+          </p>
+          <div className="space-y-4 text-mute">
+            <p>
+              Currently a Software Engineer at Avacend Inc, shipping React Native
+              &amp; Expo apps for facility teams. Before that, frontend web at
+              Constient Global Solutions.
+            </p>
+            <p>
+              I&apos;m based in Bengaluru and open to frontend, full-stack, and
+              mobile roles where clean experiences and strong fundamentals matter.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+          Skills
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+          The stack I build with
+        </h2>
+        <p className="mt-3 max-w-2xl text-mute">
+          Frontend, mobile, backend, databases, and deployment — the tools I reach
+          for to ship reliable products.
+        </p>
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {SKILLS.map((skill) => (
             <div
               key={skill.name}
-              className="brand-surface rounded-2xl p-5 text-rcb-cream"
+              className="surface surface-hover flex items-center gap-3 rounded-xl px-5 py-4"
             >
-              <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center">
-                  {React.createElement(skill.icon as React.ElementType, {
-                    className: "h-5 w-5",
-                    color: "#d1ab3e",
-                    "aria-hidden": true,
-                  })}
-                </span>
-                <span>{skill.name}</span>
-              </div>
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5">
+                {React.createElement(skill.icon as React.ElementType, {
+                  className: "h-5 w-5",
+                  color: "#8b7bff",
+                  "aria-hidden": true,
+                })}
+              </span>
+              <span className="text-sm text-fg">{skill.name}</span>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="projects" className="mx-auto max-w-6xl px-6 py-14">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-semibold text-white md:text-4xl">
-              Featured Projects
-            </h2>
-            <p className="mt-3 max-w-2xl text-rcb-muted">
-              Selected work across web platforms and production mobile apps.
-            </p>
-            <div className="royal-divider mt-4 w-full max-w-xl" />
-          </div>
-        </div>
-        <div className="space-y-14">
+      {/* Projects */}
+      <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+          Projects
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+          Selected work
+        </h2>
+        <p className="mt-3 max-w-2xl text-mute">
+          Web platforms and production mobile apps built for scale, usability, and
+          reliability.
+        </p>
+        <div className="divider mt-6 max-w-xl" />
+
+        <div className="mt-12 space-y-16">
           {[
             {
               title: "App Projects",
-              subtitle: "Mobile apps focused on real-world operations and reliability.",
+              subtitle:
+                "Mobile apps focused on real-world operations and reliability.",
               badge: "Mobile App",
               icon: ICONS.app,
               items: appProjects,
             },
             {
               title: "Web Projects",
-              subtitle: "Web platforms designed for scale, usability, and product clarity.",
+              subtitle:
+                "Web platforms designed for scale, usability, and product clarity.",
               badge: "Web Project",
               icon: ICONS.web,
               items: webProjects,
             },
-          ].map((section, sectionIndex) => (
-            <div key={section.title} className="space-y-6">
+          ].map((group, groupIndex) => (
+            <div key={group.title} className="space-y-6">
               <div>
-                <h3 className="flex items-center gap-2 text-2xl font-semibold text-white md:text-3xl">
-                  <motion.span
-                    className="text-rcb-gold"
-                    animate={{ y: [0, -2, 0], opacity: [0.9, 1, 0.9] }}
-                    transition={{
-                      duration: 3.8,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    {section.icon}
-                  </motion.span>
-                  {section.title}
+                <h3 className="flex items-center gap-2 font-display text-2xl font-semibold text-fg">
+                  <span className="text-accent-soft">{group.icon}</span>
+                  {group.title}
                 </h3>
-                <p className="mt-2 text-sm text-rcb-muted">{section.subtitle}</p>
+                <p className="mt-1 text-sm text-mute">{group.subtitle}</p>
               </div>
 
-              <div className="space-y-8">
-                {section.items.map((project, index) => (
+              <div className="grid gap-6 md:grid-cols-2">
+                {group.items.map((project, index) => (
                   <Link
                     href={`/projects/${project.slug}`}
                     key={project.slug}
                     onClick={rememberScrollPosition}
-                    className="brand-surface accent-ring group block overflow-hidden rounded-3xl transition hover:-translate-y-0.5"
+                    className="surface surface-hover group block overflow-hidden rounded-2xl"
                   >
-                    <motion.div
-                      className="grid gap-0 md:grid-cols-[1.2fr_1fr]"
-                      whileHover={{ y: -2, scale: 1.003 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                    >
-                      <div className="space-y-4 p-7 md:p-9">
-                        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-rcb-gold">
-                          {section.badge}
-                        </p>
-                        <h4 className="text-2xl font-semibold text-white">
-                          {project.title}
-                        </h4>
-                        <p className="text-sm leading-relaxed text-rcb-muted">
-                          {project.description}
-                        </p>
-                        <span className="inline-flex items-center text-sm font-medium text-rcb-gold">
-                          View Case Study →
+                    <div className="relative aspect-[16/10] overflow-hidden border-b border-white/5 bg-ink-900">
+                      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink-950/70 to-transparent" />
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        fill
+                        className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                        priority={groupIndex === 0 && index === 0}
+                      />
+                    </div>
+                    <div className="space-y-3 p-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-soft">
+                        {group.badge}
+                      </p>
+                      <h4 className="font-display text-xl font-semibold text-fg">
+                        {project.title}
+                      </h4>
+                      <p className="line-clamp-3 text-sm leading-relaxed text-mute">
+                        {project.description}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-sm font-medium text-accent-blue">
+                        View case study
+                        <span className="transition-transform group-hover:translate-x-1">
+                          →
                         </span>
-                      </div>
-                      <div className="relative min-h-[220px] border-l border-rcb-gold/35 bg-rcb-red/10 md:min-h-[260px]">
-                        <div className="pointer-events-none absolute inset-0 bg-rcb-deeper/25" />
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} preview`}
-                          fill
-                          className="object-cover transition duration-500 group-hover:scale-[1.02] brightness-[0.94] contrast-[1.05]"
-                          sizes="(max-width: 768px) 100vw, 40vw"
-                          priority={sectionIndex === 0 && index === 0}
-                        />
-                        <div className="pointer-events-none absolute inset-0 bg-rcb-deeper/30" />
-                      </div>
-                    </motion.div>
+                      </span>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -585,28 +729,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="experience" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-white md:text-4xl">
+      {/* Experience */}
+      <section id="experience" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
           Experience
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+          Where I&apos;ve worked
         </h2>
-        <div className="mt-8 space-y-4">
+        <div className="mt-10 space-y-5">
           {EXPERIENCE.map((exp) => (
-            <article
-              key={exp.company}
-              className="brand-surface rounded-2xl p-6"
-            >
+            <article key={exp.company} className="surface rounded-2xl p-7">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="font-display text-xl font-semibold text-fg">
                   {exp.role}
                 </h3>
-                <p className="text-sm text-rcb-muted">{exp.period}</p>
+                <span className="pill">{exp.period}</span>
               </div>
-              <p className="mt-1 text-sm font-medium text-white">
+              <p className="mt-2 text-sm font-medium text-accent-blue">
                 {exp.company}
               </p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-rcb-muted">
+              <ul className="mt-5 space-y-2.5 text-sm text-mute">
                 {exp.points.map((point) => (
-                  <li key={point}>{point}</li>
+                  <li key={point} className="flex gap-3">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-soft" />
+                    {point}
+                  </li>
                 ))}
               </ul>
             </article>
@@ -614,81 +762,79 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="education" className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-3xl font-semibold text-white md:text-4xl">
+      {/* Education */}
+      <section id="education" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
           Education
+        </p>
+        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+          Academic background
         </h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
           {EDUCATION.map((item) => (
             <article
               key={item.institute}
-              className="brand-surface rounded-2xl p-6"
+              className="surface surface-hover rounded-2xl p-7"
             >
-              <h3 className="text-lg font-semibold text-white">
+              <h3 className="font-display text-lg font-semibold text-fg">
                 {item.institute}
               </h3>
-              <p className="mt-2 text-sm text-rcb-muted">{item.degree}</p>
+              <p className="mt-2 text-sm text-mute">{item.degree}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-6xl px-6 py-14">
-        <div className="brand-surface accent-ring rounded-3xl p-8 text-center md:p-12">
-          <h2 className="text-3xl font-semibold text-white md:text-4xl">
-            Open to Software Roles
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-rcb-muted">
-            Looking for a frontend, full-stack, or mobile engineer who can ship
-            clean experiences and collaborate closely with product teams.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-sm">
-            <a
-              href="mailto:Hemanth.workemail@gmail.com"
-              className="royal-button inline-flex items-center gap-2 rounded-xl bg-rcb-red px-4 py-2.5 font-semibold text-white ring-1 ring-rcb-gold/50 transition hover:brightness-110"
-            >
-              <motion.span
-                animate={{ opacity: [0.85, 1, 0.85] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      {/* Contact */}
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="surface relative overflow-hidden rounded-3xl p-10 text-center md:p-16">
+          <div className="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-accent-blue/15 blur-3xl" />
+          <div className="relative">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+              Contact
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-5xl">
+              Let&apos;s build something.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-mute">
+              Open to frontend, full-stack, or mobile roles. If you want an
+              engineer who ships clean experiences and works closely with product,
+              let&apos;s talk.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3 text-sm">
+              <a
+                href="mailto:Hemanth.workemail@gmail.com"
+                className="btn btn-primary"
               >
                 {ICONS.email}
-              </motion.span>
-              Hemanth.workemail@gmail.com
-            </a>
-            <a
-              href="https://github.com/hemanthkumar-eng"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="accent-ring royal-button inline-flex items-center gap-2 rounded-xl border-2 border-rcb-gold bg-rcb-dark px-4 py-2.5 font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
-            >
-              <motion.span
-                animate={{ opacity: [0.85, 1, 0.85] }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                Hemanth.workemail@gmail.com
+              </a>
+              <a
+                href="https://github.com/hemanthkumar-eng"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
               >
                 {ICONS.github}
-              </motion.span>
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/hemanth-kumar-763011165/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="accent-ring royal-button inline-flex items-center gap-2 rounded-xl border-2 border-rcb-gold bg-rcb-dark px-4 py-2.5 font-semibold text-rcb-cream transition hover:-translate-y-0.5 hover:bg-rcb-gold/15"
-            >
-              <motion.span
-                animate={{ opacity: [0.85, 1, 0.85] }}
-                transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/hemanth-kumar-763011165/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
               >
                 {ICONS.linkedin}
-              </motion.span>
-              LinkedIn
-            </a>
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-rcb-gold/30 py-8 text-center text-sm text-rcb-muted">
-        © 2026 Hemanth Kumar. Built with Next.js and TypeScript.
+      <footer className="border-t border-white/5 py-8 text-center text-sm text-mute">
+        © 2026 Hemanth Kumar. Built with Next.js, TypeScript &amp; Tailwind.
       </footer>
     </main>
   );

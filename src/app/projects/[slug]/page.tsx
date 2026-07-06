@@ -126,7 +126,7 @@ Technical Stack:
       "Razorpay",
       "Zod",
     ],
-    github: "https://github.com/yourusername/impact-invest",
+    github: "https://github.com/hemanthkumar-eng/impact-invest",
     demo: "https://impact-invest-zeta.vercel.app/",
     images: [
       getAssetPath("/projects/figmamerch/Figma Merch Store/1.png"),
