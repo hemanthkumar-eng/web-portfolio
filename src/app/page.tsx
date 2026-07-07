@@ -329,187 +329,146 @@ const ICONS = {
   ),
 };
 
-const STARS = [
-  { x: 42, y: 40, r: 1.4, d: 3.2 },
-  { x: 88, y: 74, r: 1, d: 4.1 },
-  { x: 150, y: 34, r: 1.6, d: 2.8 },
-  { x: 320, y: 48, r: 1.2, d: 3.6 },
-  { x: 360, y: 96, r: 1, d: 4.4 },
-  { x: 60, y: 130, r: 1, d: 3.9 },
-  { x: 24, y: 220, r: 1.3, d: 3.1 },
-  { x: 372, y: 200, r: 1.5, d: 2.6 },
-  { x: 340, y: 260, r: 1, d: 4.7 },
-  { x: 110, y: 280, r: 1.2, d: 3.4 },
-  { x: 200, y: 22, r: 1, d: 5.0 },
-  { x: 280, y: 300, r: 1.1, d: 3.7 },
-  { x: 18, y: 90, r: 1, d: 4.2 },
-  { x: 386, y: 150, r: 1.2, d: 2.9 },
-];
-
-const ORBITS = [
+const ORBIT_RINGS = [
   {
-    id: "orbit-a",
-    d: "M45,160 a155,50 0 1,0 310,0 a155,50 0 1,0 -310,0",
-    rotate: 6,
-    dur: "7s",
+    id: "o1",
+    d: "M-12,62.5 a62,52 0 1,0 124,0 a62,52 0 1,0 -124,0",
+    rotate: 12,
+    dur: "12s",
     dot: "#43e0e8",
+    r: 1.7,
   },
   {
-    id: "orbit-b",
-    d: "M60,160 a140,60 0 1,0 280,0 a140,60 0 1,0 -280,0",
-    rotate: -54,
-    dur: "9s",
+    id: "o2",
+    d: "M-2,62.5 a52,66 0 1,0 104,0 a52,66 0 1,0 -104,0",
+    rotate: -24,
+    dur: "16s",
     reverse: true,
     dot: "#8b7bff",
+    r: 1.5,
   },
   {
-    id: "orbit-c",
-    d: "M92,160 a108,44 0 1,0 216,0 a108,44 0 1,0 -216,0",
-    rotate: 62,
-    dur: "6s",
+    id: "o3",
+    d: "M-10,62.5 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0",
+    rotate: 48,
+    dur: "20s",
     dot: "#6f9bff",
+    r: 1.4,
   },
 ];
 
-function HeroArt() {
+function OrbitSvg({ suffix }: { suffix: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-ink-950 shadow-[0_40px_120px_-40px_rgba(109,93,252,0.6)]">
-      {/* ambient glows */}
-      <div className="pointer-events-none absolute -left-10 top-8 h-52 w-52 rounded-full bg-accent/25 blur-3xl" />
-      <div className="pointer-events-none absolute -right-6 bottom-4 h-56 w-56 rounded-full bg-accent-cyan/15 blur-3xl" />
-      <div className="scanlines absolute inset-0 opacity-25" />
-
-      {/* perspective grid floor */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-1/2 opacity-40"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(124,108,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(124,108,255,0.4) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
-          transform: "perspective(440px) rotateX(64deg)",
-          transformOrigin: "bottom",
-          maskImage: "linear-gradient(to top, #000 5%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to top, #000 5%, transparent 80%)",
-        }}
-      />
-
-      <motion.div
-        className="absolute inset-0"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <svg
-          viewBox="0 0 400 320"
-          className="h-full w-full"
-          fill="none"
-          aria-hidden="true"
+    <svg
+      viewBox="0 0 100 125"
+      className="h-full w-full overflow-visible"
+      fill="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={`og-${suffix}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#43e0e8" />
+          <stop offset="50%" stopColor="#6f9bff" />
+          <stop offset="100%" stopColor="#8b7bff" />
+        </linearGradient>
+        <filter
+          id={`gl-${suffix}`}
+          x="-120%"
+          y="-120%"
+          width="340%"
+          height="340%"
         >
-          <defs>
-            <radialGradient id="core" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="35%" stopColor="#b9a5ff" />
-              <stop offset="100%" stopColor="#6d5dfc" stopOpacity="0" />
-            </radialGradient>
-            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#43e0e8" />
-              <stop offset="50%" stopColor="#6f9bff" />
-              <stop offset="100%" stopColor="#8b7bff" />
-            </linearGradient>
-            <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="2.6" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="7" />
-            </filter>
-          </defs>
-
-          {/* starfield */}
-          {STARS.map((s, i) => (
-            <motion.circle
-              key={i}
-              cx={s.x}
-              cy={s.y}
-              r={s.r}
-              fill="#cdd3ff"
-              animate={{ opacity: [0.15, 0.9, 0.15] }}
-              transition={{
-                duration: s.d,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.3,
-              }}
-            />
-          ))}
-
-          {/* orbit rings + traveling electrons */}
-          {ORBITS.map((o) => (
-            <g key={o.id} transform={`rotate(${o.rotate} 200 160)`}>
-              <path
-                id={o.id}
-                d={o.d}
-                stroke="url(#ring)"
-                strokeWidth="1.4"
-                strokeOpacity="0.5"
-              />
-              <circle r="4.5" fill={o.dot} filter="url(#glow)">
-                <animateMotion
-                  dur={o.dur}
-                  repeatCount="indefinite"
-                  keyPoints={o.reverse ? "1;0" : "0;1"}
-                  keyTimes="0;1"
-                  calcMode="linear"
-                >
-                  <mpath href={`#${o.id}`} />
-                </animateMotion>
-              </circle>
-            </g>
-          ))}
-
-          {/* pulsing core */}
-          <motion.circle
-            cx="200"
-            cy="160"
-            r="34"
-            fill="url(#core)"
-            filter="url(#softGlow)"
-            animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
-            transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-            style={{ transformOrigin: "200px 160px" }}
+          <feGaussianBlur stdDeviation="0.9" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {ORBIT_RINGS.map((o) => (
+        <g key={o.id} transform={`rotate(${o.rotate} 50 62.5)`}>
+          <path
+            id={`${o.id}-${suffix}`}
+            d={o.d}
+            stroke={`url(#og-${suffix})`}
+            strokeWidth="0.55"
+            strokeOpacity="0.65"
           />
-          <motion.circle
-            cx="200"
-            cy="160"
-            r="9"
-            fill="#ffffff"
-            filter="url(#glow)"
-            animate={{ opacity: [0.85, 1, 0.85] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </svg>
-      </motion.div>
-
-      {/* HUD corner brackets */}
-      {[
-        "left-4 top-4 border-l-2 border-t-2",
-        "right-4 top-4 border-r-2 border-t-2",
-        "left-4 bottom-4 border-l-2 border-b-2",
-        "right-4 bottom-4 border-r-2 border-b-2",
-      ].map((pos) => (
-        <span
-          key={pos}
-          className={`pointer-events-none absolute h-5 w-5 rounded-[3px] border-accent/40 ${pos}`}
-        />
+          <circle r={o.r} fill={o.dot} filter={`url(#gl-${suffix})`}>
+            <animateMotion
+              dur={o.dur}
+              repeatCount="indefinite"
+              keyPoints={o.reverse ? "1;0" : "0;1"}
+              keyTimes="0;1"
+              calcMode="linear"
+            >
+              <mpath href={`#${o.id}-${suffix}`} />
+            </animateMotion>
+          </circle>
+        </g>
       ))}
+    </svg>
+  );
+}
 
-      {/* vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_50%_0%,transparent_45%,rgba(6,5,16,0.85)_100%)]" />
+function HeroPortrait() {
+  return (
+    <div className="relative mx-auto aspect-[4/5] w-full max-w-[380px]">
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute inset-4 rounded-full bg-accent/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-6 -right-10 h-44 w-44 rounded-full bg-accent-cyan/15 blur-3xl" />
+
+      {/* orbit system BEHIND the photo (far side of the wrap) */}
+      <div className="pointer-events-none absolute inset-0">
+        <OrbitSvg suffix="b" />
+      </div>
+
+      {/* portrait card */}
+      <div className="absolute left-1/2 top-1/2 aspect-[4/5] w-[78%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-white/10 bg-ink-950 shadow-[0_45px_130px_-45px_rgba(109,93,252,0.75)]">
+        <Image
+          src={getAssetPath("/profile.png")}
+          alt="Portrait of Hemanth Kumar"
+          fill
+          priority
+          sizes="(max-width: 768px) 62vw, 300px"
+          className="object-cover object-top saturate-[0.95] contrast-[1.03]"
+        />
+        {/* harmonize toward the palette + add depth */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/30 via-transparent to-accent-cyan/10 mix-blend-soft-light" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 rounded-[1.5rem] ring-1 ring-inset ring-accent/25" />
+      </div>
+
+      {/* orbit system IN FRONT (near side of the wrap, only lower half shown) */}
+      <div
+        className="pointer-events-none absolute inset-0 mix-blend-screen"
+        style={{
+          maskImage: "linear-gradient(to bottom, transparent 44%, #000 62%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 44%, #000 62%)",
+        }}
+      >
+        <OrbitSvg suffix="f" />
+      </div>
     </div>
   );
 }
+
+const revealViewport = { once: true, margin: "-70px" } as const;
+
+const revealContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+};
+
+const revealItem = {
+  hidden: { opacity: 0, y: 26 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" },
+  },
+};
 
 export default function Home() {
   const [activeSection, setActiveSection] = React.useState("home");
@@ -641,7 +600,7 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <HeroArt />
+            <HeroPortrait />
           </div>
         </motion.div>
 
@@ -668,44 +627,73 @@ export default function Home() {
 
       {/* About */}
       <section id="about" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
-          About
-        </p>
-        <div className="mt-6 grid gap-10 md:grid-cols-[1.4fr_1fr]">
-          <p className="font-display text-2xl font-medium leading-snug text-fg md:text-3xl">
-            I care about the layer beneath the framework — the reason things work,
-            and why they hold up when the happy path breaks.
-          </p>
-          <div className="space-y-4 text-mute">
-            <p>
-              Currently a Software Engineer at Avacend Inc, shipping React Native
-              &amp; Expo apps for facility teams. Before that, frontend web at
-              Constient Global Solutions.
-            </p>
-            <p>
-              I&apos;m based in Bengaluru and open to frontend, full-stack, and
-              mobile roles where clean experiences and strong fundamentals matter.
-            </p>
+        <motion.div
+          variants={revealContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <motion.p
+            variants={revealItem}
+            className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft"
+          >
+            About
+          </motion.p>
+          <div className="mt-6 grid gap-10 md:grid-cols-[1.4fr_1fr]">
+            <motion.p
+              variants={revealItem}
+              className="font-display text-2xl font-medium leading-snug text-fg md:text-3xl"
+            >
+              I care about the layer beneath the framework — the reason things
+              work, and why they hold up when the happy path breaks.
+            </motion.p>
+            <motion.div variants={revealItem} className="space-y-4 text-mute">
+              <p>
+                Currently a Software Engineer at Avacend Inc, shipping React
+                Native &amp; Expo apps for facility teams. Before that, frontend
+                web at Constient Global Solutions.
+              </p>
+              <p>
+                I&apos;m based in Bengaluru and open to frontend, full-stack, and
+                mobile roles where clean experiences and strong fundamentals
+                matter.
+              </p>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Skills */}
       <section id="skills" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
-          Skills
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
-          The stack I build with
-        </h2>
-        <p className="mt-3 max-w-2xl text-mute">
-          Languages, frameworks, and tooling across frontend, mobile, backend,
-          data, and deployment — the stack I reach for to ship reliable products.
-        </p>
-        <div className="mt-10 gap-5 sm:columns-2 lg:columns-3">
+        <motion.div
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+            Skills
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+            The stack I build with
+          </h2>
+          <p className="mt-3 max-w-2xl text-mute">
+            Languages, frameworks, and tooling across frontend, mobile, backend,
+            data, and deployment — the stack I reach for to ship reliable
+            products.
+          </p>
+        </motion.div>
+        <motion.div
+          className="mt-10 gap-5 sm:columns-2 lg:columns-3"
+          variants={revealContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
           {SKILL_GROUPS.map((group) => (
-            <div
+            <motion.div
               key={group.title}
+              variants={revealItem}
               className="surface surface-hover mb-5 break-inside-avoid rounded-2xl p-6"
             >
               <div className="flex items-center gap-2.5">
@@ -725,24 +713,31 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
-          Projects
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
-          Selected work
-        </h2>
-        <p className="mt-3 max-w-2xl text-mute">
-          Web platforms and production mobile apps built for scale, usability, and
-          reliability.
-        </p>
-        <div className="divider mt-6 max-w-xl" />
+        <motion.div
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+            Projects
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+            Selected work
+          </h2>
+          <p className="mt-3 max-w-2xl text-mute">
+            Web platforms and production mobile apps built for scale, usability,
+            and reliability.
+          </p>
+          <div className="divider mt-6 max-w-xl" />
+        </motion.div>
 
         <div className="mt-12 space-y-16">
           {[
@@ -764,23 +759,34 @@ export default function Home() {
             },
           ].map((group, groupIndex) => (
             <div key={group.title} className="space-y-6">
-              <div>
+              <motion.div
+                variants={revealItem}
+                initial="hidden"
+                whileInView="show"
+                viewport={revealViewport}
+              >
                 <h3 className="flex items-center gap-2 font-display text-2xl font-semibold text-fg">
                   <span className="text-accent-soft">{group.icon}</span>
                   {group.title}
                 </h3>
                 <p className="mt-1 text-sm text-mute">{group.subtitle}</p>
-              </div>
+              </motion.div>
 
-              <div className="grid gap-6 md:grid-cols-2">
+              <motion.div
+                className="grid gap-6 md:grid-cols-2"
+                variants={revealContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={revealViewport}
+              >
                 {group.items.map((project, index) => (
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    key={project.slug}
-                    onClick={rememberScrollPosition}
-                    className="surface surface-hover group block overflow-hidden rounded-2xl"
-                  >
-                    <div className="relative aspect-[16/10] overflow-hidden border-b border-white/5 bg-ink-900">
+                  <motion.div variants={revealItem} key={project.slug}>
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      onClick={rememberScrollPosition}
+                      className="surface surface-hover group block h-full overflow-hidden rounded-2xl"
+                    >
+                      <div className="relative aspect-[16/10] overflow-hidden border-b border-white/5 bg-ink-900">
                       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink-950/70 to-transparent" />
                       <Image
                         src={project.image}
@@ -801,16 +807,17 @@ export default function Home() {
                       <p className="line-clamp-3 text-sm leading-relaxed text-mute">
                         {project.description}
                       </p>
-                      <span className="inline-flex items-center gap-1 text-sm font-medium text-accent-blue">
-                        View case study
-                        <span className="transition-transform group-hover:translate-x-1">
-                          →
+                        <span className="inline-flex items-center gap-1 text-sm font-medium text-accent-blue">
+                          View case study
+                          <span className="transition-transform group-hover:translate-x-1">
+                            →
+                          </span>
                         </span>
-                      </span>
-                    </div>
-                  </Link>
+                      </div>
+                    </Link>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
@@ -818,15 +825,32 @@ export default function Home() {
 
       {/* Experience */}
       <section id="experience" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
-          Experience
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
-          Where I&apos;ve worked
-        </h2>
-        <div className="mt-10 space-y-5">
+        <motion.div
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+            Experience
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+            Where I&apos;ve worked
+          </h2>
+        </motion.div>
+        <motion.div
+          className="mt-10 space-y-5"
+          variants={revealContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
           {EXPERIENCE.map((exp) => (
-            <article key={exp.company} className="surface rounded-2xl p-7">
+            <motion.article
+              key={exp.company}
+              variants={revealItem}
+              className="surface rounded-2xl p-7"
+            >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="font-display text-xl font-semibold text-fg">
                   {exp.role}
@@ -844,52 +868,90 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Education */}
       <section id="education" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
-          Education
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
-          Academic background
-        </h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <motion.div
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+            Education
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
+            Academic background
+          </h2>
+        </motion.div>
+        <motion.div
+          className="mt-10 grid gap-5 md:grid-cols-2"
+          variants={revealContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
           {EDUCATION.map((item) => (
-            <article
+            <motion.article
               key={item.institute}
+              variants={revealItem}
               className="surface surface-hover rounded-2xl p-7"
             >
               <h3 className="font-display text-lg font-semibold text-fg">
                 {item.institute}
               </h3>
               <p className="mt-2 text-sm text-mute">{item.degree}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Contact */}
       <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="surface relative overflow-hidden rounded-3xl p-10 text-center md:p-16">
+        <motion.div
+          className="surface relative overflow-hidden rounded-3xl p-10 text-center md:p-16"
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
           <div className="pointer-events-none absolute -left-20 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-accent-blue/15 blur-3xl" />
-          <div className="relative">
-            <p className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft">
+          <motion.div
+            className="relative"
+            variants={revealContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={revealViewport}
+          >
+            <motion.p
+              variants={revealItem}
+              className="text-sm font-medium uppercase tracking-[0.22em] text-accent-soft"
+            >
               Contact
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-5xl">
+            </motion.p>
+            <motion.h2
+              variants={revealItem}
+              className="mt-3 font-display text-3xl font-bold text-fg md:text-5xl"
+            >
               Let&apos;s build something.
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-mute">
+            </motion.h2>
+            <motion.p
+              variants={revealItem}
+              className="mx-auto mt-4 max-w-2xl text-mute"
+            >
               Open to frontend, full-stack, or mobile roles. If you want an
               engineer who ships clean experiences and works closely with product,
               let&apos;s talk.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3 text-sm">
+            </motion.p>
+            <motion.div
+              variants={revealItem}
+              className="mt-9 flex flex-wrap items-center justify-center gap-3 text-sm"
+            >
               <a
                 href="mailto:Hemanth.workemail@gmail.com"
                 className="btn btn-primary"
@@ -915,9 +977,9 @@ export default function Home() {
                 {ICONS.linkedin}
                 LinkedIn
               </a>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </section>
 
       <footer className="border-t border-white/5 py-8 text-center text-sm text-mute">
