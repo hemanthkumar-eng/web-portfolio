@@ -6,7 +6,7 @@ export function Experience() {
       title: "App Developer",
       company: "Avacend Inc",
       location: "Bengaluru, India",
-      period: "02/2025 - Present",
+      period: "02/2024 - Present",
       website: "https://avacendsolutions.com",
       description: [
         "Developed a mobile dashboard application for supervisors using static Excel-based data to provide on the go access to work order status, worker assignments, and departmental metrics.",
@@ -20,7 +20,7 @@ export function Experience() {
       title: "Front End Web Developer",
       company: "Constient Global Solutions",
       location: "Bengaluru, India",
-      period: "06/2023 - 12/2023",
+      period: "06/2022 - 12/2023",
       website: "https://www.constient.com",
       description: [
         "Worked on a cloud-native log monitoring system",

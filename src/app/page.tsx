@@ -224,7 +224,7 @@ const EXPERIENCE = [
   {
     company: "Avacend Inc",
     role: "Software Engineer (Mobile & Frontend)",
-    period: "Feb 2025 - Present",
+    period: "Feb 2024 - Present",
     points: [
       "Built two facility management mobile apps one for Supervisors and another for Technicians using React Native/Expo.",
       "Streamlined work order tracking and real-time worker monitoring tailored to both user roles.",
@@ -238,7 +238,7 @@ const EXPERIENCE = [
   {
     company: "Constient Global Solutions",
     role: "Frontend Web Developer",
-    period: "Jun 2023 - Dec 2023",
+    period: "Jun 2022 - Dec 2023",
     points: [
       "Worked on a cloud-native log monitoring system.",
       "Making the website responsive to different devices.",
