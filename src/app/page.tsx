@@ -53,6 +53,21 @@ const NAV_ITEMS = [
 
 const projects = [
   {
+    title: "Cognia",
+    emoji: "🗣️",
+    slug: "cognia",
+    type: "app",
+    image: getAssetPath("/projects/cognia/dashboard.svg"),
+    description:
+      "An India-first, English-speaking practice buddy for students. A Duolingo-style mascot talks with the learner by voice—the app speaks (TTS), listens (STT), and shows everything as on-screen captions—personalized by class, ability level, and interests. Built on Sarvam AI and architected to scale from English to Hindi, Tamil, and Telugu.",
+    highlights: [
+      "Push-to-talk voice loop: STT → LLM tutor → TTS with live captions",
+      "Personalized prompts by grade, ability, and interests with child-safety guardrails",
+      "Guided lessons, XP, and daily streaks (Zustand + AsyncStorage)",
+      "Hono backend proxying Sarvam AI so keys never ship in the app",
+    ],
+  },
+  {
     title: "API Visualizer",
     emoji: "🔍",
     slug: "api-visualizer",

@@ -3,6 +3,44 @@ import { ProjectContent } from "./ProjectContent";
 import { getAssetPath } from "@/utils/path";
 
 const projects = {
+  cognia: {
+    title: "Cognia",
+    category: "app",
+    description:
+      "An India-first, English-speaking practice buddy for students. A Duolingo-style mascot talks with the learner by voice—the app speaks (TTS), listens (STT), and shows everything as on-screen captions—personalized by class, ability level, and interests, and architected to scale to Hindi, Tamil, and Telugu.",
+    fullDescription: `Cognia is an India-first, English-speaking practice buddy for students. A Duolingo-style mascot converses with the learner entirely by voice: the app speaks (TTS), listens to the student (STT), and mirrors every turn as on-screen captions. It personalizes to each learner's class, ability level, and interests, and is architected English-first to scale to Hindi, Tamil, Telugu and beyond. It is powered by Sarvam AI (Saaras STT, Sarvam-M LLM, Bulbul TTS)—Indian-language tuned, INR-billed, with India data residency.
+
+Key Features:
+- Voice Conversation Loop: Hold-to-talk recording routes audio to the backend (STT → LLM → TTS); the tutor's reply plays back while both lines appear in a live transcript, with a text fallback for noisy or low-bandwidth situations.
+- Personalized Tutoring: The tutor's system prompt is shaped by the learner's grade, ability level, and interests—adjusting vocabulary, sentence length, themes, and gentle correction—with child-safety instructions baked in.
+- Guided Lessons: Scenario-based lessons (Saying Hello, At the Market, Tell a Story…) tagged by ability level; picking one starts a fresh conversation where the tutor speaks first and stays on the lesson goal, with a Finish lesson action to mark completion.
+- Progress & Motivation: Every spoken turn earns XP, finishing a lesson grants a bonus, and a daily streak is tracked locally—surfaced on the Home screen.
+- Secure by Design: The Sarvam API key never ships in the app; only the Hono backend holds it and proxies STT/LLM/TTS, with cost guardrails (max output tokens, history window) enforced server-side.
+- Built to Scale Across Languages: UI strings are i18n-driven and the Sarvam voice pipeline is language-parameterized, so setting a profile language flows through STT, LLM, and TTS.
+- Real-Time Streaming Voice (Phase 2): An optional WebSocket path streams 16 kHz mono PCM to the server for live captions and lower-latency replies, reusing the same tutor turn as the REST path so history stays consistent across stream, upload, and text.
+
+Tech Stack:
+- App: React Native 0.85, Expo SDK 56, Expo Router, React 19, TypeScript
+- State & Storage: Zustand with persist, AsyncStorage, TanStack Query
+- Audio & UI: expo-audio, @siteed/audio-studio (streaming PCM), Reanimated, Lottie, expo-linear-gradient, NativeWind-style theming
+- Internationalization: i18next + react-i18next
+- Backend: Hono (TypeScript) proxy exposing /api/health, /api/scenarios, /api/converse, and a streaming /api/stream WebSocket
+- AI Services: Sarvam AI — Saaras STT, Sarvam-M LLM, Bulbul TTS
+- Delivery: EAS development builds (native audio modules require a dev client, not Expo Go)`,
+    tags: [
+      "React Native",
+      "Expo SDK 56",
+      "TypeScript",
+      "Zustand",
+      "Hono",
+      "Sarvam AI",
+      "STT / TTS",
+      "expo-audio",
+      "i18next",
+    ],
+    github: "https://github.com/hemanthkumar-eng/Cognia",
+    images: [getAssetPath("/projects/cognia/dashboard.svg")],
+  },
   noseboop: {
     title: "NoseBoop",
     category: "web",
