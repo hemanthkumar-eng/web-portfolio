@@ -1,5 +1,5 @@
 export function getBasePath() {
-  return process.env.NODE_ENV === "production" ? "/web-portfolio" : "";
+  return "";
 }
 
 export function getAssetPath(path: string) {
