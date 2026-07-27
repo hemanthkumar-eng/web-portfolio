@@ -34,7 +34,7 @@ export function ProjectContent({ project }: { project: Project }) {
   }, [router]);
 
   return (
-    <div className="min-h-screen px-6 py-24 text-fg">
+    <div className="min-h-screen px-6 py-16 md:py-24 text-fg">
       <div className="mx-auto max-w-5xl">
         <button
           type="button"
@@ -124,7 +124,7 @@ export function ProjectContent({ project }: { project: Project }) {
           <p className="mb-8 text-lg leading-relaxed text-mute">
             {project.description}
           </p>
-          <div className="surface rounded-2xl p-8">
+          <div className="surface rounded-2xl p-6 md:p-8">
             <div className="whitespace-pre-line text-sm leading-relaxed text-mute">
               {project.fullDescription}
             </div>

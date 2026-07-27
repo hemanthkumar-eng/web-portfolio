@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   SiAxios,
   SiBootstrap,
@@ -491,6 +491,7 @@ const revealItem = {
 
 export default function Home() {
   const [activeSection, setActiveSection] = React.useState("home");
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const webProjects = React.useMemo(
     () => projects.filter((project) => project.type === "web"),
     []
@@ -550,10 +551,14 @@ export default function Home() {
     <main className="min-h-screen text-fg">
       {/* Navigation */}
       <nav className="sticky top-0 z-40 border-b border-white/5 bg-ink-950/70 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-          <span className="font-display text-lg font-bold tracking-tight text-fg">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 md:py-5">
+          <a
+            href="#home"
+            onClick={() => setMenuOpen(false)}
+            className="font-display text-lg font-bold tracking-tight text-fg"
+          >
             hemanth<span className="text-accent">.</span>
-          </span>
+          </a>
           <ul className="hidden gap-7 text-sm md:flex">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.slice(1);
@@ -576,19 +581,89 @@ export default function Home() {
           <a href="#contact" className="btn btn-primary hidden px-4 py-2 text-xs md:inline-flex">
             Get in touch
           </a>
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-fg transition-colors hover:bg-white/10 md:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              className="h-5 w-5"
+              aria-hidden="true"
+            >
+              {menuOpen ? (
+                <path d="M6 6l12 12M18 6 6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile dropdown menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.22, ease: "easeInOut" }}
+              className="overflow-hidden border-t border-white/5 bg-ink-950/90 backdrop-blur-xl md:hidden"
+            >
+              <ul className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 py-4 text-sm">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = activeSection === item.href.slice(1);
+                  return (
+                    <li key={item.label}>
+                      <a
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className={`block rounded-lg px-3 py-3 capitalize transition-colors ${
+                          isActive
+                            ? "bg-white/5 text-fg"
+                            : "text-mute hover:bg-white/5 hover:text-fg"
+                        }`}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  );
+                })}
+                <li className="pt-2">
+                  <a
+                    href="#contact"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn btn-primary w-full"
+                  >
+                    Get in touch
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero */}
       <section
         id="home"
-        className="relative mx-auto flex min-h-[calc(100vh-77px)] max-w-6xl items-center px-6 py-16"
+        className="relative mx-auto flex min-h-[calc(100dvh-72px)] max-w-6xl items-center overflow-hidden px-6 py-14 md:py-16"
       >
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid w-full items-center gap-12 md:grid-cols-[1.05fr_1fr]"
+          className="grid w-full grid-cols-1 items-center gap-12 md:grid-cols-[1.05fr_1fr]"
         >
           <div className="space-y-7">
             <div className="flex flex-wrap gap-2">
@@ -598,7 +673,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
+            <h1 className="font-display text-[2.6rem] font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
               <span className="block text-fg">Hello, I&apos;m</span>
               <span className="block text-glow">Hemanth Kumar.</span>
             </h1>
@@ -645,7 +720,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="about" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
           variants={revealContainer}
           initial="hidden"
@@ -658,7 +733,7 @@ export default function Home() {
           >
             About
           </motion.p>
-          <div className="mt-6 grid gap-10 md:grid-cols-[1.4fr_1fr]">
+          <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]">
             <motion.p
               variants={revealItem}
               className="font-display text-2xl font-medium leading-snug text-fg md:text-3xl"
@@ -683,7 +758,7 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="skills" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
           variants={revealItem}
           initial="hidden"
@@ -738,7 +813,7 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="projects" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
           variants={revealItem}
           initial="hidden"
@@ -843,7 +918,7 @@ export default function Home() {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="experience" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
           variants={revealItem}
           initial="hidden"
@@ -893,7 +968,7 @@ export default function Home() {
       </section>
 
       {/* Education */}
-      <section id="education" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="education" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
           variants={revealItem}
           initial="hidden"
@@ -930,9 +1005,9 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <motion.div
-          className="surface relative overflow-hidden rounded-3xl p-10 text-center md:p-16"
+          className="surface relative overflow-hidden rounded-3xl p-6 text-center sm:p-10 md:p-16"
           variants={revealItem}
           initial="hidden"
           whileInView="show"
@@ -973,7 +1048,7 @@ export default function Home() {
             >
               <a
                 href="mailto:Hemanth.workemail@gmail.com"
-                className="btn btn-primary"
+                className="btn btn-primary max-w-full break-all"
               >
                 {ICONS.email}
                 Hemanth.workemail@gmail.com
