@@ -238,31 +238,29 @@ const SKILL_GROUPS: {
 const EXPERIENCE = [
   {
     company: "Avacend Inc",
-    role: "Software Engineer (Mobile & Frontend)",
-    period: "Feb 2024 - Present",
+    role: "Senior Software Engineer (Freelance)",
+    location: "Alpharetta, Georgia (Remote)",
+    period: "Dec 2024 - Present",
     points: [
-      "Built two facility management mobile apps, one for Supervisors and another for Technicians, using React Native/Expo.",
-      "Streamlined work order tracking and real time worker monitoring tailored to both user roles.",
-      "Achieved a 40% reduction in response times and improved productivity for field teams.",
-      "Implemented advanced filtering with multi criteria search, date range, and intelligent Redux/Context API caching, cutting API calls by 60%.",
-      "Developed comprehensive state management with Redux Toolkit and navigation caching for seamless screen transitions and data persistence.",
-      "Architected a shared component library and design system across both apps, maximizing code reuse and cutting feature development time while ensuring UI consistency.",
-      "Engineered role based access control and conditional rendering to serve tailored workflows for Supervisors (assignment, oversight, approvals) and Technicians (task execution, status updates) from a unified codebase.",
-      "Built offline first capabilities with local persistence and background sync, enabling field technicians to log work orders in low connectivity environments without data loss.",
-      "Integrated real time push notifications for instant work order assignments, status changes, and escalations, reducing acknowledgment lag for time sensitive tasks.",
-      "Optimized list rendering with virtualization (FlatList/pagination) and memoization to handle large work order datasets smoothly, eliminating scroll jank on lower end devices.",
-      "Implemented secure token based authentication with automatic refresh and protected navigation flows to safeguard sensitive facility and worker data.",
-      "Developed reusable custom hooks and a normalized Redux store to centralize business logic, reducing code duplication and easing maintenance across screens.",
+      "Built Python data pipelines against the OAuth2 authenticated WorxHub API with automatic token refresh and a three tier extraction strategy (cumulative, delta, on demand) for incremental synchronization.",
+      "Designed a ClickHouse analytics schema on the ReplacingMergeTree engine with 100K row batch inserts across 8 parallel threads and exponential backoff retry logic.",
+      "Implemented a text to SQL pipeline on GPT 4o turning natural language questions into ClickHouse queries, with AI interpretation of results into readable work order descriptions.",
+      "Analyzed 33,000 HVAC maintenance work orders with SentenceTransformer embeddings, HDBSCAN clustering and UMAP reduction, shipping it as a semantic search and clustering service that gave operations teams predictive analytics on recurring equipment failures.",
+      "Delivered 4 production dashboards covering 10+ KPIs including SLA compliance and shift based analytics, with dynamic ClickHouse query generation and DragonflyDB caching invalidated by extraction date.",
+      "Architected a multi tenant FastAPI backend with three tier RBAC, JWT authentication, and async ClickHouse access via ThreadPoolExecutor to keep the event loop unblocked.",
     ],
   },
   {
     company: "Constient Global Solutions",
-    role: "Frontend Web Developer",
-    period: "Jun 2022 - Dec 2023",
+    role: "Software Engineer",
+    location: "Chennai, Tamil Nadu (Remote)",
+    period: "Nov 2022 - Dec 2024",
     points: [
-      "Contributed to a cloud native log monitoring platform; built responsive layouts across breakpoints and implemented light/dark theme toggling with persistent preferences.",
-      "Wrote unit tests for frontend components, improving code reliability and reducing regression risk.",
-      "Collaborated in a remote agile team, delivering UI features iteratively across a 6 month contract.",
+      "Founding engineer on the startup product; designed and built scalable REST API backend microservices in GoLang, optimizing for high performance and efficiency.",
+      "Architected a distributed log management system on StarRocks DB and Kafka, improving troubleshooting efficiency by 40%.",
+      "Implemented high performance gRPC communication between services across Python and GoLang, and published SDKs integrating OpenAI APIs for AI driven backend features.",
+      "Ran deployment on Docker and Kubernetes, tuned performance across PostgreSQL, ClickHouse and StarRocks, and wrote GoLang CLI tooling for backend operations.",
+      "Built the log management frontend in Next.js and TailwindCSS with real time visualization and AI recommended filters, contributing to a 40% increase in user engagement; established Jest testing practice at 90% coverage.",
     ],
   },
 ];
@@ -743,9 +741,11 @@ export default function Home() {
             </motion.p>
             <motion.div variants={revealItem} className="space-y-4 text-mute">
               <p>
-                Currently a Software Engineer at Avacend Inc, shipping React
-                Native &amp; Expo apps for facility teams. Before that, frontend
-                web at Constient Global Solutions.
+                Currently a Senior Software Engineer at Avacend Inc, building
+                data pipelines, ClickHouse analytics, and AI powered search for
+                facility operations. Before that, founding engineer at Constient
+                Global Solutions, shipping GoLang microservices and a log
+                management platform.
               </p>
               <p>
                 I&apos;m based in Bengaluru and open to frontend, full-stack, and
@@ -953,6 +953,7 @@ export default function Home() {
               </div>
               <p className="mt-2 text-sm font-medium text-accent-blue">
                 {exp.company}
+                <span className="text-mute"> · {exp.location}</span>
               </p>
               <ul className="mt-5 space-y-2.5 text-sm text-mute">
                 {exp.points.map((point) => (
