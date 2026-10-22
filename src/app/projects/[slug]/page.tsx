@@ -3,6 +3,71 @@ import { ProjectContent } from "./ProjectContent";
 import { getAssetPath } from "@/utils/path";
 
 const projects = {
+  sitekeep: {
+    title: "Sitekeep",
+    category: "web",
+    description:
+      "Multi-tenant facilities maintenance SaaS on NestJS and PostgreSQL 17, with tenant isolation enforced by Row-Level Security, offline-first sync on PowerSync, AI historical search over pgvector, and background scheduling on pg-boss.",
+    fullDescription: `Sitekeep is a facilities maintenance SaaS for teams that run work orders across many sites. It has shipped through 18 development phases on NestJS and PostgreSQL 17, and is in production at getsitekeep.com.
+
+Key Decisions:
+- Tenant Isolation as a Database Invariant: Row-Level Security policies in PostgreSQL enforce tenant boundaries, so isolation does not depend on every application query remembering to filter by tenant.
+- Offline-First Sync: PowerSync replicates from the Postgres write-ahead log so technicians without signal keep working and reconcile when they are back online. Sync rules are paired with RLS after testing proved that neither covers the other's path on its own.
+- AI Historical Search: Past work orders are embedded and searched over pgvector so the right history surfaces when a similar fault comes in.
+- Background Scheduling: pg-boss runs scheduled and deferred jobs inside Postgres, with no extra queue to operate.
+- Deployment: Hetzner Cloud on LUKS-encrypted disk, deployed through Dokploy.
+
+Tech Stack:
+- Backend: NestJS, PostgreSQL 17, Row-Level Security, pgvector, pg-boss
+- Sync: PowerSync over the Postgres WAL
+- Infrastructure: Hetzner Cloud, LUKS-encrypted disks, Dokploy`,
+    tags: [
+      "NestJS",
+      "PostgreSQL 17",
+      "Row-Level Security",
+      "PowerSync",
+      "pgvector",
+      "pg-boss",
+      "Hetzner",
+      "Dokploy",
+    ],
+    demo: "https://getsitekeep.com/",
+    demoLabel: "Visit website",
+    images: [getAssetPath("/projects/sitekeep/dashboard.svg")],
+  },
+  amour: {
+    title: "Amour",
+    category: "app",
+    description:
+      "Dating app live on Google Play, backed by NestJS microservices over gRPC with Envoy, a 68-model Prisma schema, priority queues on RabbitMQ, a horizontally scalable Socket.io gateway on Redis pub/sub, and a FluxCD GitOps pipeline to Kubernetes.",
+    fullDescription: `Amour is a dating app published on Google Play. The backend is built as NestJS microservices that talk over gRPC, with hexagonal architecture and interface-based dependency injection across 68+ services.
+
+Architecture:
+- gRPC Transport: 16 proto service definitions behind an Envoy proxy, with interface-based dependency injection so each service depends on contracts rather than concrete implementations.
+- Data Model: A 68-model Prisma schema (1,725 lines) with 141 BTREE indexes. A denormalized chat schema caches what the chat list needs, making chat list rendering 50x faster by eliminating subqueries.
+- Recommendations without N+1: Candidates, scores, and boost states are pre-fetched in 6 parallel queries instead of 200+ sequential lookups.
+- Priority Queuing: A 4-tier queue (CRITICAL / HIGH / NORMAL / LOW) with presence-aware routing, a circuit breaker with database failover, and burst detection across 16 RabbitMQ topic exchanges.
+- Real-Time Gateway: A horizontally scalable WebSocket gateway on Socket.io with a Redis pub/sub adapter for cross-pod message delivery, typing indicators, and offline message queuing.
+- Delivery: A FluxCD GitOps pipeline with image automation, multi-stage ARM64 and x86_64 Docker builds, zero-downtime Kubernetes rolling updates, and Trivy vulnerability scanning in CI.
+
+Tech Stack:
+- Backend: NestJS, gRPC, Envoy, Prisma, PostgreSQL
+- Messaging & Real-Time: RabbitMQ, Socket.io, Redis
+- Infrastructure: Docker, Kubernetes, FluxCD, Trivy`,
+    tags: [
+      "NestJS",
+      "gRPC",
+      "Envoy",
+      "Prisma",
+      "RabbitMQ",
+      "Socket.io",
+      "Redis",
+      "Kubernetes",
+      "FluxCD",
+    ],
+    playStore: "https://play.google.com/store/apps/details?id=com.turtlebyte.amour",
+    images: [getAssetPath("/projects/amour/dashboard.svg")],
+  },
   cognia: {
     title: "Cognia",
     category: "app",

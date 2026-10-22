@@ -10,8 +10,10 @@ interface Project {
   description: string;
   fullDescription: string;
   tags: readonly string[];
-  github: string;
+  github?: string;
   demo?: string;
+  demoLabel?: string;
+  playStore?: string;
   images: readonly string[];
   isProprietary?: boolean;
 }
@@ -54,14 +56,26 @@ export function ProjectContent({ project }: { project: Project }) {
         </div>
 
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            View on GitHub
-          </a>
+          {project.playStore && (
+            <a
+              href={project.playStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Get it on Google Play
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={project.playStore ? "btn btn-ghost" : "btn btn-primary"}
+            >
+              View on GitHub
+            </a>
+          )}
           {project.demo && !project.isProprietary && (
             <a
               href={project.demo}
@@ -69,7 +83,7 @@ export function ProjectContent({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="btn btn-ghost"
             >
-              Live Demo
+              {project.demoLabel ?? "Live Demo"}
             </a>
           )}
           {project.isProprietary && project.category === "app" && (
@@ -91,9 +105,9 @@ export function ProjectContent({ project }: { project: Project }) {
 
         {project.images && project.images.length > 0 && (
           <div className="surface mb-12 overflow-hidden rounded-2xl">
-            {project.demo && !project.isProprietary ? (
+            {(project.playStore || (project.demo && !project.isProprietary)) ? (
               <Link
-                href={project.demo}
+                href={project.playStore ?? project.demo ?? "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"

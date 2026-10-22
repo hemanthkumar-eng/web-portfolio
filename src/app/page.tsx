@@ -5,39 +5,52 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  SiAxios,
-  SiBootstrap,
+  SiApachekafka,
+  SiClickhouse,
+  SiCloudflare,
+  SiCockroachlabs,
   SiDocker,
-  SiExpo,
-  SiExpress,
-  SiGit,
-  SiGithub,
+  SiEnvoyproxy,
+  SiFastapi,
+  SiFlux,
+  SiGithubactions,
   SiGo,
-  SiHono,
-  SiJavascript,
-  SiJsonwebtokens,
+  SiGooglecloud,
+  SiHetzner,
+  SiJest,
+  SiKubernetes,
   SiMongodb,
-  SiMongoose,
+  SiNeo4J,
+  SiNestjs,
   SiNextdotjs,
   SiNodedotjs,
+  SiOpenai,
   SiPostgresql,
-  SiPostman,
+  SiPrisma,
   SiPython,
+  SiRabbitmq,
   SiReact,
-  SiRedux,
-  SiRender,
+  SiRedis,
+  SiSocketdotio,
+  SiSupabase,
   SiTailwindcss,
+  SiTrivy,
   SiTypescript,
-  SiVercel,
 } from "react-icons/si";
 import {
   TbApi,
-  TbBolt,
   TbBrain,
-  TbDeviceMobile,
-  TbFileUpload,
+  TbChartDots3,
+  TbClock,
+  TbCloud,
+  TbDatabase,
+  TbNetwork,
   TbRefresh,
-  TbRouter,
+  TbRocket,
+  TbSearch,
+  TbShieldCheck,
+  TbSql,
+  TbVector,
 } from "react-icons/tb";
 import { getAssetPath } from "@/utils/path";
 import type { IconType } from "react-icons";
@@ -52,6 +65,36 @@ const NAV_ITEMS = [
 ];
 
 const projects = [
+  {
+    title: "Sitekeep",
+    emoji: "🏢",
+    slug: "sitekeep",
+    type: "web",
+    image: getAssetPath("/projects/sitekeep/dashboard.svg"),
+    description:
+      "Multi-tenant facilities maintenance SaaS on NestJS and PostgreSQL 17. Tenant isolation is enforced by Row-Level Security as a database invariant, technicians keep working offline through PowerSync, and AI historical search runs over pgvector.",
+    highlights: [
+      "18 development phases shipped on NestJS + PostgreSQL 17",
+      "Tenant isolation enforced by Row-Level Security, not application policy",
+      "Offline-first sync on PowerSync replicating from the Postgres WAL",
+      "AI search over pgvector, pg-boss scheduling, Hetzner via Dokploy",
+    ],
+  },
+  {
+    title: "Amour",
+    emoji: "💘",
+    slug: "amour",
+    type: "app",
+    image: getAssetPath("/projects/amour/dashboard.svg"),
+    description:
+      "Dating app live on Google Play, backed by NestJS microservices over gRPC with Envoy, a 68-model Prisma schema, priority queues on RabbitMQ, a horizontally scalable Socket.io gateway on Redis pub/sub, and a FluxCD GitOps pipeline to Kubernetes.",
+    highlights: [
+      "NestJS microservices over gRPC: 16 proto services behind Envoy",
+      "68-model Prisma schema, 141 indexes, 50x faster chat lists",
+      "4-tier priority queues across 16 RabbitMQ exchanges",
+      "Socket.io gateway on Redis pub/sub, FluxCD GitOps to Kubernetes",
+    ],
+  },
   {
     title: "Cognia",
     emoji: "🗣️",
@@ -165,72 +208,79 @@ const SKILL_GROUPS: {
   {
     title: "Languages",
     items: [
-      { name: "Golang", icon: SiGo },
-      { name: "JavaScript", icon: SiJavascript },
       { name: "Python", icon: SiPython },
       { name: "TypeScript", icon: SiTypescript },
-    ],
-  },
-  {
-    title: "Frontend",
-    items: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "Redux Toolkit", icon: SiRedux },
-      { name: "React Context API", icon: SiReact },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "Bootstrap", icon: SiBootstrap },
-    ],
-  },
-  {
-    title: "Mobile",
-    items: [
-      { name: "React Native (Expo)", icon: SiReact },
-      { name: "Expo Router", icon: SiExpo },
-      { name: "React Navigation", icon: TbRouter },
-      { name: "NativeWind", icon: SiTailwindcss },
-      { name: "AsyncStorage", icon: TbDeviceMobile },
-      { name: "EAS Build (Android & iOS)", icon: SiExpo },
+      { name: "Go", icon: SiGo },
+      { name: "SQL", icon: TbSql },
     ],
   },
   {
     title: "Backend",
     items: [
+      { name: "NestJS", icon: SiNestjs },
+      { name: "FastAPI", icon: SiFastapi },
       { name: "Node.js", icon: SiNodedotjs },
-      { name: "Express.js", icon: SiExpress },
-      { name: "Hono", icon: SiHono },
-      { name: "REST API Design", icon: TbApi },
-      { name: "JWT Authentication", icon: SiJsonwebtokens },
-      { name: "Multipart File Handling", icon: TbFileUpload },
-      { name: "LLM/AI API Integration (STT/TTS)", icon: TbBrain },
+      { name: "gRPC", icon: TbNetwork },
+      { name: "REST", icon: TbApi },
+      { name: "WebSocket", icon: SiSocketdotio },
+      { name: "Envoy", icon: SiEnvoyproxy },
+      { name: "SuperTokens", icon: TbShieldCheck },
+      { name: "Supabase Auth", icon: SiSupabase },
     ],
   },
   {
-    title: "State & Performance",
-    items: [
-      { name: "Redux Toolkit", icon: SiRedux },
-      { name: "SWR", icon: TbRefresh },
-      { name: "Axios", icon: SiAxios },
-      { name: "API caching strategies", icon: TbBolt },
-    ],
-  },
-  {
-    title: "Databases",
+    title: "Data",
     items: [
       { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "ClickHouse", icon: SiClickhouse },
+      { name: "StarRocks", icon: TbDatabase },
       { name: "MongoDB", icon: SiMongodb },
-      { name: "Mongoose", icon: SiMongoose },
+      { name: "Neo4j", icon: SiNeo4J },
+      { name: "CockroachDB", icon: SiCockroachlabs },
+      { name: "Redis", icon: SiRedis },
+      { name: "DragonflyDB", icon: TbDatabase },
+      { name: "Prisma", icon: SiPrisma },
+      { name: "pgvector", icon: TbVector },
+      { name: "Pinecone", icon: TbVector },
     ],
   },
   {
-    title: "DevOps & Tools",
+    title: "Messaging",
     items: [
-      { name: "Git", icon: SiGit },
-      { name: "GitHub", icon: SiGithub },
+      { name: "Kafka", icon: SiApachekafka },
+      { name: "RabbitMQ", icon: SiRabbitmq },
+      { name: "pg-boss", icon: TbClock },
+      { name: "PowerSync", icon: TbRefresh },
+    ],
+  },
+  {
+    title: "Infrastructure",
+    items: [
       { name: "Docker", icon: SiDocker },
-      { name: "Vercel", icon: SiVercel },
-      { name: "Render", icon: SiRender },
-      { name: "Postman", icon: SiPostman },
+      { name: "Kubernetes", icon: SiKubernetes },
+      { name: "FluxCD", icon: SiFlux },
+      { name: "GitHub Actions", icon: SiGithubactions },
+      { name: "Trivy", icon: SiTrivy },
+      { name: "AWS", icon: TbCloud },
+      { name: "GCP", icon: SiGooglecloud },
+      { name: "Cloudflare", icon: SiCloudflare },
+      { name: "Hetzner", icon: SiHetzner },
+      { name: "Dokploy", icon: TbRocket },
+    ],
+  },
+  {
+    title: "Frontend & AI/ML",
+    items: [
+      { name: "React", icon: SiReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "React Native", icon: SiReact },
+      { name: "TailwindCSS", icon: SiTailwindcss },
+      { name: "Jest", icon: SiJest },
+      { name: "GPT-4o", icon: SiOpenai },
+      { name: "SentenceTransformers", icon: TbBrain },
+      { name: "HDBSCAN", icon: TbChartDots3 },
+      { name: "UMAP", icon: TbChartDots3 },
+      { name: "RAG", icon: TbSearch },
     ],
   },
 ];
@@ -238,41 +288,54 @@ const SKILL_GROUPS: {
 const EXPERIENCE = [
   {
     company: "Avacend Inc",
-    role: "Senior Software Engineer (Freelance)",
+    role: "Senior Software Engineer (Contract)",
     location: "Alpharetta, Georgia (Remote)",
     period: "Dec 2024 - Present",
     points: [
-      "Built Python data pipelines against the OAuth2 authenticated WorxHub API with automatic token refresh and a three tier extraction strategy (cumulative, delta, on demand) for incremental synchronization.",
-      "Designed a ClickHouse analytics schema on the ReplacingMergeTree engine with 100K row batch inserts across 8 parallel threads and exponential backoff retry logic.",
-      "Implemented a text to SQL pipeline on GPT 4o turning natural language questions into ClickHouse queries, with AI interpretation of results into readable work order descriptions.",
-      "Analyzed 33,000 HVAC maintenance work orders with SentenceTransformer embeddings, HDBSCAN clustering and UMAP reduction, shipping it as a semantic search and clustering service that gave operations teams predictive analytics on recurring equipment failures.",
-      "Delivered 4 production dashboards covering 10+ KPIs including SLA compliance and shift based analytics, with dynamic ClickHouse query generation and DragonflyDB caching invalidated by extraction date.",
-      "Architected a multi tenant FastAPI backend with three tier RBAC, JWT authentication, and async ClickHouse access via ThreadPoolExecutor to keep the event loop unblocked.",
+      "Analyzed 33,000 HVAC maintenance work orders with SentenceTransformer embeddings, UMAP and HDBSCAN clustering, and shipped a semantic search service that helps operations teams predict recurring equipment failures.",
+      "Created a GPT 4o text to SQL tool that answers plain English questions with ClickHouse queries and summarizes the results as readable work order descriptions.",
+      "Developed a multitenant FastAPI backend secured with JWT and three levels of role based access, running ClickHouse calls through ThreadPoolExecutor to keep the async event loop free.",
+      "Wrote Python pipelines that pull from the WorxHub API using OAuth2 with automatic token refresh, keeping data in sync through cumulative, delta and on demand extraction.",
+      "Modeled the ClickHouse analytics layer on ReplacingMergeTree, with 100K row batch loads running on 8 parallel threads and exponential backoff retries.",
+      "Shipped 4 production dashboards covering more than 10 KPIs including SLA compliance and shift performance, using dynamic ClickHouse queries and DragonflyDB caching tied to extraction date.",
     ],
   },
   {
     company: "Constient Global Solutions",
-    role: "Software Engineer",
+    role: "Senior Software Engineer",
     location: "Chennai, Tamil Nadu (Remote)",
     period: "Nov 2022 - Dec 2024",
     points: [
-      "Founding engineer on the startup product; designed and built scalable REST API backend microservices in GoLang, optimizing for high performance and efficiency.",
-      "Architected a distributed log management system on StarRocks DB and Kafka, improving troubleshooting efficiency by 40%.",
-      "Implemented high performance gRPC communication between services across Python and GoLang, and published SDKs integrating OpenAI APIs for AI driven backend features.",
-      "Ran deployment on Docker and Kubernetes, tuned performance across PostgreSQL, ClickHouse and StarRocks, and wrote GoLang CLI tooling for backend operations.",
-      "Built the log management frontend in Next.js and TailwindCSS with real time visualization and AI recommended filters, contributing to a 40% increase in user engagement; established Jest testing practice at 90% coverage.",
+      "Joined as a founding engineer and built scalable, high speed REST API microservices in GoLang from the ground up.",
+      "Created a distributed log management platform on Kafka and StarRocks DB that cut troubleshooting time by 40%.",
+      "Developed the log management frontend with Next.js and TailwindCSS, adding live charts and AI suggested filters that lifted user engagement by 40%, backed by Jest tests at 90% coverage.",
+      "Connected Python and GoLang services through gRPC and shipped SDKs built on OpenAI APIs to bring AI features into the backend.",
+      "Ran deployments on Docker and Kubernetes, tuned PostgreSQL, ClickHouse and StarRocks for better performance, and wrote GoLang command line tools for daily backend operations.",
     ],
   },
 ];
 
 const EDUCATION = [
   {
-    institute: "RNS Institute of Technology, Bengaluru",
-    degree: "B.E. in Electronics and Communication",
+    institute: "Visvesvaraya Technological University, Bengaluru",
+    degree: "Bachelor of Engineering in Electronics and Communication",
   },
   {
     institute: "Dayananda Sagar Institute of Technology, Bengaluru",
-    degree: "Diploma in Electronics and Communication Engineering",
+    degree: "Diploma of Engineering in Electronics and Communication",
+  },
+];
+
+const CERTIFICATES = [
+  {
+    name: "Claude Code 101",
+    issuer: "Anthropic Education",
+    url: "https://verify.skilljar.com/c/8569cwt5fhcu",
+  },
+  {
+    name: "Claude 101",
+    issuer: "Anthropic Education",
+    url: "https://verify.skilljar.com/c/hf669pmpgkhy",
   },
 ];
 
@@ -1002,6 +1065,31 @@ export default function Home() {
               <p className="mt-2 text-sm text-mute">{item.degree}</p>
             </motion.article>
           ))}
+        </motion.div>
+        <motion.div
+          className="mt-10"
+          variants={revealItem}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
+          <h3 className="font-display text-xl font-semibold text-fg">
+            Certificates
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {CERTIFICATES.map((cert) => (
+              <a
+                key={cert.url}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill transition hover:border-accent/50 hover:text-fg"
+              >
+                {cert.name}
+                <span className="text-mute">· {cert.issuer}</span>
+              </a>
+            ))}
+          </div>
         </motion.div>
       </section>
 
