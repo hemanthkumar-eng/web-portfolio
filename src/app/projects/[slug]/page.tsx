@@ -33,7 +33,7 @@ Tech Stack:
     ],
     demo: "https://getsitekeep.com/",
     demoLabel: "Visit website",
-    images: [getAssetPath("/projects/sitekeep/dashboard.svg")],
+    images: [getAssetPath("/projects/sitekeep/dashboard.png")],
   },
   amour: {
     title: "Amour",
@@ -66,7 +66,7 @@ Tech Stack:
       "FluxCD",
     ],
     playStore: "https://play.google.com/store/apps/details?id=com.turtlebyte.amour",
-    images: [getAssetPath("/projects/amour/dashboard.svg")],
+    images: [getAssetPath("/projects/amour/preview.png")],
   },
   cognia: {
     title: "Cognia",
@@ -104,7 +104,7 @@ Tech Stack:
       "i18next",
     ],
     github: "https://github.com/hemanthkumar-eng/Cognia",
-    images: [getAssetPath("/projects/cognia/dashboard.svg")],
+    images: [getAssetPath("/projects/cognia/preview.png")],
   },
   noseboop: {
     title: "NoseBoop",

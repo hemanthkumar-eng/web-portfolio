@@ -70,7 +70,7 @@ const projects = [
     emoji: "🏢",
     slug: "sitekeep",
     type: "web",
-    image: getAssetPath("/projects/sitekeep/dashboard.svg"),
+    image: getAssetPath("/projects/sitekeep/dashboard.png"),
     description:
       "Multi-tenant facilities maintenance SaaS on NestJS and PostgreSQL 17. Tenant isolation is enforced by Row-Level Security as a database invariant, technicians keep working offline through PowerSync, and AI historical search runs over pgvector.",
     highlights: [
@@ -85,7 +85,7 @@ const projects = [
     emoji: "💘",
     slug: "amour",
     type: "app",
-    image: getAssetPath("/projects/amour/dashboard.svg"),
+    image: getAssetPath("/projects/amour/preview.png"),
     description:
       "Dating app live on Google Play, backed by NestJS microservices over gRPC with Envoy, a 68-model Prisma schema, priority queues on RabbitMQ, a horizontally scalable Socket.io gateway on Redis pub/sub, and a FluxCD GitOps pipeline to Kubernetes.",
     highlights: [
@@ -100,7 +100,7 @@ const projects = [
     emoji: "🗣️",
     slug: "cognia",
     type: "app",
-    image: getAssetPath("/projects/cognia/dashboard.svg"),
+    image: getAssetPath("/projects/cognia/preview.png"),
     description:
       "An India-first, English-speaking practice buddy for students. A Duolingo-style mascot talks with the learner by voice—the app speaks (TTS), listens (STT), and shows everything as on-screen captions—personalized by class, ability level, and interests. Built on Sarvam AI and architected to scale from English to Hindi, Tamil, and Telugu.",
     highlights: [
@@ -739,9 +739,10 @@ export default function Home() {
               <span className="block text-glow">Hemanth Kumar.</span>
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-mute md:text-lg">
-              A software engineer building frontend, full-stack, and mobile
-              products. Everyone can vibe code — I ship on fundamentals that hold
-              when performance drops, APIs fail, and production gets messy.
+              A senior software engineer building backend systems, data
+              platforms, and AI-powered products in Python, TypeScript, and Go.
+              Everyone can vibe code — I ship on fundamentals that hold when
+              queries slow down, services fail, and production gets messy.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <a href="#contact" className="btn btn-primary">
@@ -832,16 +833,16 @@ export default function Home() {
             Skills
           </p>
           <h2 className="mt-3 font-display text-3xl font-bold text-fg md:text-4xl">
-            The stack I build with
+            What I work with
           </h2>
           <p className="mt-3 max-w-2xl text-mute">
-            Languages, frameworks, and tooling across frontend, mobile, backend,
-            data, and deployment — the stack I reach for to ship reliable
-            products.
+            Languages, services, data stores, and infrastructure I use day to
+            day, from Python, TypeScript, and Go backends to ClickHouse
+            analytics, Kubernetes deployments, and AI-powered search.
           </p>
         </motion.div>
         <motion.div
-          className="mt-10 gap-5 sm:columns-2 lg:columns-3"
+          className="surface mt-10 rounded-2xl divide-y divide-white/[0.06]"
           variants={revealContainer}
           initial="hidden"
           whileInView="show"
@@ -851,15 +852,15 @@ export default function Home() {
             <motion.div
               key={group.title}
               variants={revealItem}
-              className="surface surface-hover mb-5 break-inside-avoid rounded-2xl p-6"
+              className="grid gap-3 px-6 py-5 md:grid-cols-[11rem_1fr] md:gap-6 md:px-8"
             >
-              <div className="flex items-center gap-2.5">
-                <span className="h-4 w-1 rounded-full bg-accent-soft" />
+              <div className="flex items-center gap-2.5 md:pt-1.5">
+                <span className="h-4 w-1 shrink-0 rounded-full bg-accent-soft" />
                 <h3 className="font-display text-base font-semibold text-fg">
                   {group.title}
                 </h3>
               </div>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <span key={item.name} className="pill">
                     {React.createElement(item.icon as React.ElementType, {
@@ -1137,7 +1138,7 @@ export default function Home() {
             >
               <a
                 href="mailto:Hemanth.workemail@gmail.com"
-                className="btn btn-primary max-w-full break-all"
+                className="btn btn-primary max-w-full whitespace-nowrap px-4 text-xs sm:px-[1.4rem] sm:text-sm"
               >
                 {ICONS.email}
                 Hemanth.workemail@gmail.com
